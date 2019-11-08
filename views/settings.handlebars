@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="settings.css">
+<div class="settings_wrapper">
+	
+	<div class="settings_bit">
+		<aside class="settings_aside">
+			<h2 class="title">General settings</h2>
+			<hr>
+		</aside>
+		<main class="settings_options">
+			...
+		</main>
+	</div>
+
+	<div class="settings_bit">
+		<aside class="settings_aside">
+			<h2 class="title">Profile settings</h2>
+			<hr>
+		</aside>
+		<main class="settings_options">
+			<div class="option input_div">
+				<label for="change_username">Change your username</label>
+				<div class="input">
+					<input id="change_username" placeholder="piet" value="{{user.slug}}">
+					<button onclick="set_username(this.closest('.option').querySelector('input').value)">Update</button>
+				</div>
+			</div>
+			<div class="option input_div">
+				<label for="change_username">Profile's color</label>
+				<div class="input">
+					<div class="color_picker_wrapper_alt" style="background: {{#if user.color}}{{user.color}}{{else}}#3d6a7b{{/if}}">
+						<input onchange="this.parentNode.style.background = `${this.value}`" id="profile_color" type="color" value="{{#if user.color}}{{user.color}}{{else}}#3d6a7b{{/if}}">
+					</div>
+					<button onclick="set_color('#3d6a7b')">Reset</button>
+					<button onclick="set_color(this.closest('.option').querySelector('input').value)">Update</button>
+				</div>
+			</div>
+		</main>
+	</div>
+
+</div>
+
+<script src="/universal.js"></script>
+<script src="settings.js"></script>

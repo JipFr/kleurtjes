@@ -1,0 +1,49 @@
+.settings_wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	grid-gap: var(--gap_large);
+}
+.settings_bit {
+	margin-bottom: var(--gap_large);
+}
+
+
+
+aside.settings_aside .title {
+	font-family: Arial;
+	margin: 0;
+}
+aside.settings_aside hr {
+	border: 0;
+	width: 100%;
+	height: 1px;
+	background: var(--border);
+	margin: var(--gap) 0;
+	margin-bottom: var(--gap_large);
+}
+
+.settings_options {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap_large);
+}
+
+.color_picker_wrapper_alt {
+	width: 100%;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.input input[type="color"] {
+	width: 100%;
+	height: 28px;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+
+@media screen and (max-width: 500px) {
+	.settings_wrapper {
+		grid-template-columns: 100%;
+	}
+}

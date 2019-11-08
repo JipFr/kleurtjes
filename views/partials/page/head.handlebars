@@ -1,0 +1,48 @@
+<!-- <title>Hip</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
+<link rel="stylesheet" href="/universal.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+
+<link rel="icon" src="/icon.png"> -->
+
+<title>{{head_title}} {{universal.app_divider}} {{universal.app_name}}</title>
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="apple-touch-startup-image" href="launch.png">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+		
+<meta charset="utf-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/universal.css">
+
+{{#if description}}
+<meta name="description" content="{{description}}">
+<meta property="og:description" content="{{description}}">
+<meta name="twitter:description" content="{{description}}">
+{{else}}
+<meta name="description" content="{{universal.meta_description}}">
+<meta property="og:description" content="{{universal.meta_description}}">
+<meta name="twitter:description" content="{{universal.meta_description}}">
+{{/if}}
+
+<link rel="icon" href="/icon.png">
+{{#if preview_img}}
+<meta property="og:image" content="{{preview_img}}">
+<meta name="twitter:image:src" content="{{preview_img}}">
+<meta name="twitter:card" content="summary_large_image">
+{{else}}
+<meta property="og:image" content="/icon.png">
+<meta name="twitter:image:src" content="/icon.png">
+<meta name="twitter:card" content="summary">
+{{/if}}
+
+<meta name="keywords" content="online palette storage">
+<meta name="theme-color" content="#3d6a7b">
+
+<meta property="og:title" content="{{head_title}} {{universal.app_divider}} {{universal.app_name}}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui, viewport-fit=cover">
+
+<meta name="twitter:title" content="{{head_title}} {{universal.app_divider}} {{universal.app_name}}">

@@ -1,0 +1,14 @@
+<nav class="user_nav">
+	<a href="/u/{{page.user.slug}}"><div class="nav_item{{get_nav_class current_page 'dashboard'}}" data-page="dashboard">
+		Dashboard
+	</div></a>
+	<a href="/u/{{page.user.slug}}/own"><div class="nav_item{{get_nav_class current_page 'own'}}" data-page="own">
+		Own palettes
+	</div></a>
+	<a href="/u/{{page.user.slug}}/all"><div class="nav_item{{get_nav_class current_page 'all'}}" data-page="all">
+		All palettes
+	</div></a>
+	<a href="/u/{{page.user.slug}}/collections/"><div class="nav_item{{get_nav_class current_page 'collections'}}" data-page="groups">
+		Collections
+	</div></a>
+</nav>

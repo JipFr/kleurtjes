@@ -1,0 +1,107 @@
+<div class="palette_wrapper palette">
+	<div class="palette_top">
+		<h2 class="palette_name">Palette title unknown</h2>
+		<div class="palette_controls">
+			<div class="palette_users">
+				<a href="/u/jip/"><img  alt="Profile picture" class="pfp_small pointer" src="/image/jip/"></a>
+			</div>
+			<div class="delete_palette pointer" onclick="delete_palette(this.closest('.palette').getAttribute('data-id'));">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+			</div>
+			<div class="more_palette">
+				<details>
+					
+					<div class="dropdown">
+						<a class="li_a palette_url" href="/" target="_blank">
+							<div class="li nav_icon icon_grid improve_opacity">
+								<div class="grid_icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>	
+								</div>
+								<div class="grid_info">
+									Open in new tab
+								</div>
+							</div>
+						</a>
+						<hr>
+
+						<!-- Manage people -->
+						<div class="li pointer nav_icon icon_grid improve_opacity manage_people" onclick="manage_palette_people(this.closest('.palette').getAttribute('data-id'))">
+							<div class="grid_icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+							</div>
+							<div class="grid_info">
+								Manage people
+							</div>
+						</div>
+
+						<!-- Add to collection -->
+						<div class="li nav_icon icon_grid improve_opacity">
+							<div class="grid_icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder-plus"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+							</div>
+							<div class="grid_info">
+								Add to collection
+							</div>
+						</div>
+
+						<!-- Dashboard controls -->
+						<div class="li_wrapper pointer toggle_dashboard" onclick="toggle_palette_dashboard(this.closest('.palette').getAttribute('data-id'));">
+							<div class="li nav_icon icon_grid improve_opacity is_on_dashboard">
+								<div class="grid_icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+								</div>
+								<div class="grid_info">
+									Add to dashboard
+								</div>
+							</div>
+							<div class="li nav_icon icon_grid improve_opacity not_on_dashboard">
+								<div class="grid_icon">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+								</div>
+								<div class="grid_info">
+									Remove from dashboard
+								</div>
+							</div>
+						</div>
+						<hr>
+
+						<!-- Movement controls -->
+						<div class="placement_wrapper">
+							<div class="palette_placement">
+								<div class="li nav_icon icon_grid icon_grid_2 improve_opacity not_on_dashboard">
+									<div class="grid_icon pointer" onclick="move_palette('up', this.closest('.palette').getAttribute('data-id'))">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>
+									</div>
+									<div class="grid_info">
+										Location
+									</div>
+									<div class="grid_icon pointer" onclick="move_palette('down', this.closest('.palette').getAttribute('data-id'))">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<summary class="pointer">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+					</summary>
+
+				</details>
+			</div>
+		</div>
+	</div>
+	<div class="palette_colors">
+		<div class="color_wrapper">
+			<div class="color" style="background: #000;">
+				<div class="color_hover">
+					<div class="color_hover_inner">
+						<span class="hover_text">Color HTML</span>
+						<h5 class="hover_color">#FFFFFF</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

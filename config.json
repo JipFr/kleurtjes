@@ -1,0 +1,9 @@
+{
+	"port": 1906,
+	"db_name": "colors",
+	"universal_handlebar": {
+		"app_name": "Kleurtjes",
+		"app_divider": "|",
+		"meta_description": "Easily store your color palettes online"
+	}
+}

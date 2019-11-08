@@ -1,0 +1,16 @@
+<div class="layout user_main" data-user="{{page.user.slug}}">
+	<aside class="layout_aside">
+		{{#if page.user}}
+		{{> util/aside_user}}
+		{{/if}}
+	</aside>
+	<section class="layout_main">
+		{{> page/user_nav}}
+		{{#if is_collections}}
+
+		{{else}}
+		{{> page/user_palette_partial}}
+		{{/if}}
+	</section>
+</div>
+

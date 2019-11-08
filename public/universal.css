@@ -1,0 +1,557 @@
+:root {
+	--gap_small: 5px;
+	--gap: 10px;
+	--gap_large: 20px;
+}
+body {
+	margin: 0;
+	padding-top: calc(50px + env(safe-area-inset-top));
+	padding-bottom: calc(var(--gap_large) + env(safe-area-inset-bottom));
+	--body: white;
+	--main: #3d6a7b;
+	--theme: var(--main);
+	--text: black;
+	--border: #e5e5e5;
+	background: var(--body);
+	color: var(--text);
+	max-width: 100%;
+	overflow-x: hidden;
+}
+[data-theme="dark"] {
+	--body: #191919;
+	--text: white;
+	--border: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .all > * {
+	--theme: black;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		--body: #191919;
+		--text: white;
+		--border: rgba(255, 255, 255, 0.1);
+	}
+	body .all > * {
+		--theme: black;
+	}
+}
+
+header {
+	width: 100%;
+	height: 50px;
+	padding-top: env(safe-area-inset-top);
+	background: var(--theme);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0; left: 0;
+	z-index: 150;
+}
+header .layout_width {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+header a[href="/log-in/"] svg {
+	color: white;
+	display: block;
+}
+header .pfp {
+	height: 40px;
+	width: 40px;
+	border: 1px solid var(--border);
+}
+.pfp {
+	border-radius: 4px;
+	display: block;
+}
+.pfp_small {
+	width: 24px;
+	height: 24px;
+	border: 1px solid var(--border);
+	border-radius: 50%;
+	display: block;
+}
+
+.body_wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.layout_width {
+	width: 93%;
+	margin-left: env(safe-area-inset-left);
+	margin-right: env(safe-area-inset-right);
+	max-width: 1000px;
+}
+.layout {
+	display: grid;
+	grid-template-columns: 250px 1fr;
+	grid-gap: var(--gap_large);
+}
+
+.body_wrapper {
+	margin-top: var(--gap_large);
+}
+
+
+.aside_user .pfp {
+	width: calc(100% - 2px);
+	border: 1px solid var(--border);
+}
+.aside_user h2 {
+	font-family: Poppins, Arial;
+	margin: 0;
+	margin-top: var(--gap);
+}
+
+.user_actions > a {
+	text-decoration: none;
+}
+.button_large {
+	font-size: 1em;
+	margin: var(--gap) 0;
+	/*width: calc(100% - 2px);*/
+	width: 100%;
+	background: transparent;
+	border: 1px solid var(--border);
+	padding: 8px 20px;
+	border-radius: 4px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+	transition: background 150ms;
+	color: var(--text);
+}
+.button_large:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+.button_large .icon_div {
+	margin-right: var(--gap);
+}
+.button_large .icon_div svg {
+	display: block;
+}
+
+
+.user_nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: var(--gap_large);
+}
+.user_nav > a {
+	text-decoration: none;
+	color: inherit;
+}
+.user_nav > a > div {
+	padding: 15px 40px;
+	box-sizing: border-box;
+	font-family: Arial;
+	text-align: center;
+}
+.user_nav > a > div.current {
+	border-bottom: 3px solid var(--text);
+}
+
+.palettes {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap_large);
+}
+.palette {
+	font-family: Arial;
+}
+.palette_top {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-gap: var(--gap);
+	align-items: center;
+	margin-bottom: var(--gap);
+}
+.palette_controls {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+.palette_controls .palette_users {
+	display: flex;
+}
+.palette_controls .palette_users > * + * {
+	/* Every direct child with a child in front of it */
+	margin-left: var(--gap_small);
+}
+.palette_controls .pointer {
+	cursor: pointer;
+}
+.palette_controls > div > svg {
+	display: block;
+}
+.palette_controls > div + div {
+	margin-left: var(--gap);
+}
+.palette .palette_name {
+	margin: 0;
+}
+.palette_colors {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	border-radius: 4px;
+	overflow: hidden;
+}
+.color_wrapper {
+	height: 100px;
+}
+.palette_colors .color_wrapper:nth-last-child(1) {
+	border-bottom-right-radius: 4px;
+	overflow: hidden;
+}
+.color_wrapper .color {
+	width: 100%;
+	height: 100%;
+}
+.color_wrapper .color.is_add_button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.color_wrapper .color.is_add_button svg {
+	opacity: .5;
+	transition: opacity 200ms;
+}
+.color_wrapper .color.is_add_button:hover svg {
+	opacity: 1;
+}
+.palette_colors.round_last .color_wrapper:nth-last-child(1) {
+	border-top-right-radius: 4px;
+}
+
+.color_hover {
+	opacity: 0;
+	transition: opacity 150ms;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+	color: white;
+	display: flex; flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	pointer-events: none;
+}
+.color_wrapper:hover .color_hover {
+	opacity: 1;
+}
+.color_hover span {
+	padding: 0 5px;
+	width: 100%;
+}
+.color_hover .hover_color {
+	margin: 0;
+	font-weight: 300;
+	margin-top: var(--gap_small);
+}
+
+details {
+	position: relative;
+	z-index: 1;
+}
+details summary {
+	outline: none;
+}
+details summary::-webkit-details-marker {
+	display: none;
+}
+details summary svg {
+	display: block;
+}
+
+details .dropdown {
+	width: 175px;
+	position: absolute;
+	z-index: 1;
+	top: 24px;
+	/*left: 50%;*/
+	/*transform: translateX(-50%);*/
+	right: 24px;
+	border: 1px solid var(--border);
+	background: var(--body);
+	border-radius: 4px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+details .dropdown .li_a {
+	text-decoration: none;
+	color: inherit;
+}
+details .dropdown .li {
+	padding: 8px 20px;
+	list-style-type: none;
+}
+details .dropdown hr {
+	margin: 0;
+	border: 0;
+	border-top: 1px solid var(--border);
+}
+details .dropdown .icon_grid .grid_icon svg {
+	opacity: .7;
+	transition: opacity 150ms;
+}
+.icon_grid.improve_opacity:hover .grid_icon svg {
+	opacity: 1;
+}
+
+.icon_grid {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto 1fr;
+	grid-gap: var(--gap);
+}
+.icon_grid_2 {
+	grid-template-columns: 20px 1fr 20px;
+}
+.icon_grid_2 > div:nth-child(2) {
+	text-align: center;
+}
+.icon_grid .grid_icon svg {
+	display: block;
+	width: 20px;
+	height: 20px;
+}
+
+.overlay_wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+.overlay_inner {
+	padding: 20px;
+	background: var(--body);
+	border-radius: 4px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 300px;
+	min-height: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+}
+.overlay_wrapper .inner_wrapper, .overlay_wrapper .overlay_btns {
+	width: 100%;
+}
+.overlay_inner .title {
+	margin: 0;
+	font-family: Arial;
+}
+.overlay_inner .fields {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: 15px;
+	margin: 15px 0;
+}
+
+.input_div label {
+	font-size: 1rem;
+	font-family: Arial;
+}
+.input_div .input {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	margin-top: var(--gap_small);
+
+}
+.input_div_text input[type="text"], .input_div input:not([type]) {
+	font-size: 1em;
+	width: calc(100% - 22px);
+	padding: 5px 10px;
+	border: 1px solid var(--border);
+	background: var(--body);
+	color: var(--text);
+	border-radius: 4px;
+	-webkit-appearance: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.input button {
+	font-size: 1em;
+	padding: 5px 20px;
+	border: 1px solid var(--border);
+	margin-left: var(--gap);
+	background: transparent;
+	color: var(--text);
+}
+.input input, .input button, .input_div_text input[type="text"], .input_div input:not([type]){
+	border-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.color_picker_wrapper {
+	position: relative;
+}
+.color_picker_wrapper input[type="color"] {
+	opacity: 0;
+	padding: 0; border: 0; margin: 0;
+	width: 30px;
+	height: 30px;
+}
+
+.input_div .input > *:last-child {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;	
+}
+
+.overlay_btns {
+	display: flex;
+	flex-wrap: nowrap;
+}
+.overlay_inner button.style {
+	width: calc(100% - 2px);
+	padding: 10px;
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	font-size: 1em;
+	background: transparent;
+	color: var(--text);
+}
+.overlay_inner button.style.submit {
+	background: #07c05f;
+	color: white;
+}
+.overlay_btns button + button {
+	margin-left: var(--gap_small);
+}
+.overlay_btns button:first-child {
+	margin-right: var(--gap_small);
+}
+.overlay_btns.single_button button {
+	margin-right: 0;
+}
+
+.not_found_wrapper {
+	width: 100%;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.not_found_inner > h1, .not_found_inner h2 {
+	margin: 0;
+	text-align: center;
+}
+.not_found_inner h1 {
+	font-family: Poppins;
+}
+.not_found_inner h2 {
+	font-family: Arial;
+	margin: 0;
+	margin-top: var(--gap_large);
+}
+
+.overlay_inner_manage .fields .all_users {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap_small);
+}
+.user_small {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	grid-gap: var(--gap);
+	align-items: center;
+	font-family: Arial;
+}
+.user_small .person_control {
+	cursor: pointer;
+}
+.user_small.is_self .person_control_toggle_write {
+	cursor: not-allowed;
+}
+.user_small_pfp {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid var(--border);
+	display: block;
+	background: var(--theme);
+}
+
+.username {
+	opacity: .5;
+	margin-left: var(--gap_small);
+}
+
+.person_controls {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.person_controls svg {
+	display: block;
+}
+.person_control_toggle_write svg {
+	width: 20px;
+}
+.person_control_toggle_write:not(.write) svg {
+	opacity: .5;
+}
+
+@media screen and (max-width: 600px) {
+
+	/* Header fixed maken */
+	header {
+		position: fixed;
+		top: 0;
+	}
+
+	/* Main layout */
+	.layout {
+		grid-template-columns: 100%;
+	}
+	.aside_user .pfp {
+		width: 150px;
+	}
+	.user_nav {
+		flex-wrap: nowrap;
+		max-width: 100%;
+		overflow-x: auto;
+		justify-content: flex-start;
+		margin-left: -3.5vw;
+		padding-right: 7vw;
+		margin-right: -3.5vw;
+		-webkit-overflow-scrolling: touch;
+	}
+	.user_nav > a > div {
+		white-space: nowrap;
+		padding: 15px 20px;
+	}
+	.user_nav a:first-child {
+		margin-left: 3.5vw;
+	}
+
+	.overlay_wrapper {
+		align-items: flex-end;
+	}
+	.overlay_inner {
+		max-width: 100%;
+		border-radius: 15px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		padding-bottom: calc(20px + env(safe-area-inset-bottom));
+	}
+
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{{> page/head}}
+	</head>
+	<body data-page="{{current_page}}" data-palettes="{{palettes}}" {{#if user}} data-you="{{user.id}}" data-you-slug="{{user.slug}}" {{/if}}>
+		<div class="templates" style="display: none;">
+			{{> templates}}
+		</div>
+		<div class="all" {{#if page.user.color}}style="--theme: {{page.user.color}};"{{/if}}>
+			{{> page/header}}
+			<div class="body_wrapper">
+				<div class="body layout_width">
+					{{{body}}}
+					<script src="/universal.js"></script>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

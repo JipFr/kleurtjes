@@ -1,0 +1,38 @@
+<div class="overlay_wrapper">
+	<div class="overlay_inner overlay_inner_manage">
+		<div class="inner_wrapper">
+			<div class="card_top">
+				<h2 class="title">Manage people</h2>
+			</div>
+			<div class="fields">
+
+				<div class="input_div input_div_text">
+					<label for="add_person">Add someone</label>
+					<div class="input">
+						<input id="add_person" placeholder="Username" autocomplete="off">
+						<button onclick="toggle_person(this.closest('.input_div').querySelector('input').value, this.closest('[data-id]').getAttribute('data-id'))">Add</button>
+					</div>
+				</div>
+				
+				<div class="all_users">
+					<div class="user_small">
+						<img class="user_small_pfp" src="/image/jip/">
+						<span class="name"><span class="name_main">Unknown</span><span class="username">u/jip</span></span>
+						<div class="person_controls">
+							<div class="person_control person_control_toggle_write" onclick="toggle_person_permissions(this.closest('[data-person-username]').getAttribute('data-person-username'), this.closest('[data-id]').getAttribute('data-id'), this.getAttribute('data-can-write') == 'true' ? 'false' : 'true')">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+							</div>
+							<div class="person_control person_control_remove" onclick="toggle_person(this.closest('[data-person-username]').getAttribute('data-person-username'), this.closest('[data-id]').getAttribute('data-id'), false)">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<div class="overlay_btns">
+			<button class="style cancel" onclick="remove_overlays()">Exit</button>
+		</div>
+	</div>
+</div>

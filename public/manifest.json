@@ -1,0 +1,15 @@
+{
+	"name": "Colors",
+	"short_name": "Colors",
+	"lang": "EN",
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#3d6a7b",
+	"background_color": "#ffffff",
+	"icons": [
+		{
+			"sizes": "500x500",
+			"src": "/icon.png"
+		}
+	]
+}
