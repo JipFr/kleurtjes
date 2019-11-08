@@ -11,7 +11,7 @@ const user_router = async (req, res) => {
 	if(page_user) {
 		let user = await get_user((req.user || {}).slug);
 
-		let collections = user.collections || [];
+		let collections = (page_user || {}).collections || [];
 
 		res.render("user_wrapper", {
 			layout: "main",

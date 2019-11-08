@@ -266,6 +266,11 @@ header .pfp {
 	text-align: center;
 	pointer-events: none;
 }
+.color_hover .color_added_by {
+	width: 1.1em;
+	height: 1.1em;
+	border-radius: 4px;
+}
 .color_wrapper:hover .color_hover {
 	opacity: 1;
 }
