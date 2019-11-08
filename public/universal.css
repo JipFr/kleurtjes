@@ -11,6 +11,8 @@ body {
 	--main: #3d6a7b;
 	--theme: var(--main);
 	--text: black;
+	--secondary: rgba(0, 0, 0, 0.8);
+	--tertiary: rgba(0, 0, 0, 0.5);
 	--border: #e5e5e5;
 	background: var(--body);
 	color: var(--text);
@@ -21,6 +23,8 @@ body {
 	--body: #191919;
 	--text: white;
 	--border: rgba(255, 255, 255, 0.1);
+	--secondary: rgba(255, 255, 255, 0.8);
+	--tertiary: rgba(255, 255, 255, 0.5);
 }
 [data-theme="dark"] .all > * {
 	--theme: black;
@@ -31,6 +35,8 @@ body {
 		--body: #191919;
 		--text: white;
 		--border: rgba(255, 255, 255, 0.1);
+		--secondary: rgba(255, 255, 255, 0.8);
+		--tertiary: rgba(255, 255, 255, 0.5);
 	}
 	body .all > * {
 		--theme: black;
@@ -104,8 +110,22 @@ header .pfp {
 }
 .aside_user h2 {
 	font-family: Poppins, Arial;
+	margin: var(--gap) 0;
+}
+.aside_user p {
 	margin: 0;
-	margin-top: var(--gap);
+	font-family: Arial;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+	color: var(--secondary);
+}
+
+.aside_user hr {
+	border: 0;
+	border-top: 1px solid var(--border);
+	margin: var(--gap) 0;
 }
 
 .user_actions > a {
@@ -223,11 +243,11 @@ header .pfp {
 	align-items: center;
 }
 .color_wrapper .color.is_add_button svg {
-	opacity: .5;
-	transition: opacity 200ms;
+	color: var(--tertiary);
+	transition: color 200ms;
 }
 .color_wrapper .color.is_add_button:hover svg {
-	opacity: 1;
+	color: var(--text);
 }
 .palette_colors.round_last .color_wrapper:nth-last-child(1) {
 	border-top-right-radius: 4px;
@@ -300,11 +320,11 @@ details .dropdown hr {
 	border-top: 1px solid var(--border);
 }
 details .dropdown .icon_grid .grid_icon svg {
-	opacity: .7;
-	transition: opacity 150ms;
+	color: var(--secondary);
+	transition: color 150ms;
 }
 .icon_grid.improve_opacity:hover .grid_icon svg {
-	opacity: 1;
+	color: var(--text);
 }
 
 .icon_grid {
@@ -491,7 +511,7 @@ details .dropdown .icon_grid .grid_icon svg {
 }
 
 .username {
-	opacity: .5;
+	color: var(--tertiary);
 	margin-left: var(--gap_small);
 }
 
@@ -507,7 +527,7 @@ details .dropdown .icon_grid .grid_icon svg {
 	width: 20px;
 }
 .person_control_toggle_write:not(.write) svg {
-	opacity: .5;
+	color: var(--tertiary);
 }
 
 @media screen and (max-width: 600px) {
