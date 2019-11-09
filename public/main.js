@@ -86,7 +86,7 @@ function render() {
 					node_alt.querySelector(".color").setAttribute("style", `background: ${color.value}`);
 					node_alt.querySelector(".hover_text span").innerText = color.text.slice(0, 50) || `Color ${index + 1}`;
 					node_alt.querySelector(".hover_text .color_added_by").src = `/image/${color.added_by}`;
-					node_alt.querySelector(".hover_text .color_added_by").alt = palette.people.find(i => i.id == color.added_by).username;
+					node_alt.querySelector(".hover_text .color_added_by").setAttribute("alt", palette.people.find(i => i.id == color.added_by).username);
 					node_alt.querySelector(".hover_color").innerText = color.value;
 
 					node_alt.querySelector(".color").parentNode.setAttribute("data-index", index);
