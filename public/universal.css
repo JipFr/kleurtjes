@@ -270,6 +270,7 @@ header .pfp {
 	width: 1.1em;
 	height: 1.1em;
 	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .color_wrapper:hover .color_hover {
 	opacity: 1;
