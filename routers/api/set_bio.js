@@ -1,5 +1,6 @@
 
 const { get_user } = require("../../user");
+const { get_bio } = require("../../util");
 
 // Set new user's color router
 module.exports = async (req, res) => {
@@ -15,7 +16,7 @@ module.exports = async (req, res) => {
 
 	// Just to be sure
 	let user = await get_user(req.user.id);
-	let new_bio = (req.body.bio || "").toString().trim().slice(0, 120).trim();
+	let new_bio = get_bio(req.body.bio);
 
 	if(new_bio == user.bio) {
 		res.status(403);

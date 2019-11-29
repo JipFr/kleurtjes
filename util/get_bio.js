@@ -1,3 +1,3 @@
 module.exports = str => {
-	return str.trim().slice(0, 120);
+	return (str || "").toString().trim().slice(0, 120).trim();
 }
