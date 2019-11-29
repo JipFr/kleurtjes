@@ -45,7 +45,7 @@ body {
 header {
 	width: 100%;
 	height: 50px;
-	padding-top: env(safe-area-inset-top);
+	border-top: env(safe-area-inset-top) solid rgba(0, 0, 0, 0.1);
 	background: var(--theme);
 	display: flex;
 	justify-content: center;
