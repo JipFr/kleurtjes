@@ -2,9 +2,7 @@ require("dotenv").config();
 
 // Init cfg and other values
 const { port, db_name } = require("./config.json");
-const { logger, get_slug, gen_str } = require("./util");
-// const fs = require("fs");
-// const is_dev = !fs.existsSync("is_prod.txt");
+const { logger, get_slug, gen_str, get_bio } = require("./util");
 const is_dev = process.env.PROD == "false" ? true : false;
 
 logger.info(`Starting script, is dev: ${is_dev}`);
@@ -15,6 +13,7 @@ const routers = require("./routers");
 // Init modules
 const express = require("express");
 const app = express();
+logger.info(`[STARTUP] Loaded express`);
 
 const handlebars = require("express-handlebars");
 
@@ -27,12 +26,17 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 
+logger.info(`[STARTUP] Loaded mongo and sessions`);
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
+logger.info(`[STARTUP] Loaded passport`);
 
 app.engine("handlebars", handlebars({
-	helpers: require("./handlebars_helpers")
+	helpers: {
+		...require("./handlebars_helpers"),
+		get_bio
+	}
 }));
 app.set("view engine", "handlebars");
 
@@ -45,6 +49,7 @@ MongoClient.connect(db_url, {
 		return;
 	}
 	db = client.db(db_name);
+	logger.info(`[STARTUP] Established DB connection`);
 });
 
 mongoose.connect(db_url, {
@@ -82,7 +87,7 @@ passport.serializeUser(async (user, done) => {
 	let collection = db.collection("users");
 	let i = await collection.findOne({mail: mail})
 	if(i) {
-		logger.info("User sign in: " + mail, "FgCyan");
+		logger.success("[AUTH] User sign in: " + mail);
 		await collection.updateOne({mail: mail}, {
 			$set: {
 				user
@@ -99,7 +104,7 @@ passport.serializeUser(async (user, done) => {
 			id: gen_str()
 		}
 		collection.insertOne(new_obj).then(d => {
-			logger.info("Registered new user: " + mail, "FgCyan");
+			logger.success("[AUTH] Registered new user: " + mail);
 		});
 		done(null, new_obj);
 	}
@@ -152,6 +157,7 @@ app.post("/api/toggle_palette_person_permissions/", routers.api.toggle_palette_p
 
 app.post("/api/set_username/", routers.api.set_username);
 app.post("/api/set_color/", routers.api.set_color);
+app.post("/api/set_bio/", routers.api.set_bio);
 
 // Other routers
 app.get("/image/:user/", routers.other.image);
@@ -160,5 +166,5 @@ app.use(express.static("public"));
 
 // Run express
 app.listen(port, () => {
-	logger.info("Running at localhost:" + port, "FgCyan");
+	logger.info("[STARTUP] Express running. Using port " + port);
 });

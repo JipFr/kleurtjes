@@ -398,10 +398,13 @@ details .dropdown .icon_grid .grid_icon svg {
 	align-items: center;
 	flex-wrap: nowrap;
 	margin-top: var(--gap_small);
-
 }
-.input_div_text input[type="text"], .input_div input:not([type]) {
+.input_div .input.textarea_input {
+	flex-wrap: wrap;
+}
+.input_div_text input[type="text"], .input_div input:not([type]), .input_div textarea {
 	font-size: 1em;
+	font-family: Arial;
 	width: calc(100% - 22px);
 	padding: 5px 10px;
 	border: 1px solid var(--border);
@@ -412,6 +415,10 @@ details .dropdown .icon_grid .grid_icon svg {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
+.input.textarea_input textarea {
+	resize: none;
+	height: 100px;
+}
 .input button {
 	font-size: 1em;
 	padding: 5px 20px;
@@ -419,6 +426,12 @@ details .dropdown .icon_grid .grid_icon svg {
 	margin-left: var(--gap);
 	background: transparent;
 	color: var(--text);
+}
+.input.textarea_input button:nth-child(2) {
+	margin-left: 0;
+}
+.input.textarea_input button {
+	margin-top: var(--gap);
 }
 .input input, .input button, .input_div_text input[type="text"], .input_div input:not([type]){
 	border-radius: 4px;

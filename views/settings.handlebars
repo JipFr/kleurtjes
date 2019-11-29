@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="settings.css">
+
 <div class="settings_wrapper">
 	
 	<div class="settings_bit">
@@ -32,6 +33,13 @@
 					</div>
 					<button onclick="set_color('#3d6a7b')">Reset</button>
 					<button onclick="set_color(this.closest('.option').querySelector('input').value)">Update</button>
+				</div>
+			</div>
+			<div class="option input_div">
+				<label for="change_username">Account description</label>
+				<div class="input textarea_input">
+					<textarea id="change_username" placeholder="Hello, my name is {{user.user.displayName}}!" oninput="this.value.trim().length > 120 ? this.value = this.value.trim().slice(0, 120) : null;" max="120">{{get_bio user.bio}}</textarea>
+					<button onclick="set_bio(this.closest('.option').querySelector('textarea').value)">Update</button>
 				</div>
 			</div>
 		</main>

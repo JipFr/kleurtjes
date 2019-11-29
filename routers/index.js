@@ -10,7 +10,8 @@ module.exports = {
 		toggle_palette_person_permissions: require("./api/toggle_palette_person_permissions"),
 		move_palette: require("./api/move_palette"),
 		set_username: require("./api/set_username"),
-		set_color: require("./api/set_color")
+		set_color: require("./api/set_color"),
+		set_bio: require("./api/set_bio")
 	},
 	web: {
 		user_palette: require("./web/user"),
