@@ -80,6 +80,11 @@ header .pfp {
 	display: block;
 }
 
+.anchor {
+	color: var(--theme);
+	text-decoration: none;
+}
+
 .body_wrapper {
 	display: flex;
 	justify-content: center;

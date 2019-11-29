@@ -7,10 +7,16 @@
 	margin-bottom: var(--gap_large);
 }
 
+.anchor > div {
+	margin-bottom: var(--gap);
+}
+
+body {
+	font-family: Arial;
+}
 
 
 aside.settings_aside .title {
-	font-family: Arial;
 	margin: 0;
 }
 aside.settings_aside hr {
