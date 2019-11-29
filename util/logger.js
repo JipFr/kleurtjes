@@ -18,36 +18,42 @@ class Logger {
 	
 
 	success(input) {
-		const time = new Date();
-		input = `[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] [SUCCESS]: ${input}`;
-		this.streams.success.write(`${input}\n`);
+		let prefix = `${this.getTime()}`;
+		let n_input = `${prefix} [SUCCESS]: ${input}`;
+		this.streams.success.write(`${n_input}\n`);
 
-		console.log(`${input}`.green.bold);
+		console.log(prefix.green.bold, input);
 	}
 
 	error(input) {
-		const time = new Date();
-		input = `[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] [ERROR]: ${input}`;
-		this.streams.error.write(`${input}\n`);
+		let prefix = `${this.getTime()}`;
+		let n_input = `${prefix} [ERROR]: ${input}`;
+		this.streams.error.write(`${n_input}\n`);
 
-		console.log(`${input}`.red.bold);
+		console.log(prefix.red.bold, input);
 	}
 
 	warn(input) {
-		const time = new Date();
-		input = `[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] [WARN]: ${input}`;
-		this.streams.warn.write(`${input}\n`);
+		let prefix = `[${this.getTime()}]`;
+		let n_input = `${prefix} [WARN]: ${input}`;
+		this.streams.warn.write(`${n_input}\n`);
 
-		console.log(`${input}`.yellow.bold);
+		console.log(prefix.yellow.bold, input);
 	}
 
 	info(input) {
-		const time = new Date();
-		input = `[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] [INFO]: ${input}`;
-		this.streams.info.write(`${input}\n`);
+		let prefix = `${this.getTime()}`;
+		let n_input = `${prefix} [INFO]: ${input}`;
+		this.streams.info.write(`${n_input}\n`);
 
-		console.log(`${input}`.cyan.bold);
+		console.log(prefix.cyan.bold, input);
 	}
+
+	getTime() {
+		const time = new Date();
+		return `${time.getHours().toString().padStart(2, 0)}:${time.getMinutes().toString().padStart(2, 0)}:${time.getSeconds().toString().padStart(2, 0)}`
+	}
+
 }
 
 const logger = new Logger(__dirname);

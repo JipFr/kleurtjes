@@ -17,7 +17,6 @@ body {
 	background: var(--body);
 	color: var(--text);
 	max-width: 100%;
-	overflow-x: hidden;
 }
 [data-theme="dark"] {
 	--body: #191919;
@@ -538,6 +537,10 @@ details .dropdown .icon_grid .grid_icon svg {
 
 @media screen and (max-width: 600px) {
 
+	body {
+		overflow-x: hidden;
+	}
+
 	/* Header fixed maken */
 	header {
 		position: fixed;
@@ -580,4 +583,10 @@ details .dropdown .icon_grid .grid_icon svg {
 		padding-bottom: calc(20px + env(safe-area-inset-bottom));
 	}
 
+}
+@media screen and (min-width: 601px) {
+	.aside_user {
+		position: sticky;
+		top: var(--gap_large);
+	}
 }
