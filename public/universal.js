@@ -104,3 +104,14 @@ if (sw && navigator.onLine) {
 		});
 	}
 }
+
+function update_theme_color() {
+	document.querySelector(`[name="theme-color"]`).setAttribute("content", get_style(document.querySelector("header"), "backgroundColor"));
+}
+
+update_theme_color();
+setInterval(update_theme_color, 1e3);
+
+function get_style(el, prop) {
+	return el.currentStyle ? el.currentStyle[prop] : document.defaultView.getComputedStyle(el, null)[prop];
+}

@@ -1,3 +1,4 @@
+console.clear();
 require("dotenv").config();
 
 // Init cfg and other values
@@ -9,6 +10,7 @@ logger.info(`Starting script, is dev: ${is_dev}`);
 
 // Routers
 const routers = require("./routers");
+logger.info(`[STARTUP] Loaded routers`);
 
 // Init modules
 const express = require("express");
@@ -16,6 +18,7 @@ const app = express();
 logger.info(`[STARTUP] Loaded express`);
 
 const handlebars = require("express-handlebars");
+logger.info(`[STARTUP] Loaded handlebars`);
 
 const { MongoClient } = require("mongodb");
 const db_url = "mongodb://localhost:27017/" + db_name;
@@ -121,7 +124,7 @@ app.use(passport.session());
 app.get("/login//", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 app.get("/google_auth_callback//", passport.authenticate("google", { failureRedirect: "/" }), (req, res) => {
-	res.redirect("/");
+	res.redirect("/me/");
 });
 
 
