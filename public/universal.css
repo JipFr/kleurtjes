@@ -17,6 +17,7 @@ body {
 	background: var(--body);
 	color: var(--text);
 	max-width: 100%;
+	font-family: Arial;
 }
 [data-theme="dark"] {
 	--body: #191919;
@@ -551,6 +552,13 @@ details .dropdown .icon_grid .grid_icon svg {
 }
 .person_control_toggle_write:not(.write) svg {
 	color: var(--tertiary);
+}
+
+h1.login {
+	margin-top: 0;
+}
+a.login {
+	color: inherit;
 }
 
 @media screen and (max-width: 600px) {
