@@ -168,6 +168,8 @@ app.get("/image/:user/", routers.other.image);
 
 app.use(express.static("public"));
 
+app.get("*", (req, res) => res.redirect(`/u${req.url}`));
+
 // Run express
 app.listen(port, () => {
 	logger.info("[STARTUP] Express running. Using port " + port);
