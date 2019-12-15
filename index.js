@@ -168,7 +168,13 @@ app.get("/image/:user/", routers.other.image);
 
 app.use(express.static("public"));
 
-app.get("*", (req, res) => res.redirect(`/u${req.url}`));
+app.get("*", (req, res, next) => {
+	if(!req.url.startsWith("/u")) {
+		res.redirect(`/u${req.url}`);
+	} else {
+		next();
+	}
+});
 
 // Run express
 app.listen(port, () => {
