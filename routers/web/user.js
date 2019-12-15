@@ -10,8 +10,8 @@ const user_router = async (req, res) => {
 	let prefix = "";
 
 	let page_user = await get_user(user_slug);
+	let user = await get_user((req.user || {}).id);
 	if(page_user) {
-		let user = await get_user((req.user || {}).id);
 
 		if(current_page == "palette") {
 			let palettes = db.collection("palettes");
@@ -49,7 +49,29 @@ const user_router = async (req, res) => {
 
 	} else {
 		// 404
-		res.send("NO");
+		// res.send("NO");
+		res.render("user_wrapper", {
+			layout: "main",
+			user: user,
+			page: {
+				user: {
+					user: {
+						displayName: "User not found!",
+						photos: [
+							{
+								value: "https://media3.giphy.com/media/PekRU0CYIpXS8/giphy.gif?cid=94c10156dc5d9f0b169df50384d84a77791314c91c10b885&rid=giphy.gif"
+							}
+						]
+					}
+				}
+			},
+			is_same_user: false,
+			current_page,
+			universal: universal_handlebar,
+			head_title: "User not found",
+			palettes: [],
+			not_found: true
+		});
 	}
 }
 

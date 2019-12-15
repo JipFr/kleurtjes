@@ -1,4 +1,4 @@
-<nav class="user_nav">
+{{#if not_found}}{{else}}<nav class="user_nav">
 	<a href="/u/{{page.user.slug}}"><div class="nav_item{{get_nav_class current_page 'dashboard'}}" data-page="dashboard">
 		Dashboard
 	</div></a>
@@ -11,4 +11,4 @@
 	<a href="/u/{{page.user.slug}}/collections/"><div class="nav_item{{get_nav_class current_page 'collections'}}" data-page="groups">
 		Collections
 	</div></a>
-</nav>
+</nav>{{/if}}
