@@ -1,6 +1,6 @@
 
 const { universal_handlebar } = require("../../config.json");
-const { get_user } = require("../../user");
+const { get_user } = require("../../util/user");
 
 // Settings main router
 module.exports = async (req, res) => {

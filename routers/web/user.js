@@ -1,4 +1,4 @@
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 const { get_current_page } = require("../../util");
 const { universal_handlebar } = require("../../config.json");
 

@@ -1,6 +1,6 @@
 
 const { gen_str, get_current_page } = require("../../util");
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 
 // API new palette
 const new_palette_router = async (req, res) => {

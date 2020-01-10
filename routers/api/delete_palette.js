@@ -1,5 +1,5 @@
 const { get_user_palette_permissions } = require("../../util");
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 
 // Delete palette router
 const delete_palette_router = async (req, res) => {

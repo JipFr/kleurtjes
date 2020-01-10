@@ -1,5 +1,5 @@
 
-const { get_user } = require("../../user");
+const { get_user } = require("../../util/user");
 const { get_bio } = require("../../util");
 
 // Set new user's color router

@@ -1,5 +1,5 @@
 
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 
 // Move palettes up and down
 module.exports = async (req, res) => {

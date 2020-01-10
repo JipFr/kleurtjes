@@ -1,4 +1,4 @@
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 const { get_current_page, get_user_palette_permissions } = require("../../util");
 
 // User POST router

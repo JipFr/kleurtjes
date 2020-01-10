@@ -1,5 +1,5 @@
 
-const { get_user } = require("../../user.js");
+const { get_user } = require("../../util/user");
 
 const me_router = async (req, res) => {
 	if(!req.user) {
