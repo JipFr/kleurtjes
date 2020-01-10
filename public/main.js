@@ -82,7 +82,7 @@ function render() {
 				palette.colors.forEach((color, index) => {
 					let node_alt = document.importNode(content_alt, true).children[0];
 
-					node_alt.querySelector(".color").setAttribute("style", `background: ${color.value}`);
+					node_alt.querySelector(".color").setAttribute("style", `--color: ${color.value}`);
 					node_alt.querySelector(".hover_text span").innerText = color.text.slice(0, 50) || `Color ${index + 1}`;
 					node_alt.querySelector(".hover_text .color_added_by").src = `/image/${color.added_by}`;
 					node_alt.querySelector(".hover_text .color_added_by").setAttribute("alt", palette.people.find(i => i.id == color.added_by).username);
@@ -265,5 +265,8 @@ function copy_color(evt) {
 	let color = el.querySelector(".hover_color").innerText;
 	copy(color);
 	// Temporary alert
-	alert("Copied color!");
+	el.querySelector(".copy_animation").classList.add("activate_animation");
+	setTimeout(() => {
+		el.querySelector(".copy_animation").classList.remove("activate_animation");
+	}, 1e3);
 }

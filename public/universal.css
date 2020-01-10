@@ -246,6 +246,32 @@ header .pfp {
 	width: 100%;
 	height: 100%;
 	position: relative;
+	background-color: var(--color);
+}
+.color .copy_animation {
+	opacity: 0;
+	pointer-events: none;
+	background-image: 
+		linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent), 
+		linear-gradient(to bottom, var(--color), var(--color));
+	transition: opacity 150ms;
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	color: white;
+}
+.color .copy_animation, .copy_animation .copy_animation_inner {
+	display: flex; flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.copy_animation_inner .title {
+	margin: 0;
+	width: 100%;
+	text-align: center;
+}
+.color .copy_animation.activate_animation {
+	opacity: 1;
 }
 .color_wrapper .color.is_add_button {
 	display: flex;
