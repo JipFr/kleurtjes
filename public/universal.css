@@ -553,10 +553,10 @@ details .dropdown .icon_grid .grid_icon svg {
 	align-items: center;
 	font-family: Arial;
 }
-.user_small .person_control {
+.user_small .person_control:not(.no_cursor) {
 	cursor: pointer;
 }
-.user_small.is_self .person_control_toggle_write {
+.user_small.is_self .person_control_toggle_write:not(.no_cursor) {
 	cursor: not-allowed;
 }
 .user_small_pfp {

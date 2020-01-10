@@ -147,60 +147,6 @@ function delete_color(palette_id, color_identifier) {
 	});
 }
 
-let manage_open;
-function manage_palette_people(id) {
-	close_details();
-	remove_overlays();
-
-	manage_open = id;
-
-	let palette = palettes.find(p => p.id == id);
-
-	if(!palette) return false;
-
-	let node = document.importNode(document.querySelector(".control_overlay_wrapper").content, true);
-
-	node.querySelector(".overlay_inner").setAttribute("data-id", id);
-
-	palette.people = palette.people.map(item => {
-		let person = palette.people_allowed.find(i => item.id == i.id);
-		item.write = (person.write || palette.created_by == item.id) ? true : false;
-		return item;
-	});
-
-	palette.people.forEach(person => {
-		let n_node = document.importNode(node.querySelector(".fields .user_small"), true);
-
-		if(person.write) n_node.querySelector(".person_control.person_control_toggle_write").classList.add("write");
-
-		n_node.querySelector(".name_main").innerText = person.name;
-		n_node.querySelector(".username").innerText = `u/${person.username}`;
-		n_node.querySelector(".user_small_pfp").src = `/image/${person.username}`;
-
-		if(person.id == palette.created_by) {
-			n_node.classList.add("is_self");
-			n_node.querySelector(".person_control_remove").remove();
-		} else {
-			n_node.querySelector(".person_controls").setAttribute("data-person-username", person.username);
-			n_node.querySelector(".person_control_toggle_write").setAttribute("data-can-write", person.write);
-		}
-
-		node.querySelector(".fields .all_users").appendChild(n_node);
-	});
-
-	// Remove example first child
-	node.querySelector(".fields .user_small").remove();
-
-	node.querySelector("#add_person").addEventListener("keyup", evt => {
-		evt.key == "Enter" ? evt.target.closest(".input").querySelector("button").click() : "";
-	});
-
-	document.querySelector(".all").appendChild(node);
-
-	document.querySelector("#add_person").focus();
-
-}
-
 function toggle_person(username, palette_id, add = true) {
 	console.log(username, palette_id);
 

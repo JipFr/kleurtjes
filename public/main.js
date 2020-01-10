@@ -29,7 +29,8 @@ function render() {
 
 				// Remove control buttons
 				if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
-				if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people").remove();
+				// if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people").remove();
+				if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
 				if(!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
 
 				// Update user imgs
@@ -53,7 +54,7 @@ function render() {
 					let n = image_wrapper.children[0];
 
 					n.querySelector("img").src = "/more.png";
-					n.querySelector("img").classList.remove("pointer");
+					n.addEventListener("click", manage_palette_people(palette.id));
 					n.removeAttribute("href");
 
 					image_wrapper.appendChild(n);
@@ -63,7 +64,7 @@ function render() {
 				
 
 				// Remove moving options if not dashboard
-				if(!(current_page == "own" || current_page == "dashboard") || my_username !== page_username || !palette.permissions.includes("move_location")) {
+				if(!(current_page == "own" || current_page == "dashboard") || palettes.length <= 1 || my_username !== page_username || !palette.permissions.includes("move_location")) {
 					node.querySelectorAll(".placement_wrapper").forEach(el => {
 						el.remove();
 					});
@@ -265,8 +266,73 @@ function copy_color(evt) {
 	let color = el.querySelector(".hover_color").innerText;
 	copy(color);
 	// Temporary alert
+	document.querySelectorAll(".activate_animation").forEach(el => el.classList.remove("activate_animation"));
 	el.querySelector(".copy_animation").classList.add("activate_animation");
 	setTimeout(() => {
 		el.querySelector(".copy_animation").classList.remove("activate_animation");
 	}, 1e3);
+}
+
+let manage_open;
+function manage_palette_people(id) {
+	close_details();
+	remove_overlays();
+
+	manage_open = id;
+
+	let palette = palettes.find(p => p.id == id);
+
+	if(!palette) return false;
+
+	let node = document.importNode(document.querySelector(".control_overlay_wrapper").content, true);
+
+	node.querySelector(".overlay_inner").setAttribute("data-id", id);
+
+	palette.people = palette.people.map(item => {
+		let person = palette.people_allowed.find(i => item.id == i.id);
+		item.write = (person.write || palette.created_by == item.id) ? true : false;
+		return item;
+	});
+
+	palette.people.forEach(person => {
+		let n_node = document.importNode(node.querySelector(".fields .user_small"), true);
+
+		if(person.write) n_node.querySelector(".person_control.person_control_toggle_write").classList.add("write");
+
+		n_node.querySelector(".name_main").innerText = person.name;
+		n_node.querySelector(".username").innerText = `u/${person.username}`;
+		n_node.querySelector(".user_small_pfp").src = `/image/${person.username}`;
+
+		if(person.id == palette.created_by) {
+			n_node.classList.add("is_self");
+			n_node.querySelector(".person_control_remove").remove();
+		} else {
+			n_node.querySelector(".person_controls").setAttribute("data-person-username", person.username);
+			n_node.querySelector(".person_control_toggle_write").setAttribute("data-can-write", person.write);
+		}
+
+		node.querySelector(".fields .all_users").appendChild(n_node);
+	});
+
+	// Remove example first child
+	node.querySelector(".fields .user_small").remove();
+
+	node.querySelector("#add_person").addEventListener("keyup", evt => {
+		evt.key == "Enter" ? evt.target.closest(".input").querySelector("button").click() : "";
+	});
+
+	if(!palette.permissions.includes("manage_people")) {
+		node.querySelector(".title").innerHTML = "People in this palette";
+		node.querySelector(".input_div").remove();
+		node.querySelectorAll(".person_control_toggle_write").forEach(el => {
+			el.removeAttribute("onclick");
+			el.classList.add("no_cursor");
+		});
+		node.querySelectorAll(".person_control_remove").forEach(el => el.remove());
+	}
+
+	document.querySelector(".all").appendChild(node);
+
+	if(document.querySelector("#add_person")) document.querySelector("#add_person").focus();
+
 }
