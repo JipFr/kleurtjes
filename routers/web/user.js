@@ -49,7 +49,6 @@ const user_router = async (req, res) => {
 
 	} else {
 		// 404
-		// res.send("NO");
 		res.render("user_wrapper", {
 			layout: "main",
 			user: user,

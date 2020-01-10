@@ -1,7 +1,7 @@
 <div class="input_div input_div_text">
 	<label>Label text</label>
 	<div class="input">
-		<input autocomplete="off" placeholder="Placeholder text" class="main_input" oninput="this.closest('.input').querySelector('.color_picker_input').value = this.value; this.closest('.input').querySelector('.color_picker_wrapper').setAttribute('style', `background: ${this.value};`)">
+		<input autocomplete="off" placeholder="Placeholder text" class="main_input" onkeyup="enter(this, event);" oninput="this.closest('.input').querySelector('.color_picker_input').value = this.value; this.closest('.input').querySelector('.color_picker_wrapper').setAttribute('style', `background: ${this.value};`)">
 		<div class="color_picker_wrapper">
 			<input type="color" class="color_picker_input" onchange="this.closest('.input').querySelector('input').value = this.value; this.parentNode.setAttribute('style', `background: ${this.value};`)">
 		</div>

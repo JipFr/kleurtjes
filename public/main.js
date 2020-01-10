@@ -11,7 +11,7 @@ function render() {
 		let div = document.querySelector(".palettes");
 		div.innerHTML = "";
 
-		// Cycle through palettes
+		// Cycle through palettesa
 		palettes = d.data.palettes;
 
 		if(typeof manage_open !== "undefined") {
@@ -133,7 +133,7 @@ function render() {
 				node.querySelector(".palette").setAttribute("data-id", palette.id);
 				node.querySelector(".palette").setAttribute("data-permissions", palette.permissions);
 
-				node.querySelector(".palette_url").href = `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "_").toLowerCase()}/`
+				node.querySelector(".palette_url").href = `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "-").toLowerCase()}/`
 
 				if(palette.is_on_dashboard && node.querySelector(".is_on_dashboard")) {
 					node.querySelector(".is_on_dashboard").remove();

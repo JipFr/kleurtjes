@@ -21,6 +21,7 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 			input_div = document.importNode(document.querySelector(".templates template.input_div").content, true);
 
 			input_div.querySelector("input").placeholder = field.placeholder || "";
+			input_div.querySelector("input").classList.add("enterable");
 
 			if(!field.accept_color_picker) {
 				input_div.querySelector(".color_picker_wrapper").remove();
@@ -53,7 +54,6 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 		let responses = {}
 
 		document.querySelectorAll(".all .overlay_wrapper input").forEach(input => {
-			console.log(input);
 			if(input.type == "text") {
 				responses[input.getAttribute("name")] = input.value;
 			} else if(input.type == "checkbox") {
@@ -114,4 +114,20 @@ setInterval(update_theme_color, 1e3);
 
 function get_style(el, prop) {
 	return el.currentStyle ? el.currentStyle[prop] : document.defaultView.getComputedStyle(el, null)[prop];
+}
+
+function enter(el, evt) {
+	if(evt.key !== "Enter") return;
+	if(!el.classList.contains("enterable")) return;
+	// To next input
+	let enterables = [...el.closest(".overlay_inner").querySelectorAll(".enterable")];
+	let current_index = enterables.indexOf(el);
+	let next_el = enterables[current_index + 1];
+
+	if(next_el && next_el.nodeName == "INPUT") {
+		next_el.focus();
+	} else if(next_el && next_el.nodeName == "BUTTON") {
+		next_el.click();
+	}
+	
 }

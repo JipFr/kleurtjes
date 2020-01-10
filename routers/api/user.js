@@ -37,7 +37,7 @@ const user_api_router = async (req, res) => {
 			
 			new_palettes = all_palettes.filter(palette => {
 				if(palette_ids.find(id => palette.id == id)) return true;
-				if(palette_ids.find(name => palette.name.toLowerCase() == decodeURIComponent(name).replace(/_/g, " ").toLowerCase())) return true;
+				if(palette_ids.find(name => palette.name.toLowerCase() == decodeURIComponent(name).replace(/_|-/g, " ").toLowerCase())) return true;
 				return false;
 			});
 
