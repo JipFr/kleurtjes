@@ -14,6 +14,7 @@ body {
 	--secondary: rgba(0, 0, 0, 0.8);
 	--tertiary: rgba(0, 0, 0, 0.5);
 	--border: #e5e5e5;
+	--hover: rgba(0, 0, 0, 0.05);
 	background: var(--body);
 	color: var(--text);
 	max-width: 100%;
@@ -25,6 +26,7 @@ body {
 	--border: rgba(255, 255, 255, 0.1);
 	--secondary: rgba(255, 255, 255, 0.8);
 	--tertiary: rgba(255, 255, 255, 0.5);
+	--hover: rgba(255, 255, 255, 0.05);
 }
 [data-theme="dark"] .all > * {
 	--theme: black;
@@ -37,6 +39,7 @@ body {
 		--border: rgba(255, 255, 255, 0.1);
 		--secondary: rgba(255, 255, 255, 0.8);
 		--tertiary: rgba(255, 255, 255, 0.5);
+		--hover: rgba(255, 255, 255, 0.05);
 	}
 	body .all > * {
 		--theme: black;
@@ -139,7 +142,6 @@ header .pfp {
 .button_large {
 	font-size: 1em;
 	margin: var(--gap) 0;
-	/*width: calc(100% - 2px);*/
 	width: 100%;
 	background: transparent;
 	border: 1px solid var(--border);
@@ -149,11 +151,13 @@ header .pfp {
 	justify-content: flex-start;
 	align-items: center;
 	cursor: pointer;
-	transition: background 150ms;
 	color: var(--text);
 }
-.button_large:hover {
-	background: rgba(0, 0, 0, 0.05);
+.button_large, .btn_hover, .overlay_inner button.style {
+	transition: background 150ms;
+}
+.button_large:hover, .btn_hover:hover, .overlay_inner button.style:hover {
+	background: var(--hover);
 }
 .button_large .icon_div {
 	margin-right: var(--gap);

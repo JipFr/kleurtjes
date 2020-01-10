@@ -2,9 +2,10 @@ console.clear();
 require("dotenv").config();
 
 // Init cfg and other values
-const { port, db_name } = require("./config.json");
+let { port, db_name } = require("./config.json");
 const { logger, get_slug, gen_str, get_bio } = require("./util");
 const is_dev = process.env.PROD == "false" ? true : false;
+if(is_dev) port = 80;
 
 logger.info(`Starting script, is dev: ${is_dev}`);
 
@@ -76,7 +77,7 @@ passport.use(passport.initialize())
 passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENT,
 		clientSecret: process.env.GOOGLE_PRIVATE,
-		callbackURL: is_dev ? `http://127.0.0.1:${port}/google_auth_callback/` : "https://colors2.jipfr.nl/google_auth_callback/"
+		callbackURL: is_dev ? `http://${process.env.DEV_HOST || "127.0.0.1"}/google_auth_callback/` : "https://colors2.jipfr.nl/google_auth_callback/"
 	},
 	function(accessToken, refreshToken, profile, done) {
 		done(null, profile);

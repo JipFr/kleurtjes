@@ -10,7 +10,7 @@
 					<label for="add_person">Add someone</label>
 					<div class="input">
 						<input id="add_person" placeholder="Username" autocomplete="off">
-						<button onclick="toggle_person(this.closest('.input_div').querySelector('input').value, this.closest('[data-id]').getAttribute('data-id'))">Add</button>
+						<button class="btn_hover" onclick="toggle_person(this.closest('.input_div').querySelector('input').value, this.closest('[data-id]').getAttribute('data-id'))">Add</button>
 					</div>
 				</div>
 				
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div class="overlay_btns">
-			<button class="style cancel" onclick="remove_overlays()">Exit</button>
+			<button class="style cancel btn_hover" onclick="remove_overlays()">Exit</button>
 		</div>
 	</div>
 </div>
