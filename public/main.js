@@ -11,7 +11,7 @@ function render() {
 		let div = document.querySelector(".palettes");
 		div.innerHTML = "";
 
-		// Cycle through palettesa
+		// Cycle through palettes
 		palettes = d.data.palettes;
 
 		if(typeof manage_open !== "undefined") {
