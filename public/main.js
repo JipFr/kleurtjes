@@ -97,7 +97,7 @@ function render() {
 							evt.preventDefault();
 
 							create_overlay({
-								title: `Delete ${evt.target.parentNode.getAttribute('data-color')} from "${evt.target.closest(".palette").querySelector(".palette_name").innerText}"?`,
+								title: `Delete ${evt.target.parentNode.getAttribute('data-color')} from ${evt.target.closest(".palette").querySelector(".palette_name").innerText}?`,
 								btn_value: "Delete",
 								on_submit: (response) => {
 									// If on_submit is fired, the popup wasn't dismissed, meaning the user clicked delete.
@@ -156,6 +156,10 @@ function render() {
 
 			});
 
+			document.querySelectorAll(".color").forEach(color => {
+				color.addEventListener("click", copy_color);
+			});
+
 			update_radius();
 		} else {
 			document.querySelector(".palettes").appendChild(document.querySelector("template.not_found").content);
@@ -168,6 +172,40 @@ function render() {
 window.addEventListener("load", render);
 
 function update_radius() {
+
+	document.querySelectorAll(".round_bottom_right").forEach(el => el.classList.remove("round_bottom_right"));
+
+	document.querySelectorAll(".palette_colors").forEach(div => {
+		
+		let should_check = div.scrollHeight > 100;
+		let on_row = 0;
+		let start_y = null;
+
+		if(should_check) {
+			let all_colors = div.querySelectorAll(".color");
+
+			all_colors.forEach(color => {
+				let color_pos = color.getBoundingClientRect();
+				if(start_y === null) start_y = color_pos.top;
+				if(start_y === color_pos.top) {
+					on_row++
+				}
+			});
+
+			let row_index = all_colors.length % on_row;
+			// No final element should be rounded if
+			// the below if statement is true
+			if(row_index !== 0) {
+				let final = Math.floor(all_colors.length / on_row);
+				let element_index = (final * on_row) - 1;
+				all_colors[element_index].classList.add("round_bottom_right");
+			}
+
+		}
+
+	});
+
+	// For top right rounding
 	document.querySelectorAll(".palette_colors").forEach(div => {
 		if(div.scrollHeight == 100) {
 			div.classList.add("round_last");
@@ -220,4 +258,12 @@ function move_palette(direction, id) {
 		render();
 	});
 	close_details();
+}
+
+function copy_color(evt) {
+	let el = evt.target;
+	let color = el.querySelector(".hover_color").innerText;
+	copy(color);
+	// Temporary alert
+	alert("Copied color!");
 }

@@ -258,6 +258,9 @@ header .pfp {
 .palette_colors.round_last .color_wrapper:nth-last-child(1) {
 	border-top-right-radius: 4px;
 }
+.round_bottom_right {
+	border-bottom-right-radius: 4px;
+}
 
 .color_hover {
 	opacity: 0;

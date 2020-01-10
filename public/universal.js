@@ -131,3 +131,12 @@ function enter(el, evt) {
 	}
 	
 }
+
+function copy(str) {
+	const el = document.createElement("input");
+	el.value = str;
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand("copy");
+	el.remove();
+}
