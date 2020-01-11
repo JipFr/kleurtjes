@@ -47,7 +47,7 @@ const user_router = async (req, res) => {
 		universal: universal_handlebar,
 		head_title: page_collection ? `${prefix}${page_collection.title}` : "Collection not found",
 		palettes: req.params.palette,
-		is_admin: true
+		is_admin: user_role === "admin"
 	});
 }
 
