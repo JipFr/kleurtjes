@@ -18,7 +18,7 @@ module.exports = async (id, user) => {
 
 	palette.permissions = permissions;
 	palette.people = [];
-	palette.is_on_dashboard = (current_user.dashboard || []).includes(palette.id);
+	palette.is_on_dashboard = ((current_user || {}).dashboard || []).includes(palette.id);
 
 	for(let obj of palette.people_allowed) {
 		let id = obj.id || obj;
