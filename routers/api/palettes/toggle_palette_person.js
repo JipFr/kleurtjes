@@ -58,8 +58,6 @@ module.exports = async (req, res) => {
 
 	palette.people_allowed = palette.people_allowed.map(i => typeof i == "string" ? { id: i } : i);
 
-	console.log(req.body.add);
-
 	if(!req.body.add && palette.people_allowed.find(i => i.id == person_to_toggle.id)) {
 		while(palette.people_allowed.find(i => i.id == person_to_toggle.id)) {
 			palette.people_allowed.splice(palette.people_allowed.indexOf(palette.people_allowed.find(i => i.id == person_to_toggle.id)), 1);

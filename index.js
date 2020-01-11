@@ -148,6 +148,8 @@ app.get("/settings/", routers.web.settings);
 // Collections
 app.get("/c/:collection/", routers.web.collection);
 
+// Collections API routers
+app.post("/c/:collection/", routers.api.collection);
 
 
 // API routers

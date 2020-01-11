@@ -1,5 +1,6 @@
 module.exports = {
 	api: {
+		collection: require("./api/collections/collection"),
 		new_palette: require("./api/palettes/new_palette"),
 		delete_palette: require("./api/palettes/delete_palette"),
 		add_color: require("./api/palettes/add_color"),

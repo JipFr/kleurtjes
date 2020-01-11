@@ -1,5 +1,6 @@
 module.exports = {
 	get_slug: require("./get_slug"),
+	get_palette: require("./get_palette"),
 	logger: require("./logger"),
 	get_current_page: require("./get_current_page"),
 	gen_str: require("./gen_str"),
