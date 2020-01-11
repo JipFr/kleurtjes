@@ -51,7 +51,7 @@ function render() {
 
 				// Remove initial image (placeholder) OR show "..." 
 				// if there's 5 or more people in the palette
-				if(palette.people.length >= 1) {
+				if(palette.people.length >= 5) {
 					let n = image_wrapper.children[0];
 
 					n.querySelector("img").src = "/more.png";
