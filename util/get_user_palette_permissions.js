@@ -2,6 +2,8 @@ module.exports = async (user, palette) => {
 
 	let permissions = ["read"];
 
+	if(palette.deleted) return [];
+
 	if(!user || !palette) return permissions;
 
 	if(palette.created_by == user.id) {

@@ -1,0 +1,27 @@
+{
+	"title": "Connect",
+	"description": "This is a temporary text to indicate that collections can have a description.",
+	"members": [
+		{
+			"slug": "jip",
+			"role": "admin"
+		},
+		{
+			"slug": "mevrouwjip",
+			"role": "member"
+		}
+	],
+	"palettes": [
+		{
+			"id": "1iv84-cqtqn-jqsnc-v0ptb-bc4hz-m8lvm-3qwe2-um2hf-jinjp-77xl5"
+		}, {
+			"id": "dofbc-jblx8-bbzif-e2a3p-fkrev-xnchj-u3wr2-piwkf-e26hq-z769f"
+		},
+		{
+			"id": "ax78z-q2szm-6jg2v-uwzki-sf73u-h7jf9-xx97s-6b488-lvabf-esrnz"
+		},
+		{
+			"id": "8ju0t-j7gep-uazi6-vr33h-nravk-8g4sk-qtuq7-7m36d-k7owx-l5isj"
+		}
+	]
+}

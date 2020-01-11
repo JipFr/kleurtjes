@@ -407,7 +407,7 @@ details .dropdown .icon_grid .grid_icon svg {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 100;
+	z-index: 150;
 }
 .overlay_inner {
 	padding: 20px;
