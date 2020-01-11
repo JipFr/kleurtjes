@@ -1,5 +1,5 @@
-const { get_user } = require("../../util/user");
-const { get_current_page, get_user_palette_permissions } = require("../../util");
+const { get_user } = require("../../../util/user");
+const { get_current_page, get_user_palette_permissions } = require("../../../util");
 
 // User POST router
 const user_api_router = async (req, res) => {

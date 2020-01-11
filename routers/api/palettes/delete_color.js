@@ -1,5 +1,5 @@
 
-const { get_user_palette_permissions } = require("../../util");
+const { get_user_palette_permissions } = require("../../../util");
 
 // Delete color from palette
 module.exports = async (req, res) => {

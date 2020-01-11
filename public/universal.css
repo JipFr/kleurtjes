@@ -31,6 +31,9 @@ body {
 [data-theme="dark"] .all > * {
 	--theme: black;
 }
+[data-theme="dark"] .anchor {
+	color: white;
+}
 
 @media (prefers-color-scheme: dark) {
 	body {
@@ -43,6 +46,9 @@ body {
 	}
 	body .all > * {
 		--theme: black;
+	}
+	a.anchor {
+		color: white;
 	}
 }
 

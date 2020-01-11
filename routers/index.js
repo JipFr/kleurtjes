@@ -1,17 +1,17 @@
 module.exports = {
 	api: {
-		new_palette: require("./api/new_palette"),
-		delete_palette: require("./api/delete_palette"),
-		add_color: require("./api/add_color"),
-		delete_color: require("./api/delete_color"),
-		user_api: require("./api/user"),
-		toggle_palette_dashboard: require("./api/toggle_palette_dashboard"),
-		toggle_palette_person: require("./api/toggle_palette_person"),
-		toggle_palette_person_permissions: require("./api/toggle_palette_person_permissions"),
-		move_palette: require("./api/move_palette"),
-		set_username: require("./api/set_username"),
-		set_color: require("./api/set_color"),
-		set_bio: require("./api/set_bio")
+		new_palette: require("./api/palettes/new_palette"),
+		delete_palette: require("./api/palettes/delete_palette"),
+		add_color: require("./api/palettes/add_color"),
+		delete_color: require("./api/palettes/delete_color"),
+		user_api: require("./api/users/user"),
+		toggle_palette_dashboard: require("./api/palettes/toggle_palette_dashboard"),
+		toggle_palette_person: require("./api/palettes/toggle_palette_person"),
+		toggle_palette_person_permissions: require("./api/palettes/toggle_palette_person_permissions"),
+		move_palette: require("./api/palettes/move_palette"),
+		set_username: require("./api/users/set_username"),
+		set_color: require("./api/users/set_color"),
+		set_bio: require("./api/users/set_bio")
 	},
 	web: {
 		user_palette: require("./web/user"),

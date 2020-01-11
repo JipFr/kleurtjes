@@ -1,5 +1,5 @@
 
-const { get_user_palette_permissions } = require("../../util");
+const { get_user_palette_permissions } = require("../../../util");
 
 // Toggle person from people allowed to palette
 module.exports = async (req, res) => {
@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 	let user_id = req.user.id;
 	let user = await users.findOne({id: user_id});
 
-	let person_to_toggle = await users.findOne({slug: req.body.username });
+	let person_to_toggle = await users.findOne({slug: req.body.username.toLowerCase() });
 	let palette = await palettes.findOne({ id: req.body.palette_id, visible: true });
 
 	if(!person_to_toggle) {
@@ -51,25 +51,19 @@ module.exports = async (req, res) => {
 		res.status(403);
 		res.json({
 			status: 403,
-			err: "You can't remove yourself from your own palette"
+			err: "You can't toggle your own write access"
 		});
 		return;
 	}
 
 	palette.people_allowed = palette.people_allowed.map(i => typeof i == "string" ? { id: i } : i);
 
-	console.log(req.body.add);
-
-	if(!req.body.add && palette.people_allowed.find(i => i.id == person_to_toggle.id)) {
-		while(palette.people_allowed.find(i => i.id == person_to_toggle.id)) {
-			palette.people_allowed.splice(palette.people_allowed.indexOf(palette.people_allowed.find(i => i.id == person_to_toggle.id)), 1);
+	palette.people_allowed = palette.people_allowed.map(i => {
+		if(i.id == person_to_toggle.id) {
+			i.write = !i.write;
 		}
-	} else if(req.body.add && !palette.people_allowed.find(i => i.id == person_to_toggle.id)) {
-		palette.people_allowed.push({
-			id: person_to_toggle.id,
-			write: false
-		});
-	}
+		return i;
+	});
 
 	await palettes.updateOne({
 		id: req.body.palette_id

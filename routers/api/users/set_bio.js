@@ -1,6 +1,6 @@
 
-const { get_user } = require("../../util/user");
-const { get_bio } = require("../../util");
+const { get_user } = require("../../../util/user");
+const { get_bio } = require("../../../util");
 
 // Set new user's color router
 module.exports = async (req, res) => {

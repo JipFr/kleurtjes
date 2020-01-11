@@ -1,6 +1,6 @@
 // Add color API router
 
-const { gen_str, get_user_palette_permissions } = require("../../util");
+const { gen_str, get_user_palette_permissions } = require("../../../util");
 
 const add_color_router = async (req, res) => {
 
