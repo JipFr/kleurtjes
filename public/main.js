@@ -15,6 +15,7 @@ function render() {
 		palettes = d.data.palettes;
 
 		if(typeof manage_open !== "undefined") {
+			console.log("manage_open is not undefined, opening");
 			manage_palette_people(manage_open);
 		}
 
@@ -50,11 +51,11 @@ function render() {
 
 				// Remove initial image (placeholder) OR show "..." 
 				// if there's 5 or more people in the palette
-				if(palette.people.length >= 5) {
+				if(palette.people.length >= 1) {
 					let n = image_wrapper.children[0];
 
 					n.querySelector("img").src = "/more.png";
-					n.addEventListener("click", manage_palette_people(palette.id));
+					n.setAttribute("onclick", `manage_palette_people("${palette.id}");`);
 					n.removeAttribute("href");
 
 					image_wrapper.appendChild(n);
