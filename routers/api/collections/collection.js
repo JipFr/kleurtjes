@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
 	let palettes = await Promise.all(
 		page_collection.palettes.map(obj => get_palette(obj.id, (req.user || {}).id))
 	);
+	palettes = palettes.filter(i => i);
 
 	res.json({
 		palettes

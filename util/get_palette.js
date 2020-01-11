@@ -14,6 +14,7 @@ module.exports = async (id, user) => {
 	let permissions = await get_user_palette_permissions(current_user, palette);
 	
 	if(!permissions.includes("read")) return null;
+	if(palette.deleted) return null;
 
 	palette.permissions = permissions;
 	palette.people = [];
