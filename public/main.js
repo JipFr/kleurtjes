@@ -55,7 +55,10 @@ function render() {
 					let n = image_wrapper.children[0];
 
 					n.querySelector("img").src = "/more.png";
-					n.setAttribute("onclick", `manage_palette_people("${palette.id}");`);
+					let p_id = palette.id;
+					n.addEventListener("click", () => {
+						manage_palette_people(p_id);
+					});
 					n.removeAttribute("href");
 
 					image_wrapper.appendChild(n);
@@ -127,6 +130,7 @@ function render() {
 					node_alt.querySelector(".color_hover").remove();
 					node_alt.querySelector(".color").setAttribute("onclick", `add_color(this.closest('.palette').getAttribute('data-id'))`)
 					node_alt.querySelector(".color").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
+					
 					node.querySelector(".palette_colors").appendChild(node_alt);
 				}
 
@@ -158,7 +162,7 @@ function render() {
 
 			});
 
-			document.querySelectorAll(".color").forEach(color => {
+			document.querySelectorAll(".color:not(.is_add_button)").forEach(color => {
 				color.addEventListener("click", copy_color);
 			});
 
