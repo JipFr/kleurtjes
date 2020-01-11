@@ -145,12 +145,18 @@ app.get("/u/:username/p/:palette/", routers.web.user_palette);
 
 app.get("/settings/", routers.web.settings);
 
+// Collections
+app.get("/c/:collection/", routers.web.collection);
+
+
+
 // API routers
 app.post("/u/:username/", routers.api.user_api);
 app.post("/u/:username/own/", routers.api.user_api);
 app.post("/u/:username/all/", routers.api.user_api);
 app.post("/u/:username/collections/", routers.api.user_api);
 app.post("/u/:username/p/:palette/", routers.api.user_api);
+
 app.post("/api/new_palette/", routers.api.new_palette);
 app.post("/api/move_palette/", routers.api.move_palette);
 app.post("/api/delete_palette/", routers.api.delete_palette);
@@ -177,7 +183,7 @@ app.get("*", (req, res, next) => {
 		// to palettes like `domain.com/jip/palette`
 		if(sub.length == 2) {
 			let sub_page = sub[1];
-			if(!(["own", "all"].includes(sub_page))) {
+			if(!(["own", "all", "collections"].includes(sub_page))) {
 				sub = [sub[0], "p", sub[1]];
 			}
 		}

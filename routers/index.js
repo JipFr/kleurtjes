@@ -14,6 +14,7 @@ module.exports = {
 		set_bio: require("./api/users/set_bio")
 	},
 	web: {
+		collection: require("./web/collection"),
 		user_palette: require("./web/user"),
 		user_collections: require("./web/user_collections"),
 		me: require("./web/me"),

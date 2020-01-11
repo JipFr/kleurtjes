@@ -1,0 +1,12 @@
+.collection_members_inner {
+	display: grid;
+	grid-gap: var(--gap_small);
+	grid-template-columns: repeat(5, 1fr);
+	padding: 0 var(--gap_small);
+}
+.member .member_img {
+	width: calc(100% - 2px);
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	display: block;
+}

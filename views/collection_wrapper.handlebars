@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/collection.css">
+<script src="/can_edit.js"></script>
+
+<div class="layout user_main" data-user="{{page.user.slug}}">
+	<aside class="layout_aside">
+		{{#if page.collection}}
+		{{> util/aside_collection}}
+		{{/if}}
+	</aside>
+	<section class="layout_main">
+		{{> page/collection_core}}
+	</section>
+</div>
+
