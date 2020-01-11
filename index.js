@@ -171,7 +171,17 @@ app.use(express.static("public"));
 
 app.get("*", (req, res, next) => {
 	if(!req.url.startsWith("/u")) {
-		res.redirect(`/u${req.url}`);
+		let sub = req.url.split("/").filter(i => i);
+		// If the URL is `/jip/own/` or `/jip/all/` do nothing
+		// If not, redirect to `/jip/p/pagename` so you can link
+		// to palettes like `domain.com/jip/palette`
+		if(sub.length == 2) {
+			let sub_page = sub[1];
+			if(!(["own", "all"].includes(sub_page))) {
+				sub = [sub[0], "p", sub[1]];
+			}
+		}
+		res.redirect(`/u/${sub.join("/")}`);
 	} else {
 		next();
 	}
