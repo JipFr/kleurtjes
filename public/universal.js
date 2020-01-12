@@ -28,6 +28,7 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 				input_div.querySelector(".input input").removeAttribute("oninput");
 			} else {
 				input_div.querySelector(".color_picker_input").value = field.placeholder || "";
+				input_div.querySelector(".main_input").setAttribute("maxlength", 20);
 				input_div.querySelector(".color_picker_wrapper").setAttribute("style", `background: ${field.placeholder}`);
 			}
 			

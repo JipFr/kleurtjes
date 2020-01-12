@@ -104,7 +104,7 @@ function add_color(id) {
 		title: "Add color",
 		btn_value: "Add",
 		on_submit: (response) => {
-			if(!response.color) return "Please put in a valid value for this color.";
+			if(!response.color || !is_color(response.color)) return "Please put in a valid value for this color.";
 			add_new_color(id, response.color, response.text);
 			console.log(response);
 			return true;
@@ -183,3 +183,9 @@ function toggle_person_permissions(username, palette_id, write = true) {
 		render();
 	});
 }
+
+function is_color(value) {
+	const s = new Option().style;
+	s.color = value;
+	return s.color !== "";
+} 
