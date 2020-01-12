@@ -24,7 +24,10 @@ function render() {
 			palette_div.appendChild(empty_node);
 		}
 
+		update_radius();
+
 	});
+
 }
 
 window.addEventListener("load", render);

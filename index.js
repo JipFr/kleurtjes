@@ -5,7 +5,7 @@ require("dotenv").config();
 let { port, db_name } = require("./config.json");
 const { logger, get_slug, gen_str, get_bio } = require("./util");
 const is_dev = process.env.PROD == "false" ? true : false;
-if(is_dev) port = 80;
+if(is_dev) port = process.env.DEV_PORT || 80;
 
 logger.info(`Starting script, is dev: ${is_dev}`);
 
@@ -54,6 +54,7 @@ MongoClient.connect(db_url, {
 	}
 	db = client.db(db_name);
 	logger.info(`[STARTUP] Established DB connection`);
+
 });
 
 mongoose.connect(db_url, {
@@ -122,16 +123,15 @@ passport.deserializeUser(function(user, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/login//", passport.authenticate("google", { scope: ["profile", "email"] }));
+app.get("/login/", passport.authenticate("google", { scope: ["profile", "email"] }));
 
-app.get("/google_auth_callback//", passport.authenticate("google", { failureRedirect: "/" }), (req, res) => {
+app.get("/google_auth_callback/", passport.authenticate("google", { failureRedirect: "/" }), (req, res) => {
 	res.redirect("/me/");
 });
 
 
 
 // Web routers
-// app.get("/", routers.web.home);
 app.get("/", routers.web.log_in);
 app.get("/me/", routers.web.me);
 app.get("/log-in/", routers.web.log_in);
@@ -146,10 +146,10 @@ app.get("/u/:username/p/:palette/", routers.web.user_palette);
 app.get("/settings/", routers.web.settings);
 
 // Collections
-app.get("/c/:collection/", routers.web.collection);
+app.get("/c/:slug/", routers.web.collection);
 
 // Collections API routers
-app.post("/c/:collection/", routers.api.collection);
+app.post("/c/:slug/", routers.api.collection);
 
 
 // API routers

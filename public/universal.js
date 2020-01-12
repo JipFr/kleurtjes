@@ -212,7 +212,6 @@ function get_palette({
 
 	// Remove control buttons
 	if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
-	// if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people").remove();
 	if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
 	if(!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
 
