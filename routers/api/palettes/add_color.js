@@ -21,10 +21,18 @@ const add_color_router = async (req, res) => {
 		return;
 	}
 
+	if(req.body.value.trim().length > 15) {
+		res.status(400);
+		res.json({
+			status: 400,
+			err: "Color value too long"
+		});
+		return;
+	}
+
 	let palettes = db.collection("palettes");
 
 	let palette = await palettes.findOne({id: req.body.id});
-	// let u_found = palette.people_allowed.find(i => (req.user || {}).id == i.id);
 	let permissions = await get_user_palette_permissions(req.user, palette);
 	if(!(palette && permissions.includes("add_color"))) {
 		res.status(401);
@@ -40,7 +48,7 @@ const add_color_router = async (req, res) => {
 		{
 			$push: {
 				colors: {
-					value: req.body.value,
+					value: req.body.value.trim().slice(0, 20),
 					text: req.body.text.replace(/</g, "&lt;").slice(0, 50),
 					added_by: req.user.id,
 					id: gen_str()
