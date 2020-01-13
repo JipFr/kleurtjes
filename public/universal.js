@@ -439,7 +439,7 @@ function share_palette(palette_wrapper) {
 		navigator.share({
 			title: palette.name,
 			url: get_url(palette),
-			text: `Temporary text to show that you can share ${palette.name}!`
+			text: `Check out ${palette.name} by ${palette.created_by_slug}!`
 		});
 	} catch(err) {
 		create_overlay({
