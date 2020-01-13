@@ -39,7 +39,7 @@
 			<div class="option input_div">
 				<label for="change_username">Account description</label>
 				<div class="input textarea_input">
-					<textarea id="change_username" placeholder="Hello, my name is {{user.user.displayName}}!" oninput="this.value.trim().length > 120 ? this.value = this.value.trim().slice(0, 120) : null;" max="120">{{get_bio user.bio}}</textarea>
+					<textarea id="change_username" placeholder="Hello, my name is {{user.user.displayName}}!" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio user.bio}}</textarea>
 					<button onclick="set_bio(this.closest('.option').querySelector('textarea').value)">Update</button>
 				</div>
 			</div>

@@ -132,7 +132,7 @@ header .pfp {
 	font-family: Arial;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 4;
+	-webkit-line-clamp: 8;
 	overflow: hidden;
 	color: var(--secondary);
 }
@@ -464,7 +464,7 @@ details .dropdown .icon_grid .grid_icon svg {
 }
 .input.textarea_input textarea {
 	resize: none;
-	height: 100px;
+	height: 120px;
 }
 .input button {
 	font-size: 1em;
