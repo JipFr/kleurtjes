@@ -36,7 +36,8 @@ module.exports = async (req, res) => {
 		id: palette_id
 	}, {
 		$set: {
-			colors: n_colors
+			colors: n_colors,
+			updated_at: Date.now()
 		}
 	});
 

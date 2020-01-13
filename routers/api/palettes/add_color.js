@@ -53,6 +53,9 @@ const add_color_router = async (req, res) => {
 					added_by: req.user.id,
 					id: gen_str()
 				}
+			},
+			$set: {
+				updated_at: Date.now()
 			}
 		}
 	);

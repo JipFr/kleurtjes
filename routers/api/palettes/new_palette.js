@@ -39,6 +39,7 @@ const new_palette_router = async (req, res) => {
 			visible: true,
 			id: id,
 			created_at: Date.now(),
+			updated_at: Date.now(),
 			created_by: req.user.id,
 			name: req.body.name,
 			index: found_palettes.length,

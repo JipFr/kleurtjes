@@ -216,6 +216,8 @@ function get_palette({
 	if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
 	if(!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
 
+	if(!navigator.share) node.querySelector(".share_palette").remove();
+
 	// Update user imgs
 	let image_wrapper = node.querySelector(".palette_users");
 	if(palette.people.length > 1 || (palette.people.length == 1 && !is_owner && current_page == "dashboard") || show_people) {
@@ -317,7 +319,7 @@ function get_palette({
 	node.querySelector(".palette").setAttribute("data-id", palette.id);
 	node.querySelector(".palette").setAttribute("data-permissions", palette.permissions);
 
-	node.querySelector(".palette_url").href = `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "-").toLowerCase()}/`
+	node.querySelector(".palette_url").href = get_url(palette);
 
 	if(palette.is_on_dashboard && node.querySelector(".is_on_dashboard")) {
 		node.querySelector(".is_on_dashboard").remove();
@@ -426,4 +428,31 @@ function toggle_palette_dashboard(id) {
 		if(!d.status == 200) return;
 		render();
 	});
+}
+
+function share_palette(palette_wrapper) {
+	let id = palette_wrapper.dataset.id;
+	let palette = palettes.find(palette => palette.id === palette.id);
+	if(!palette) return;
+
+	try {
+		navigator.share({
+			title: palette.name,
+			url: get_url(palette),
+			text: `Temporary text to show that you can share ${palette.name}!`
+		});
+	} catch(err) {
+		create_overlay({
+			title: `Error: ${err}`,
+			btn_value: "OK",
+			on_submit: res => true,
+			can_cancel: false,
+			fields: []
+		});
+	}
+
+}
+
+function get_url(palette) {
+	return `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "-").toLowerCase()}/`;
 }

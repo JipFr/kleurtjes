@@ -27,7 +27,8 @@ const delete_palette_router = async (req, res) => {
 					is_deleted: true, 
 					deleted_at: Date.now() 
 				},
-				visible: false
+				visible: false,
+				updated_at: Date.now()
 			}
 		}
 	);
