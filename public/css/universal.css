@@ -459,6 +459,8 @@ details .dropdown .icon_grid .grid_icon svg {
 	color: var(--text);
 	border-radius: 4px;
 	-webkit-appearance: none;
+}
+.input_div_text input[type="text"], .input_div input:not([type]) {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }

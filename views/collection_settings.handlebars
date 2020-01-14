@@ -20,14 +20,21 @@
 		</aside>
 		<main class="settings_options">
 			<div class="option input_div">
-				<label for="change_username">Collection title</label>
+				<label for="change_title">Title</label>
 				<div class="input">
-					<input id="change_username" placeholder="Palette collection" value="{{page.collection.slug}}">
+					<input id="change_title" placeholder="Palette collection" value="{{page.collection.title}}">
 					<button>Update</button>
 				</div>
 			</div>
 			<div class="option input_div">
-				<label for="change_username">Collection theme</label>
+				<label for="change_slug">Slug</label>
+				<div class="input">
+					<input id="change_slug" placeholder="my-collection" value="{{page.collection.slug}}">
+					<button>Update</button>
+				</div>
+			</div>
+			<div class="option input_div">
+				<label for="change_color">Collection theme</label>
 				<div class="input">
 					<div class="color_picker_wrapper_alt" style="background: {{#if page.collection.color}}{{page.collection.color}}{{else}}#3d6a7b{{/if}}">
 						<input onchange="this.parentNode.style.background = `${this.value}`" id="profile_color" type="color" value="{{#if page.collection.color}}{{page.collection.color}}{{else}}#3d6a7b{{/if}}">
@@ -37,9 +44,9 @@
 				</div>
 			</div>
 			<div class="option input_div">
-				<label for="change_username">Collection description</label>
+				<label for="change_description">Description</label>
 				<div class="input textarea_input">
-					<textarea id="change_username" placeholder="A description to describe your collection" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio page.collection.description}}</textarea>
+					<textarea id="change_description" placeholder="A description to describe your collection" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio page.collection.description}}</textarea>
 					<button onclick="set_bio(this.closest('.option').querySelector('textarea').value)">Update</button>
 				</div>
 			</div>
@@ -48,5 +55,4 @@
 
 </div>
 
-<script src="/js/universal.js"></script>
 <script src="/js/settings/collection_settings.js"></script>
