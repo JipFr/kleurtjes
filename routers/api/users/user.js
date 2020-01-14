@@ -21,7 +21,7 @@ const user_api_router = async (req, res) => {
 		} else if(current_page == "all") {
 		
 			new_palettes = await palettes.find({visible: true, people_allowed_ids: { $all: [user.id] } } ).toArray();
-			new_palettes = new_palettes.sort((a, b) => b.created_at - a.created_at);
+			new_palettes = new_palettes.sort((a, b) => (b.updated_at || b.created_at) - (a.updated_at || a.created_at));
 
 		} else if(current_page == "dashboard") {
 			
@@ -30,11 +30,11 @@ const user_api_router = async (req, res) => {
 			new_palettes = await Promise.all(new_palettes);
 
 		} else if(current_page == "palette") {
-			
+
 			let all_palettes = await palettes.find({ created_by: user.id, visible: true }).toArray();
 
 			let palette_ids = req.params.palette.split(",");
-			
+
 			new_palettes = all_palettes.filter(palette => {
 				if(palette_ids.find(id => palette.id == id)) return true;
 				if(palette_ids.find(name => palette.name.toLowerCase() == decodeURIComponent(name).replace(/_|-/g, " ").toLowerCase())) return true;
@@ -68,7 +68,7 @@ const user_api_router = async (req, res) => {
 			}
 			palette.created_by_slug = palette.people.find(i => i.id == palette.created_by).username;
 		}
-		
+
 		res.json({
 			status: 200,
 			your_id: (req.user || {}).id,

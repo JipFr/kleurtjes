@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="/css/settings.css">
 
-<a href="/me/" class="anchor">
+<a href="/c/{{page.collection.slug}}/" class="anchor">
 	<div class="icon_grid">
 		<div class="grid_icon">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
 		</div>
 		<div class="grid_info">
-			Back to your profile
+			Back to collection
 		</div>
 	</div>
 </a>
@@ -15,31 +15,31 @@
 
 	<div class="settings_bit">
 		<aside class="settings_aside">
-			<h2 class="title">Profile settings</h2>
+			<h2 class="title">Collection settings</h2>
 			<hr>
 		</aside>
 		<main class="settings_options">
 			<div class="option input_div">
-				<label for="change_username">Change your username</label>
+				<label for="change_username">Collection title</label>
 				<div class="input">
-					<input id="change_username" placeholder="piet" value="{{user.slug}}">
-					<button onclick="set_username(this.closest('.option').querySelector('input').value)">Update</button>
+					<input id="change_username" placeholder="Palette collection" value="{{page.collection.slug}}">
+					<button>Update</button>
 				</div>
 			</div>
 			<div class="option input_div">
-				<label for="change_username">Profile's color</label>
+				<label for="change_username">Collection theme</label>
 				<div class="input">
-					<div class="color_picker_wrapper_alt" style="background: {{#if user.color}}{{user.color}}{{else}}#3d6a7b{{/if}}">
-						<input onchange="this.parentNode.style.background = `${this.value}`" id="profile_color" type="color" value="{{#if user.color}}{{user.color}}{{else}}#3d6a7b{{/if}}">
+					<div class="color_picker_wrapper_alt" style="background: {{#if page.collection.color}}{{page.collection.color}}{{else}}#3d6a7b{{/if}}">
+						<input onchange="this.parentNode.style.background = `${this.value}`" id="profile_color" type="color" value="{{#if page.collection.color}}{{page.collection.color}}{{else}}#3d6a7b{{/if}}">
 					</div>
 					<button onclick="set_color('#3d6a7b')">Reset</button>
 					<button onclick="set_color(this.closest('.option').querySelector('input').value)">Update</button>
 				</div>
 			</div>
 			<div class="option input_div">
-				<label for="change_username">Account description</label>
+				<label for="change_username">Collection description</label>
 				<div class="input textarea_input">
-					<textarea id="change_username" placeholder="Hello, my name is {{user.user.displayName}}!" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio user.bio}}</textarea>
+					<textarea id="change_username" placeholder="A description to describe your collection" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio page.collection.description}}</textarea>
 					<button onclick="set_bio(this.closest('.option').querySelector('textarea').value)">Update</button>
 				</div>
 			</div>
@@ -49,4 +49,4 @@
 </div>
 
 <script src="/js/universal.js"></script>
-<script src="/js/settings/settings.js"></script>
+<script src="/js/settings/collection_settings.js"></script>

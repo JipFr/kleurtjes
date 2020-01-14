@@ -15,7 +15,7 @@ const user_router = async (req, res) => {
 		let user_is_member;
 		let user_role;
 		if(user) {
-			user_is_member = page_collection.members.find(u => u.slug === user.slug);
+			user_is_member = page_collection.members.find(u => u.id === user.id);
 			user_role = user_is_member ? user_is_member.role : null;
 		}
 

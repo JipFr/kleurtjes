@@ -258,6 +258,9 @@ function get_palette({
 	if(!can_move_down) {
 		node.querySelector(".palette_placement .grid_icon:last-child").innerHTML = "";
 	}
+	if(!can_move_up && !can_move_down) {
+		node.querySelector(".placement_wrapper").remove();
+	}
 
 	// Add colors
 	let content_alt = node.querySelector(".palette_colors");

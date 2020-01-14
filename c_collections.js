@@ -27,16 +27,19 @@ async function make() {
 	let p_col = db.collection("palettes");
 	let all_palettes = await p_col.find({ visible: true }).toArray();
 	let palettes = [];
-	for(let i = 0; i < Math.floor(Math.random() * 4); i++) {
-		palettes.push(all_palettes[Math.floor(Math.random() * all_palettes.length)].id);
+	// for(let i = 0; i < Math.floor(Math.random() * 4); i++) {
+	// 	palettes.push(all_palettes[Math.floor(Math.random() * all_palettes.length)].id);
+	// }
+	for(let palette of all_palettes) {
+		palettes.push(palette.id);
 	}
 
 	collections.updateOne({ id: coll_id },
 	{
 		$set: {
-			"title": "Connect " + new Date().toJSON(),
+			"title": "Collectie " + new Date().toJSON(),
 			"description": "This is a temporary text to indicate that collections can have a description.",
-			"slug": "connect-"+new Date().toJSON(),
+			"slug": Math.floor(Math.random() * 500).toString(),
 			"deleted": false,
 			"visible": true,
 			"created_at": Date.now(),

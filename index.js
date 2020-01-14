@@ -147,6 +147,7 @@ app.get("/settings/", routers.web.settings);
 
 // Collections
 app.get("/c/:slug/", routers.web.collection);
+app.get("/c/:slug/settings/", routers.web.collection_settings);
 
 // Collections API routers
 app.post("/c/:slug/", routers.api.collection);

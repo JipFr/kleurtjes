@@ -16,6 +16,7 @@ module.exports = {
 	},
 	web: {
 		collection: require("./web/collection"),
+		collection_settings: require("./web/collection_settings"),
 		user_palette: require("./web/user"),
 		user_collections: require("./web/user_collections"),
 		me: require("./web/me"),
