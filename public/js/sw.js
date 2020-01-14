@@ -1,8 +1,8 @@
 const CACHE_NAME = "colors2-0";
 let urlsToCache= [
 	"/",
-	"/universal.css",
-	"/universal.js",
+	"/css/universal.css",
+	"/js/universal.js",
 	"/icon.png",
 	"/log-in/"
 ];
