@@ -380,6 +380,7 @@ function manage_palette_people(id) {
 		if(person.write) n_node.querySelector(".person_control.person_control_toggle_write").classList.add("write");
 
 		n_node.querySelector(".name_main").innerText = person.name;
+		n_node.querySelector(".username").href = `/u/${person.username}`;
 		n_node.querySelector(".username").innerText = `u/${person.username}`;
 		n_node.querySelector(".user_small_pfp").src = `/image/${person.username}`;
 
@@ -442,7 +443,7 @@ function share_palette(palette_wrapper) {
 		navigator.share({
 			title: palette.name,
 			url: get_url(palette),
-			text: `Check out ${palette.name} by ${palette.created_by_slug}!`
+			text: `Check out the ${palette.name} palette by u/${palette.created_by_slug}!`
 		});
 	} catch(err) {
 		create_overlay({

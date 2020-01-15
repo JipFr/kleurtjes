@@ -580,6 +580,10 @@ details .dropdown .icon_grid .grid_icon svg {
 .username {
 	color: var(--tertiary);
 	margin-left: var(--gap_small);
+	text-decoration: none;
+}	
+.username:hover {
+	text-decoration: underline;
 }
 
 .person_controls {

@@ -1,8 +1,0 @@
-{
-  "apps" : [{
-    "name"        : "colors-new",
-    "script"      : "index.js",
-    "watch"       : true,
-    "ignore_watch": ["logs/*"]
-}]
-}
