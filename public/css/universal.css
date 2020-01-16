@@ -325,6 +325,10 @@ header .pfp {
 	padding: 0 5px;
 	width: 100%;
 }
+.color_hover .hover_text span {
+	overflow: hidden;
+	word-break: break-word;
+}
 .color_hover .hover_color {
 	margin: 0;
 	font-weight: 300;

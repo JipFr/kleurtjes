@@ -43,7 +43,7 @@ function add_new_color(id, color, text) {
 		body: JSON.stringify({
 			id,
 			value: color,
-			text: text.slice(0, 20)
+			text: text.slice(0, 30)
 		})
 	}).then(d => d.json()).then(d => {
 		if(d.status !== 200) return;

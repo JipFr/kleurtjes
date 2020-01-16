@@ -49,7 +49,7 @@ const add_color_router = async (req, res) => {
 			$push: {
 				colors: {
 					value: req.body.value.trim().slice(0, 20),
-					text: req.body.text.replace(/</g, "&lt;").slice(0, 50),
+					text: req.body.text.replace(/</g, "&lt;").slice(0, 200),
 					added_by: req.user.id,
 					id: gen_str()
 				}
