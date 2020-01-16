@@ -43,3 +43,21 @@
 .anchor:hover {
 	text-decoration: underline;
 }
+
+.add_collection {
+	cursor: pointer;
+}
+.add_collection .small_collection_inner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.add_collection svg {
+	display: block;
+	color: var(--secondary);
+	transition: color 150ms;
+}
+.add_collection:hover svg {
+	color: var(--text);
+}
