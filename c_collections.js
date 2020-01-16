@@ -27,9 +27,6 @@ async function make() {
 	let p_col = db.collection("palettes");
 	let all_palettes = await p_col.find({ visible: true }).toArray();
 	let palettes = [];
-	// for(let i = 0; i < Math.floor(Math.random() * 4); i++) {
-	// 	palettes.push(all_palettes[Math.floor(Math.random() * all_palettes.length)].id);
-	// }
 	for(let palette of all_palettes) {
 		palettes.push(palette.id);
 	}
@@ -37,13 +34,15 @@ async function make() {
 	collections.updateOne({ id: coll_id },
 	{
 		$set: {
-			"title": "Collectie " + new Date().toJSON(),
+			"title": "Jips " + new Date().toLocaleTimeString("it-IT"),
 			"description": "This is a temporary text to indicate that collections can have a description.",
 			"slug": Math.floor(Math.random() * 500).toString(),
 			"deleted": false,
 			"visible": true,
+			"updated_at": Date.now(),
 			"created_at": Date.now(),
 			"created_by": "ihw13-0flrn-g10lg-v62nu-rqd2o-ms6y5-2m5ol-55do3-84py3-1m9ig",
+			"owner": "ihw13-0flrn-g10lg-v62nu-rqd2o-ms6y5-2m5ol-55do3-84py3-1m9ig",
 			"members": [
 				{
 					"id": "ihw13-0flrn-g10lg-v62nu-rqd2o-ms6y5-2m5ol-55do3-84py3-1m9ig",

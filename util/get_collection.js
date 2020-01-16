@@ -11,10 +11,10 @@ module.exports = async id => {
 
 	if(!collection) return null;
 
-	collection.members.forEach(async obj => {
+	for(let obj of collection.members) {
 		let u = await get_user(obj.id);
 		obj.slug = (u || {}).slug;
-	});
+	}
 
 	return collection;
 

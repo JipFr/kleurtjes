@@ -216,10 +216,10 @@ header .pfp {
 	justify-content: center;
 	align-items: center;
 }
-.palette_controls .palette_users {
+.user_list {
 	display: flex;
 }
-.palette_controls .palette_users > * + * {
+.user_list > * + * {
 	/* Every direct child with a child in front of it */
 	margin-left: var(--gap_small);
 }

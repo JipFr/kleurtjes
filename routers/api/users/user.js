@@ -55,7 +55,20 @@ const user_api_router = async (req, res) => {
 				}
 			}).toArray();
 			new_collections = await Promise.all(u_collections.map(c => get_collection(c.id)));
-
+			new_collections = new_collections.filter(c => c.visible).map(collection => {
+				with(collection) {
+					return {
+						id,
+						created_at,
+						created_by,
+						description,
+						title,
+						members,
+						palettes,
+						slug
+					}
+				}
+			});
 		}
 
 		new_palettes = new_palettes.filter(i => i ? true : false);
@@ -71,7 +84,7 @@ const user_api_router = async (req, res) => {
 			data: {
 				slug: user.slug,
 				palettes: new_palettes.filter(i => i.permissions.includes("read")),
-				collections: (new_collections || []).filter(c => c.visible)
+				collections: new_collections || []
 			}
 		});
 	} else {

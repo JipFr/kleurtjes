@@ -219,7 +219,7 @@ function get_palette({
 	if(!navigator.share) node.querySelector(".share_palette").remove();
 
 	// Update user imgs
-	let image_wrapper = node.querySelector(".palette_users");
+	let image_wrapper = node.querySelector(".user_list");
 	if(palette.people.length > 1 || (palette.people.length == 1 && !is_owner && current_page == "dashboard") || show_people) {
 		palette.people.slice(0, 5).forEach(user => {
 			let node_alt = document.importNode(image_wrapper, true).children[0];
@@ -227,10 +227,10 @@ function get_palette({
 			node_alt.href = `/u/${user.username}/`
 			node_alt.querySelector(".pfp_small").src = `/image/${user.id}`;
 
-			node.querySelector(".palette_users").appendChild(node_alt);
+			node.querySelector(".user_list").appendChild(node_alt);
 		});
 	} else {
-		node.querySelector(".palette_users").remove();
+		node.querySelector(".user_list").remove();
 	}
 
 	// Remove initial image (placeholder) OR show "..." 

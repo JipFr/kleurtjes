@@ -21,3 +21,25 @@
 .card:hover {
 	background: var(--hover);
 }
+
+.card .sub {
+	margin-top: var(--gap);
+	color: var(--secondary);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.card .sub > span:after {
+	content: "•";
+	margin: 0 var(--gap);
+	width: 100%; height: 100%;
+	opacity: 0.5;
+}
+.card .sub:last-child > span:last-child:after {
+	content: "";
+}
+
+.anchor:hover {
+	text-decoration: underline;
+}
