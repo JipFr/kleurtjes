@@ -105,7 +105,7 @@ header .pfp {
 	width: 93%;
 	margin-left: env(safe-area-inset-left);
 	margin-right: env(safe-area-inset-right);
-	max-width: 1000px;
+	max-width: 1300px;
 }
 .layout {
 	display: grid;

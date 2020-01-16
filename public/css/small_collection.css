@@ -1,8 +1,15 @@
 .collection_grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	grid-gap: var(--gap);
 }
+
+@media screen and (max-width: 600px) {
+	.collection_grid {
+		grid-template-columns: 100%;
+	}
+}
+
 .card {
 	border: 1px solid var(--border);
 	padding: var(--gap_large) var(--gap);
