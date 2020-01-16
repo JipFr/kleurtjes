@@ -1,5 +1,5 @@
 const { get_user } = require("../../../util/user");
-const { get_current_page, get_user_palette_permissions } = require("../../../util");
+const { get_current_page, get_user_palette_permissions, get_palette, get_collection } = require("../../../util");
 
 // User POST router
 const user_api_router = async (req, res) => {
@@ -10,6 +10,7 @@ const user_api_router = async (req, res) => {
 
 	if(user) {
 		let new_palettes;
+		let new_collections;
 		let palettes = db.collection("palettes");
 
 		if(current_page == "own") {
@@ -43,6 +44,18 @@ const user_api_router = async (req, res) => {
 
 		} else if(current_page == "collections") {
 			new_palettes = [];
+
+			let collections = db.collection("collections");
+
+			let u_collections = await collections.find({ 
+				members: {
+					$elemMatch: {
+						id: user.id
+					}
+				}
+			}).toArray();
+			new_collections = await Promise.all(u_collections.map(c => get_collection(c.id)));
+
 		}
 
 		new_palettes = new_palettes.filter(i => i ? true : false);
@@ -50,31 +63,15 @@ const user_api_router = async (req, res) => {
 		// Update palettes with permissions and other dynamic stuff
 		let current_user = await get_user((req.user || {}).id)		
 		if(!current_user) current_user = {}
-		for(let palette of new_palettes) {
-			palette.permissions = await get_user_palette_permissions(req.user, palette);
-			palette.people = [];
-			palette.is_on_dashboard = (current_user.dashboard || []).includes(palette.id);
-			
-			for(let obj of palette.people_allowed) {
-				let id = obj.id || obj;
-				let user = await get_user(id);
-				if(user) {
-					palette.people.push({
-						id,
-						username: user.slug,
-						name: user.user.displayName
-					});
-				}
-			}
-			palette.created_by_slug = palette.people.find(i => i.id == palette.created_by).username;
-		}
+		new_palettes = await Promise.all(new_palettes.map(palette => get_palette(palette.id, (req.user || {}).id)));
 
 		res.json({
 			status: 200,
 			your_id: (req.user || {}).id,
 			data: {
 				slug: user.slug,
-				palettes: new_palettes.filter(i => i.permissions.includes("read"))
+				palettes: new_palettes.filter(i => i.permissions.includes("read")),
+				collections: (new_collections || []).filter(c => c.visible)
 			}
 		});
 	} else {
@@ -84,7 +81,8 @@ const user_api_router = async (req, res) => {
 			your_id: (req.user || {}).id,
 			data: {
 				slug: null,
-				palettes: []
+				palettes: [],
+				collections: []
 			}
 		});
 	}
