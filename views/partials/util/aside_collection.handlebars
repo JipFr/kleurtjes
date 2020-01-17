@@ -22,7 +22,7 @@
 		<div class="collection_members_inner">
 			{{#each page.collection.members}}
 			<div class="member">
-				<a href="/u/{{this.slug}}">
+				<a href="/u/{{this.slug}}" data-role="{{this.role}}">
 					<img class="member_img" src="/image/{{this.id}}">
 				</a>
 			</div>

@@ -7,7 +7,7 @@
 		<div class="templates" style="display: none;">
 			{{> templates}}
 		</div>
-		<div class="all" {{#if page.user.color}}style="--theme: {{page.user.color}};"{{/if}} {{#if page.collection.color}}style="--theme: {{page.collection.color}};"{{/if}}>
+		<div class="all" {{#if page.user.color}}style="--theme: {{#if page.collection.color}}{{page.collection.color}}{{else}}{{page.user.color}}{{/if}};"{{/if}} {{#if page.collection.color}}style="--theme: {{page.collection.color}};"{{/if}}>
 			{{> page/header}}
 			<div class="body_wrapper">
 				<div class="body layout_width">

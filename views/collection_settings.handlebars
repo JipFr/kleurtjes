@@ -11,7 +11,7 @@
 	</div>
 </a>
 
-<div class="settings_wrapper">
+<div class="settings_wrapper" data-collection-slug="{{page.collection.slug}}">
 
 	<div class="settings_bit">
 		<aside class="settings_aside">
@@ -23,14 +23,14 @@
 				<label for="change_title">Title</label>
 				<div class="input">
 					<input id="change_title" placeholder="Palette collection" value="{{page.collection.title}}">
-					<button>Update</button>
+					<button onclick="set_title(this.closest('.option').querySelector('input').value)">Update</button>
 				</div>
 			</div>
 			<div class="option input_div">
 				<label for="change_slug">Slug</label>
 				<div class="input">
 					<input id="change_slug" placeholder="my-collection" value="{{page.collection.slug}}">
-					<button>Update</button>
+					<button onclick="set_slug(this.closest('.option').querySelector('input').value)">Update</button>
 				</div>
 			</div>
 			<div class="option input_div">

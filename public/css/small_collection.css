@@ -23,7 +23,9 @@
 .card .description {
 	margin: 0;
 	margin-top: var(--gap_small);
+	color: var(--secondary);
 }
+
 
 .card:hover {
 	background: var(--hover);
@@ -45,8 +47,12 @@
 }
 .card .sub:last-child > span:last-child:after {
 	content: "";
+	display: none;
 }
 
+.anchor {
+	color: var(--text);
+}
 .anchor:hover {
 	text-decoration: underline;
 }
@@ -54,6 +60,17 @@
 .add_collection {
 	cursor: pointer;
 }
+.small_collection:not(.add_collection) .small_collection_inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
+	height: 100%;
+}
+
+.small_collection .title_inner, .small_collection .description {
+	word-break: break-word;
+}
+
 .add_collection .small_collection_inner {
 	display: flex;
 	justify-content: center;
@@ -67,4 +84,14 @@
 }
 .add_collection:hover svg {
 	color: var(--text);
+}
+
+.no_collections {
+	grid-template-columns: 100%;
+}
+
+.theme_bit {
+	padding-left: var(--gap_small);
+	margin-right: var(--gap);
+	background: var(--theme);
 }

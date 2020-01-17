@@ -10,3 +10,7 @@
 	border-radius: 4px;
 	display: block;
 }
+
+.member a[data-role="admin"] img {
+	/*box-shadow: 0 4px 15px yellow;*/
+}

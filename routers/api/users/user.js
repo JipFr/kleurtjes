@@ -65,10 +65,22 @@ const user_api_router = async (req, res) => {
 						title,
 						members,
 						palettes,
-						slug
+						slug,
+						color: typeof color !== "undefined" ? color : null
 					}
 				}
 			});
+
+			for(let collection of new_collections) {
+				collection.palettes = await new Promise(resolve => {
+					Promise.all(collection.palettes.map(obj => {
+						let id = obj.id;
+						return get_palette(id);
+					})).then(resolve);
+				});
+				collection.palettes = collection.palettes.filter(i => i);
+			}
+
 		}
 
 		new_palettes = new_palettes.filter(i => i ? true : false);

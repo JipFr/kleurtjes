@@ -150,8 +150,11 @@ app.get("/c/:slug/", routers.web.collection);
 app.get("/c/:slug/settings/", routers.web.collection_settings);
 
 // Collections API routers
-app.post("/c/:slug/", routers.api.collection);
-
+app.post("/c/:slug/", routers.api.collection.collection);
+app.post("/api/c/set_title/", routers.api.collection.set_title);
+app.post("/api/c/set_color/", routers.api.collection.set_color);
+app.post("/api/c/set_bio/", routers.api.collection.set_bio);
+app.post("/api/c/set_slug/", routers.api.collection.set_slug);
 
 // API routers
 app.post("/u/:username/", routers.api.user_api);

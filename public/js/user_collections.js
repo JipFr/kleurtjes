@@ -26,10 +26,12 @@ function render() {
 			let node = document.importNode(document.querySelector("template.small_collection").content, true);
 			
 			node.querySelector(".link").href = `/c/${collection.slug}/`;
-			node.querySelector(".title").innerHTML = collection.title;
+			node.querySelector(".title_inner").innerHTML = collection.title;
 			node.querySelector(".description").innerHTML = collection.description;
 			node.querySelector(".palette_count").innerHTML = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
-			
+				
+			if(collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
+
 			// Add users
 			let user_list = node.querySelector(".user_list");
 			for(let member of collection.members.slice(0, 5)) {
@@ -53,6 +55,7 @@ function render() {
 		}
 
 		if(collection_div.children.length === 0) {
+			collection_div.classList.add("no_collections");
 			collection_div.appendChild(document.querySelector("template.not_found").content);
 		}
 

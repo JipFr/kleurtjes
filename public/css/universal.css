@@ -105,6 +105,7 @@ header .pfp {
 	width: 93%;
 	margin-left: env(safe-area-inset-left);
 	margin-right: env(safe-area-inset-right);
+	/*max-width: 1000px;*/
 	max-width: 1300px;
 }
 .layout {
@@ -126,6 +127,7 @@ header .pfp {
 	font-family: Poppins, Arial;
 	margin: var(--gap) 0;
 	margin-top: 0;
+	word-break: break-word;
 }
 .aside_user p {
 	margin: 0;
@@ -341,6 +343,7 @@ details {
 }
 details summary {
 	outline: none;
+	display: block;
 }
 details summary::-webkit-details-marker {
 	display: none;
@@ -488,12 +491,13 @@ details .dropdown .icon_grid .grid_icon svg {
 }
 .input input, .input button, .input_div_text input[type="text"], .input_div input:not([type]){
 	border-radius: 4px;
-	border-bottom-right-radius: 4px;
-	border-top-right-radius: 4px;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .color_picker_wrapper {
 	position: relative;
+	height: 30px;
 }
 .color_picker_wrapper input[type="color"] {
 	opacity: 0;

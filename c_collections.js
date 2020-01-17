@@ -53,6 +53,7 @@ async function make() {
 					"role": "member"
 				}
 			],
+			"color": get_random_color(),
 			"palettes": palettes.map(id => ({ id }) )
 		}
 	}, {
@@ -61,4 +62,13 @@ async function make() {
 
 	console.log("Created new entry");
 
+}
+
+function get_random_color() {
+	let letters = "0123456789ABCDEF";
+	let color = "#";
+	for(let i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * letters.length)];
+	}
+	return color;
 }
