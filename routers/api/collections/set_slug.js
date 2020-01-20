@@ -46,6 +46,16 @@ module.exports = async (req, res) => {
 
 	let collections = db.collection("collections");
 
+	let slug_check = await collections.findOne({ slug: new_slug });
+	if(slug_check) {
+		res.status(400);
+		res.json({
+			status: 400,
+			err: "Slug already exists"
+		});
+		return;
+	}
+
 	await collections.updateOne({
 		id: collection.id
 	},
