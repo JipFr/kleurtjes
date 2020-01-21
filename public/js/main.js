@@ -25,8 +25,8 @@ function render() {
 				let node = get_palette({
 					palette, 
 					index, 
-					can_move_down: index < d.data.palettes.length - 1 && palettes.length > 1,
-					can_move_up: index > 0 && palettes.length > 1,
+					can_move_down: index < d.data.palettes.length - 1 && palettes.length > 1 && (current_page === "dashboard" || current_page === "own"),
+					can_move_up: index > 0 && palettes.length > 1 && (current_page === "dashboard" || current_page === "own"),
 					is_owner: palette.people_allowed[0].id == d.your_id
 				});
 

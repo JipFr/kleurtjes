@@ -126,7 +126,6 @@ header .pfp {
 .aside_user h2 {
 	font-family: Poppins, Arial;
 	margin: var(--gap) 0;
-	margin-top: 0;
 	word-break: break-word;
 }
 .aside_user p {
@@ -137,6 +136,9 @@ header .pfp {
 	-webkit-line-clamp: 8;
 	overflow: hidden;
 	color: var(--secondary);
+}
+.aside_user p, .aside_user h2 {
+	word-break: break-word;
 }
 
 .aside_user hr {
@@ -337,6 +339,18 @@ header .pfp {
 	margin-top: var(--gap_small);
 }
 
+details .dropdown_arrow .pyramid {
+	position: absolute;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid var(--border);
+	width: 0;
+	position: absolute;
+	top: -10px;
+	right: 2.5px;
+	transform: translateX(-50%);
+}
+
 details {
 	position: relative;
 	z-index: 1;
@@ -350,6 +364,12 @@ details summary::-webkit-details-marker {
 }
 details summary svg {
 	display: block;
+}
+
+
+header details .dropdown {
+	right: -1px;
+	top: 50px;
 }
 
 details .dropdown {
