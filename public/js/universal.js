@@ -436,7 +436,7 @@ function toggle_palette_dashboard(id) {
 
 function share_palette(palette_wrapper) {
 	let id = palette_wrapper.dataset.id;
-	let palette = palettes.find(palette => palette.id === palette.id);
+	let palette = palettes.find(palette => palette.id === id);
 	if(!palette) return;
 
 	try {

@@ -37,6 +37,7 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	width: 100%;
 }
 
 .card .sub > span:after {
@@ -69,6 +70,7 @@
 
 .small_collection .title_inner, .small_collection .description {
 	word-break: break-word;
+	width: 100%;
 }
 
 .add_collection .small_collection_inner {
