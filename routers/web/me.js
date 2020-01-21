@@ -8,7 +8,8 @@ const me_router = async (req, res) => {
 	}
 	
 	let user = await get_user(req.user.id);
-	res.redirect(`/u/${user.slug}`)
+	// res.redirect(`/u/${user.slug}`);
+	res.redirect(req.url.replace(/\/me\//, `/u/${user.slug}/`));
 
 }
 

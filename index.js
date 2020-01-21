@@ -130,10 +130,10 @@ app.get("/google_auth_callback/", passport.authenticate("google", { failureRedir
 });
 
 
-
 // Web routers
 app.get("/", routers.web.log_in);
 app.get("/me/", routers.web.me);
+app.get("/me/*", routers.web.me);
 app.get("/log-in/", routers.web.log_in);
 app.get("/logout/", (req, res) => { req.logout(); res.redirect("/"); });
 
