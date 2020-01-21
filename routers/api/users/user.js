@@ -61,10 +61,12 @@ const user_api_router = async (req, res) => {
 			new_collections = await Promise.all(u_collections.map(c => get_collection(c.id)));
 			new_collections = new_collections.filter(c => c.visible).map(collection => {
 				with(collection) {
+					if(typeof updated_at === "undefined") updated_at = created_at;
 					return {
 						id,
 						created_at,
 						created_by,
+						updated_at,
 						description,
 						title,
 						members,

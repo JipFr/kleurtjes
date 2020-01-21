@@ -14,6 +14,7 @@ module.exports = async id => {
 	for(let obj of collection.members) {
 		let u = await get_user(obj.id);
 		obj.slug = (u || {}).slug;
+		obj.display = u.user.displayName;
 	}
 
 	return collection;

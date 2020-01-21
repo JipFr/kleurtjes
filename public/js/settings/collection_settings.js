@@ -100,3 +100,29 @@ function set_slug(new_slug) {
 		location.href = `/c/${d.new_slug}/settings/`
 	});
 }
+
+
+function add_member(member_slug) {
+	fetch("/api/c/add_member", {
+		method: "POST",
+		headers: {
+			"content-type": "application/json"
+		},
+		body: JSON.stringify({
+			member_slug,
+			collection: collection_slug
+		})
+	}).then(d => d.json()).then(d => {
+		if(d.status !== 200) {
+			create_overlay({
+				title: d.err,
+				btn_value: "OK",
+				on_submit: _ => true,
+				can_cancel: false,
+				fields: []
+			});
+			return;
+		}
+		location.reload();
+	});
+}

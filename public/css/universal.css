@@ -578,7 +578,7 @@ details .dropdown .icon_grid .grid_icon svg {
 	margin-top: var(--gap_large);
 }
 
-.overlay_inner_manage .fields .all_users {
+.all_users {
 	display: grid;
 	grid-template-columns: 100%;
 	grid-gap: var(--gap_small);

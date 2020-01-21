@@ -53,6 +53,27 @@
 		</main>
 	</div>
 
+	<div class="settings_bit">
+		<aside class="settings_aside">
+			<h2 class="title">Members</h2>
+			<hr>
+		</aside>
+		<main class="settings_options member_settings">
+			<div class="option input_div">
+				<label for="add_member">New member</label>
+				<div class="input">
+					<input id="add_member" placeholder="jip" onkeyup="if(event.key === 'Enter') add_member(this.value)">
+					<button onclick="add_member(this.closest('.option').querySelector('input').value)">Add</button>
+				</div>
+			</div>
+			<div class="member_settings_members all_users">
+				{{#each page.collection.members}}
+					{{> util/small_user user=this }}
+				{{/each}}
+			</div>
+		</main>
+	</div>
+
 </div>
 
 <script src="/js/settings/collection_settings.js"></script>
