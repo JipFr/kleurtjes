@@ -44,6 +44,8 @@ function render_members() {
 	for(let member of members) {
 		let node = document.importNode(document.querySelector("template.user_small").content, true);
 		
+
+		node.querySelector(".user_small").setAttribute("data-person-username", member.slug);
 		node.querySelector(".user_small_pfp").src = `/image/${member.id}`;
 		node.querySelector(".username").href = `/u/${member.slug}/`;
 		node.querySelector(".name_main").innerHTML = member.display;
@@ -54,6 +56,13 @@ function render_members() {
 			node.querySelector(".person_control_toggle_write").setAttribute("data-can-write", true);
 			node.querySelector(".person_control_toggle_write").classList.add("write");
 		}
+
+		node.querySelector(".person_control_remove").removeAttribute("onclick");
+		node.querySelector(".person_control_remove").addEventListener("click", () => {
+			console.log(member.id);
+			toggle_member(member.id, false);
+		});
+
 		if(member.is_owner || member.id === user_id) {
 
 			if(member.id === user_id) {
@@ -169,19 +178,20 @@ function set_slug(new_slug) {
 			});
 			return;
 		}
-		location.href = `/c/${d.new_slug}/settings/`
+		location.href = `/c/${d.new_slug}/settings/`;
 	});
 }
 
 
-function add_member(member_slug) {
-	fetch("/api/c/add_member", {
+function toggle_member(member_slug, add = true) {
+	fetch("/api/c/toggle_member", {
 		method: "POST",
 		headers: {
 			"content-type": "application/json"
 		},
 		body: JSON.stringify({
 			member_slug,
+			add,
 			collection: collection_slug
 		})
 	}).then(d => d.json()).then(d => {
@@ -195,6 +205,7 @@ function add_member(member_slug) {
 			});
 			return;
 		}
+		document.querySelector("#add_member").value = "";
 		init();
 	});
 }

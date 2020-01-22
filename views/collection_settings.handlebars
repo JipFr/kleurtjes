@@ -69,8 +69,8 @@
 			<div class="option input_div">
 				<label for="add_member">New member</label>
 				<div class="input">
-					<input id="add_member" placeholder="jip" onkeyup="if(event.key === 'Enter') add_member(this.value)">
-					<button onclick="add_member(this.closest('.option').querySelector('input').value)">Add</button>
+					<input id="add_member" placeholder="jip" onkeyup="if(event.key === 'Enter') toggle_member(this.value, true);">
+					<button onclick="toggle_member(this.closest('.option').querySelector('input').value, true);">Add</button>
 				</div>
 			</div>
 			<div class="member_settings_members all_users">

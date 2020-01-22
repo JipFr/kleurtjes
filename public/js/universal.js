@@ -1,5 +1,7 @@
 function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 
+	document.querySelectorAll(":focus").forEach(el => el.blur());
+
 	let overlay_content = document.querySelector(".templates template.overlay_wrapper").content;
 	let overlay = document.importNode(overlay_content, true);
 
@@ -72,7 +74,7 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 
 	document.querySelector(".all").appendChild(overlay);
 	let to_focus = document.querySelector(".all .overlay_wrapper input");
-	to_focus ? to_focus.focus() : "";
+	to_focus ? to_focus.focus() : document.querySelector(".all .overlay_wrapper button").focus();
 }
 
 function remove_overlays() {

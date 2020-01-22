@@ -152,7 +152,7 @@ app.get("/c/:slug/settings/", routers.web.collection_settings);
 // Collections API routers
 app.post("/c/:slug/", routers.api.collection.collection);
 app.post("/api/c/get_members/", routers.api.collection.get_members);
-app.post("/api/c/add_member/", routers.api.collection.add_member);
+app.post("/api/c/toggle_member/", routers.api.collection.toggle_member);
 app.post("/api/c/set_title/", routers.api.collection.set_title);
 app.post("/api/c/set_color/", routers.api.collection.set_color);
 app.post("/api/c/set_bio/", routers.api.collection.set_bio);
