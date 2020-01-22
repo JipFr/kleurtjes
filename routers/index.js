@@ -2,6 +2,8 @@ module.exports = {
 	api: {
 		collection: {
 			collection: require("./api/collections/collection"),
+			get_members: require("./api/collections/get_members"),
+			add_member: require("./api/collections/add_member"),
 			set_title: require("./api/collections/set_title"),
 			set_color: require("./api/collections/set_color"),
 			set_bio: require("./api/collections/set_bio"),

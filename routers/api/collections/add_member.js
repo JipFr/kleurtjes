@@ -1,3 +1,4 @@
+// Router for adding new members to a palette
 
 const { get_collection } = require("../../../util");
 const { get_user } = require("../../../util/user");
@@ -13,7 +14,6 @@ module.exports = async (req, res) => {
 		return;
 	}
 
-	let new_color = req.body.new_color.trim();
 	let collection = await get_collection(req.body.collection);
 	let user = await get_user(req.user.id);
 
@@ -26,20 +26,31 @@ module.exports = async (req, res) => {
 		return;
 	}
 
-	if((collection.color || "").trim() == new_color) {
+	if(req.body.member_slug.trim().length <= 0) {
 		res.status(400);
 		res.json({
 			status: 400,
-			err: "This is already the collection's current theme color" 
+			err: "Invalid slug"
 		});
 		return;
 	}
 
-	if(new_color.length <= 0) {
+	let new_member = await get_user(req.body.member_slug.trim());
+
+	if(!new_member) {
 		res.status(400);
 		res.json({
 			status: 400,
-			err: "Invalid color"
+			err: "User not found"
+		});
+		return;
+	}
+
+	if(collection.members.find(obj => obj.id === new_member.id)) {
+		res.status(400);
+		res.json({
+			status: 400,
+			err: "This user is already in this collection" 
 		});
 		return;
 	}
@@ -50,8 +61,12 @@ module.exports = async (req, res) => {
 		id: collection.id
 	},
 	{
-		$set: {
-			color: new_color
+		$push: {
+			members: {
+				id: new_member.id,
+				role: "member",
+				added_at: Date.now()
+			}
 		}
 	}, { upsert: false });
 
