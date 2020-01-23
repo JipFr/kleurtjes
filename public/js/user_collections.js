@@ -67,7 +67,7 @@ window.addEventListener("load", render);
 
 function prompt_new_palette() {
 	create_overlay({
-		title: "New collection",
+		title: "WIP New collection",
 		btn_value: "Create",
 		on_submit: response => {
 			console.log(response);
@@ -77,7 +77,7 @@ function prompt_new_palette() {
 		can_cancel: true,
 		fields: [
 			{
-				label: "WIP Collection's name", 
+				label: "Collection's name", 
 				classes: ["name"],
 				name: "name",
 				placeholder: "My new collection",

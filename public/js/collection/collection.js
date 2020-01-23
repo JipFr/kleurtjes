@@ -1,6 +1,5 @@
 if(!location.href.endsWith("/")) location.href += "/";
 
-const current_page = document.body.dataset.page;
 const palette_div = document.querySelector(".palettes");
 
 let palettes;

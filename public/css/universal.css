@@ -20,6 +20,7 @@ body {
 	max-width: 100%;
 	font-family: Arial;
 }
+body.hide_y { overflow-y: hidden;  }
 [data-theme="dark"] {
 	--body: #191919;
 	--text: white;

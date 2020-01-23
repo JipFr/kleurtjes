@@ -1,6 +1,6 @@
 
 let current_page = document.body.getAttribute("data-page");
-let page_username = document.querySelector(".user_main").getAttribute("data-user");
+let page_username = document.querySelector(".user_main") ? document.querySelector(".user_main").getAttribute("data-user") || null : null;
 let my_username = document.body.getAttribute("data-you-slug");
 
 function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
@@ -84,6 +84,9 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 	document.querySelector(".all").appendChild(overlay);
 	let to_focus = document.querySelector(".all .overlay_wrapper input");
 	to_focus ? to_focus.focus() : document.querySelector(".all .overlay_wrapper button").focus();
+
+	document.body.classList.add("hide_y");
+
 }
 
 function remove_overlays() {
@@ -91,6 +94,7 @@ function remove_overlays() {
 	document.querySelectorAll(".all .overlay_wrapper").forEach(overlay => {
 		overlay.remove();
 	});
+	document.body.classList.remove("hide_y");
 }
 
 const sw = true;

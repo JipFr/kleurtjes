@@ -23,8 +23,9 @@ const user_router = async (req, res) => {
 			universal: universal_handlebar,
 			head_title: page_user ? `${page_user.user.name.givenName}` : "User not found",
 			is_collections: true,
+			hide_add_button: true,
 			collections,
-			current_page
+			current_page,
 		});
 
 	} else {
