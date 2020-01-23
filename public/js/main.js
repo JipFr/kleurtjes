@@ -1,7 +1,3 @@
-let current_page = document.body.getAttribute("data-page");
-let page_username = document.querySelector(".user_main").getAttribute("data-user");
-let my_username = document.body.getAttribute("data-you-slug");
-
 let palettes;
 function render() {
 	// Render all palettes

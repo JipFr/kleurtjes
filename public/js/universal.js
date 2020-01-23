@@ -1,3 +1,8 @@
+
+let current_page = document.body.getAttribute("data-page");
+let page_username = document.querySelector(".user_main").getAttribute("data-user");
+let my_username = document.body.getAttribute("data-you-slug");
+
 function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 
 	document.querySelectorAll(":focus").forEach(el => el.blur());
@@ -36,11 +41,15 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 			
 		}
 
+		if(field.oninput) input_div.querySelector("input").addEventListener("input", field.oninput);
+
 		input_div.querySelector("label").innerText = field.label;
 		input_div.querySelector("label").setAttribute("for", field.name);
 		
 		input_div.querySelector("input").setAttribute("name", field.name);
 		input_div.querySelector("input").id = field.name;
+
+		input_div.querySelector("input").setAttribute("maxlength", 100);
 		
 		for(let item of field.classes) {
 			input_div.querySelector(".input_div").classList.add(item);

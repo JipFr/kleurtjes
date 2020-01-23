@@ -16,6 +16,7 @@ function render() {
 			let n_node = document.importNode(document.querySelector("template.small_collection").content, true);
 			n_node.querySelector(".small_collection_inner").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
 			n_node.querySelector("*").classList.add("add_collection");
+			n_node.querySelector("*").addEventListener("click", prompt_new_palette);
 
 			collection_div.appendChild(n_node);
 		}
@@ -63,3 +64,55 @@ function render() {
 }
 
 window.addEventListener("load", render);
+
+function prompt_new_palette() {
+	create_overlay({
+		title: "New collection",
+		btn_value: "Create",
+		on_submit: response => {
+			console.log(response);
+
+			return true;
+		},
+		can_cancel: true,
+		fields: [
+			{
+				label: "WIP Collection's name", 
+				classes: ["name"],
+				name: "name",
+				placeholder: "My new collection",
+				oninput: evt => {
+					let slug_input = document.querySelector("[name='slug']");
+					if(slug_input.getAttribute("data-has-typed") !== "true") slug_input.value = get_slug(evt.currentTarget.value);
+				}
+			},
+			{
+				label: "Slug", 
+				classes: ["slug"],
+				name: "slug",
+				placeholder: "my-new-collection",
+				oninput: evt => {
+					evt.currentTarget.setAttribute("data-has-typed", true);
+					evt.currentTarget.value = get_slug(evt.currentTarget.value);
+				}
+			}
+		]
+	});
+}
+
+function get_slug(slug) {
+	let allowed = "abcdefghijklmnopqrstuvwxyz";
+	allowed += allowed.toUpperCase();
+	allowed += "-0987654321";
+
+	let str = "";
+	let chars = slug.split("");
+	for(let char of chars) {
+		if(allowed.includes(char)) {
+			str += char;
+		} else if(!str.endsWith("-")) {
+			str += "-";
+		}
+	}
+	return str;
+}
