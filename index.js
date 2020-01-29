@@ -22,7 +22,7 @@ const handlebars = require("express-handlebars");
 logger.info(`[STARTUP] Loaded handlebars`);
 
 const { MongoClient } = require("mongodb");
-const db_url = "mongodb://localhost:27017/" + db_name;
+const db_url = process.env.db || ("mongodb://localhost:27017/" + db_name);
 
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
