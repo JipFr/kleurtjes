@@ -27,9 +27,9 @@ function render() {
 			let node = document.importNode(document.querySelector("template.small_collection").content, true);
 			
 			node.querySelector(".link").href = `/c/${collection.slug}/`;
-			node.querySelector(".title_inner").innerHTML = collection.title;
-			node.querySelector(".description").innerHTML = collection.description;
-			node.querySelector(".palette_count").innerHTML = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
+			node.querySelector(".title_inner").innerText = collection.title;
+			node.querySelector(".description").innerText = collection.description;
+			node.querySelector(".palette_count").innerText = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
 				
 			if(collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
 
@@ -72,6 +72,8 @@ function prompt_new_palette() {
 		on_submit: response => {
 			console.log(response);
 
+			create_collection({ ...response });
+
 			return true;
 		},
 		can_cancel: true,
@@ -95,6 +97,12 @@ function prompt_new_palette() {
 					evt.currentTarget.setAttribute("data-has-typed", true);
 					evt.currentTarget.value = get_slug(evt.currentTarget.value);
 				}
+			},
+			{
+				label: "Description", 
+				classes: ["description"],
+				name: "description",
+				placeholder: "This is my latest collection!"
 			}
 		]
 	});
@@ -114,5 +122,25 @@ function get_slug(slug) {
 			str += "-";
 		}
 	}
-	return str;
+	return str.toLowerCase();
+}
+
+function create_collection({ name = null, slug = null, description = "" }) {
+	if(!slug || !name) return false;
+	
+
+	fetch("/api/new_collection/", {
+		method: "POST",
+		body: JSON.stringify({
+			name,
+			slug,
+			description
+		}),
+		headers: {
+			"content-type": "application/json"
+		}
+	}).then(d => d.json()).then(d => {
+		console.log(d);
+	});
+
 }

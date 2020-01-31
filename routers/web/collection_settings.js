@@ -6,22 +6,26 @@ const { get_collection } = require("../../util");
 // Settings main router
 module.exports = async (req, res) => {
 
-	let palette_slug = req.params.slug;
-	let collection = await get_collection(palette_slug);
+	let collection_slug = req.params.slug;
+	let collection = await get_collection(collection_slug);
 
-	if(!collection) {
-		res.redirect("../");
+	if(!collection && req.user) {
+		res.redirect("/me/");
 		return;
 	}
 
 	if(!req.user) {
-		res.redirect("../");
+		res.redirect(`/c/${collection_slug}/`);
 		return;
 	}
 
 	let user = await get_user(req.user.id);
 
-	// console.log(collection);
+	let user_in_col = collection.members.find(u => u.id === user.id);
+	if(!user_in_col || (user_in_col || {}).role !== "admin" || collection.owner !== user.id) {
+		res.redirect(`/c/${collection_slug}`);
+		return;
+	}
 
 	res.render("collection_settings", {
 		layout: "main",

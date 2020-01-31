@@ -157,6 +157,8 @@ app.post("/api/c/set_title/", routers.api.collection.set_title);
 app.post("/api/c/set_color/", routers.api.collection.set_color);
 app.post("/api/c/set_bio/", routers.api.collection.set_bio);
 app.post("/api/c/set_slug/", routers.api.collection.set_slug);
+app.post("/api/new_collection/", routers.api.new_collection);
+
 
 // API routers
 app.post("/u/:username/", routers.api.user_api);

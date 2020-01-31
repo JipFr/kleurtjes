@@ -52,9 +52,16 @@ function render_members() {
 		node.querySelector(".username").innerHTML = `u/${member.slug}`;
 
 		node.querySelector(".person_control_toggle_write").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-command"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>`;
+		node.querySelector(".person_control_toggle_write").removeAttribute("onclick");
 		if(member.role === "admin") {
 			node.querySelector(".person_control_toggle_write").setAttribute("data-can-write", true);
 			node.querySelector(".person_control_toggle_write").classList.add("write");
+		} else {
+			node.querySelector(".person_control_toggle_write").addEventListener("click", evt => {
+				let el = evt.currentTarget;
+				let username = el.closest("[data-person-username]").dataset.personUsername;
+				console.log(el, username);
+			});
 		}
 
 		node.querySelector(".person_control_remove").removeAttribute("onclick");
@@ -208,4 +215,8 @@ function toggle_member(member_slug, add = true) {
 		document.querySelector("#add_member").value = "";
 		init();
 	});
+}
+
+function toggle_person_permissions(a, b, c, d) {
+	console.log(a, b, c, d);
 }

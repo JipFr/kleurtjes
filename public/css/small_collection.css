@@ -13,9 +13,11 @@
 .card {
 	border: 1px solid var(--border);
 	padding: var(--gap_large) var(--gap);
-	padding-bottom: var(--gap);
 	border-radius: 4px;
 	transition: background 150ms;
+}
+.card:not(.add_collection) {
+	padding-bottom: var(--gap);
 }
 
 .card .title {

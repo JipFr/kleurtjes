@@ -1,4 +1,6 @@
+
 let palettes;
+
 function render() {
 	// Render all palettes
 	fetch(location.pathname, {

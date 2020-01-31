@@ -9,6 +9,7 @@ module.exports = {
 			set_bio: require("./api/collections/set_bio"),
 			set_slug: require("./api/collections/set_slug")
 		},
+		new_collection: require("./api/collections/new_collection"),
 		new_palette: require("./api/palettes/new_palette"),
 		delete_palette: require("./api/palettes/delete_palette"),
 		add_color: require("./api/palettes/add_color"),
