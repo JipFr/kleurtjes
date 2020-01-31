@@ -36,7 +36,7 @@ const user_router = async (req, res) => {
 
 		res.render("user_wrapper", {
 			layout: "main",
-			user: user,
+			user,
 			page: {
 				user: page_user
 			},

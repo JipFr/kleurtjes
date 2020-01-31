@@ -59,7 +59,7 @@ const user_api_router = async (req, res) => {
 				}
 			}).toArray();
 			new_collections = await Promise.all(u_collections.map(c => get_collection(c.id)));
-			new_collections = new_collections.filter(c => c.visible).map(collection => {
+			new_collections = new_collections.filter(c => c && c.visible).map(collection => {
 				with(collection) {
 					if(typeof updated_at === "undefined") updated_at = created_at;
 					return {

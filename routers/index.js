@@ -2,12 +2,14 @@ module.exports = {
 	api: {
 		collection: {
 			collection: require("./api/collections/collection"),
+			delete_collection: require("./api/collections/delete_collection"),
 			get_members: require("./api/collections/get_members"),
 			toggle_member: require("./api/collections/toggle_member"),
 			set_title: require("./api/collections/set_title"),
 			set_color: require("./api/collections/set_color"),
 			set_bio: require("./api/collections/set_bio"),
 			set_slug: require("./api/collections/set_slug"),
+			addable: require("./api/collections/addable"),
 			set_person_permissions: require("./api/collections/set_person_permissions")
 		},
 		new_collection: require("./api/collections/new_collection"),

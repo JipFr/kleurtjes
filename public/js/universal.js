@@ -2,8 +2,9 @@
 let current_page = document.body.getAttribute("data-page");
 let page_username = document.querySelector(".user_main") ? document.querySelector(".user_main").getAttribute("data-user") || null : null;
 let my_username = document.body.getAttribute("data-you-slug");
+let addable_collections = [];
 
-function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
+function create_overlay({title, fields, can_cancel, btn_value, on_submit, btn_is_delete}) {
 
 	document.querySelectorAll(":focus").forEach(el => el.blur());
 
@@ -61,6 +62,7 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit}) {
 
 	if(!can_cancel) overlay.querySelector("button.cancel").remove();
 
+	if(btn_is_delete) overlay.querySelector("button.submit").classList.add("delete");
 	overlay.querySelector("button.submit").innerText = btn_value;
 	overlay.querySelector("button.submit").addEventListener("click", () => {
 		let responses = {}
@@ -302,6 +304,7 @@ function get_palette({
 				create_overlay({
 					title: `Delete ${evt.target.parentNode.getAttribute('data-color')} from ${evt.target.closest(".palette").querySelector(".palette_name").innerText}?`,
 					btn_value: "Delete",
+					btn_is_delete: true,
 					on_submit: (response) => {
 						// If on_submit is fired, the popup wasn't dismissed, meaning the user clicked delete.
 						let color_wrapper = evt.target.closest(".color_wrapper") || evt.target;
@@ -475,3 +478,10 @@ function share_palette(palette_wrapper) {
 function get_url(palette) {
 	return `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "-").toLowerCase()}/`;
 }
+
+// Get all collections the user can add to
+window.addEventListener("load", async evt => {
+	let addable_req = await fetch("/api/c/addable");
+	let addable = await addable_req.json();
+	if(addable.status === 200) addable_collections = addable.addable;
+});

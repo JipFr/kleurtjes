@@ -496,13 +496,18 @@ details .dropdown .icon_grid .grid_icon svg {
 	resize: none;
 	height: 120px;
 }
-.input button {
+.input button, .btn {
 	font-size: 1em;
 	padding: 5px 20px;
 	border: 1px solid var(--border);
 	margin-left: var(--gap);
 	background: transparent;
 	color: var(--text);
+}
+.btn {
+	border-radius: 4px;
+	margin: 0;
+	padding: 8px 20px;
 }
 .input.textarea_input button:nth-child(2) {
 	margin-left: 0;
@@ -548,6 +553,9 @@ details .dropdown .icon_grid .grid_icon svg {
 .overlay_inner button.style.submit {
 	background: #07c05f;
 	color: white;
+}
+.overlay_inner button.style.delete {
+	background: #d04040;
 }
 .overlay_btns button + button {
 	margin-left: var(--gap_small);

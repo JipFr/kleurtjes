@@ -65,7 +65,7 @@ function render_members() {
 				set_person_permissions(username, collection_slug, el.classList.contains("write") ? "member" : "admin");
 			});
 		}
-		
+
 		node.querySelector(".person_control_remove").removeAttribute("onclick");
 		node.querySelector(".person_control_remove").addEventListener("click", () => {
 			console.log(member.id);
@@ -244,5 +244,38 @@ function set_person_permissions(username, collection, new_role) {
 		}
 		members = d.members;
 		render_members();
+	});
+}
+
+function delete_collection() {
+	let current_title = document.querySelector("[data-current-title]").dataset.currentTitle;
+	create_overlay({
+		title: `Really delete ${current_title}?`,
+		btn_value: "OK",
+		btn_is_delete: true,
+		on_submit: res => {
+			really_delete_collection();
+			return true;
+		},
+		can_cancel: true,
+		fields: []
+	});
+	return;
+}
+
+function really_delete_collection() {
+	fetch("/api/c/delete_collection", {
+		method: "POST",
+		body: JSON.stringify({
+			collection: collection_slug
+		}),
+		headers: {
+			"content-type": "application/json"
+		}
+	}).then(d => d.json()).then(d => {
+		console.log(d);
+		if(d.status === 200) {
+			location.href = d.url;
+		}
 	});
 }

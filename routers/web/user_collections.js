@@ -9,13 +9,13 @@ const user_router = async (req, res) => {
 
 	let page_user = await get_user(user_slug);
 	if(page_user) {
-		let user = await get_user((req.user || {}).slug);
+		let user = await get_user((req.user || {}).id);
 
 		let collections = (page_user || {}).collections || [];
 
 		res.render("user_wrapper", {
 			layout: "main",
-			user: user,
+			user,
 			page: {
 				user: page_user
 			},

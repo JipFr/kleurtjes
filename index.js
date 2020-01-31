@@ -148,6 +148,7 @@ app.get("/settings/", routers.web.settings);
 // Collections
 app.get("/c/:slug/", routers.web.collection);
 app.get("/c/:slug/settings/", routers.web.collection_settings);
+app.get("/api/c/addable/", routers.api.collection.addable);
 
 // Collections API routers
 app.post("/c/:slug/", routers.api.collection.collection);
@@ -157,6 +158,7 @@ app.post("/api/c/set_title/", routers.api.collection.set_title);
 app.post("/api/c/set_color/", routers.api.collection.set_color);
 app.post("/api/c/set_bio/", routers.api.collection.set_bio);
 app.post("/api/c/set_slug/", routers.api.collection.set_slug);
+app.post("/api/c/delete_collection/", routers.api.collection.delete_collection);
 app.post("/api/c/set_person_permissions/", routers.api.collection.set_person_permissions);
 app.post("/api/new_collection/", routers.api.new_collection);
 

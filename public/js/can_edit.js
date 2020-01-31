@@ -88,6 +88,7 @@ function delete_palette(id) {
 	create_overlay({
 		title: "Really delete palette?",
 		btn_value: "Delete",
+		btn_is_delete: true,
 		on_submit: (response) => {
 			// If on_submit is fired, the popup wasn't dismissed, meaning the user clicked delete.
 			really_delete_palette(id);
@@ -188,4 +189,18 @@ function is_color(value) {
 	const s = new Option().style;
 	s.color = value;
 	return s.color !== "";
-} 
+}
+
+function add_to_collection(el) {
+	let palette_wrapper = el.closest(".palette");
+	let id = palette_wrapper.dataset.id;
+	console.log(palette_wrapper, id);
+
+	// Remove collections that the user is an administrator of,
+	// but already hold the current palette
+	let new_addable = addable_collections.filter(col => !col.palettes.find(palette => palette.id === id));
+	console.log(new_addable);
+
+	// NOW MAKE A UI SHOW UP
+
+}

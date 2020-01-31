@@ -10,6 +10,7 @@ module.exports = async id => {
 	if(!collection) collection = await collections.findOne({ slug: id });
 
 	if(!collection) return null;
+	if(!collection.visible) return null;
 
 	for(let obj of collection.members) {
 		let u = await get_user(obj.id);

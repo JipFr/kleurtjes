@@ -29,7 +29,7 @@
 			<div class="option input_div">
 				<label for="change_title">Title</label>
 				<div class="input">
-					<input id="change_title" placeholder="Palette collection" value="{{page.collection.title}}">
+					<input id="change_title" placeholder="Palette collection" data-current-title="{{page.collection.title}}" value="{{page.collection.title}}">
 					<button onclick="set_title(this.closest('.option').querySelector('input').value)">Update</button>
 				</div>
 			</div>
@@ -56,6 +56,9 @@
 					<textarea id="change_description" placeholder="A description to describe your collection" oninput="this.value.trim().length > 240 ? this.value = this.value.trim().slice(0, 240) : null;" maxlength="240">{{get_bio page.collection.description}}</textarea>
 					<button onclick="set_bio(this.closest('.option').querySelector('textarea').value)">Update</button>
 				</div>
+			</div>
+			<div class="option buttons_div">
+				<button onclick="delete_collection();" class="btn delete">Delete collection</button>
 			</div>
 		</main>
 	</div>
