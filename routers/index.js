@@ -7,7 +7,8 @@ module.exports = {
 			set_title: require("./api/collections/set_title"),
 			set_color: require("./api/collections/set_color"),
 			set_bio: require("./api/collections/set_bio"),
-			set_slug: require("./api/collections/set_slug")
+			set_slug: require("./api/collections/set_slug"),
+			set_person_permissions: require("./api/collections/set_person_permissions")
 		},
 		new_collection: require("./api/collections/new_collection"),
 		new_palette: require("./api/palettes/new_palette"),

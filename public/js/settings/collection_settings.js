@@ -56,14 +56,16 @@ function render_members() {
 		if(member.role === "admin") {
 			node.querySelector(".person_control_toggle_write").setAttribute("data-can-write", true);
 			node.querySelector(".person_control_toggle_write").classList.add("write");
-		} else {
+		}
+
+		if(!member.is_owner) {
 			node.querySelector(".person_control_toggle_write").addEventListener("click", evt => {
 				let el = evt.currentTarget;
 				let username = el.closest("[data-person-username]").dataset.personUsername;
-				console.log(el, username);
+				set_person_permissions(username, collection_slug, el.classList.contains("write") ? "member" : "admin");
 			});
 		}
-
+		
 		node.querySelector(".person_control_remove").removeAttribute("onclick");
 		node.querySelector(".person_control_remove").addEventListener("click", () => {
 			console.log(member.id);
@@ -217,6 +219,30 @@ function toggle_member(member_slug, add = true) {
 	});
 }
 
-function toggle_person_permissions(a, b, c, d) {
-	console.log(a, b, c, d);
+function set_person_permissions(username, collection, new_role) {
+	console.log(username, collection, new_role);
+	fetch("/api/c/set_person_permissions/", {
+		method: "POST",
+		body: JSON.stringify({
+			collection,
+			username,
+			new_role
+		}),
+		headers: {
+			"content-type": "application/json"
+		}
+	}).then(d => d.json()).then(d => {
+		if(d.status !== 200) {
+			create_overlay({
+				title: d.err,
+				btn_value: "OK",
+				on_submit: _ => true,
+				can_cancel: false,
+				fields: []
+			});
+			return;
+		}
+		members = d.members;
+		render_members();
+	});
 }

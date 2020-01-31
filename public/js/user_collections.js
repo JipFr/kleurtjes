@@ -141,6 +141,9 @@ function create_collection({ name = null, slug = null, description = "" }) {
 		}
 	}).then(d => d.json()).then(d => {
 		console.log(d);
+		if(d.status === 200) {
+			location.href = d.url;
+		}
 	});
 
 }
