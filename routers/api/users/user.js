@@ -28,8 +28,7 @@ const user_api_router = async (req, res) => {
 					}
 				}
 			}).toArray();
-			// new_palettes = await palettes.find({visible: true, people_allowed_ids: { $all: [user.id] } } ).toArray();
-			new_palettes = new_palettes.sort((a, b) => (b.updated_at || b.created_at) - (a.updated_at || a.created_at));
+			new_palettes = new_palettes.sort((a, b) => (b.updated_at || b.created_at) - (a.updated_at || a.created_at)).filter(i => i && i.visible);
 
 		} else if(current_page == "dashboard") {
 			
