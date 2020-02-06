@@ -1,7 +1,8 @@
 
 let current_page = document.body.getAttribute("data-page");
-let page_username = document.querySelector(".user_main") ? document.querySelector(".user_main").getAttribute("data-user") || null : null;
-let my_username = document.body.getAttribute("data-you-slug");
+let page_username = document.querySelector(".user_main") ? document.querySelector(".user_main").dataset.user || null : null;
+let my_username = document.body.dataset.youSlug;
+let me = document.body.dataset.you;
 let addable_collections = [];
 
 function create_overlay({title, fields, can_cancel, btn_value, on_submit, btn_is_delete}) {
@@ -234,6 +235,10 @@ function get_palette({
 	if(!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
 
 	if(!navigator.share) node.querySelector(".share_palette").remove();
+
+	if(palette.created_by == me || !palette.people_allowed.find(i => i.id === me)) {
+		node.querySelector(".leave_palette").remove();
+	}
 
 	// Update user imgs
 	let image_wrapper = node.querySelector(".user_list");
@@ -489,3 +494,14 @@ window.addEventListener("load", async evt => {
 	let addable = await addable_req.json();
 	if(addable.status === 200) addable_collections = addable.addable;
 });
+
+function leave_palette(id) {
+	close_details();
+	fetch(`/api/leave_palette/?id=${id}`, {
+		method: "POST"
+	}).then(d => d.json()).then(d => {
+		console.log(d);
+		if(!d.status == 200) return;
+		render();
+	});
+}

@@ -22,7 +22,7 @@ const handlebars = require("express-handlebars");
 logger.info(`[STARTUP] Loaded handlebars`);
 
 const { MongoClient } = require("mongodb");
-const db_url = process.env.db || ("mongodb://localhost:27017/" + db_name);
+const db_url = process.env.DB || ("mongodb://localhost:27017/" + db_name);
 
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -179,6 +179,7 @@ app.post("/api/toggle_palette_dashboard/", routers.api.toggle_palette_dashboard)
 app.post("/api/toggle_palette_person/", routers.api.toggle_palette_person);
 app.post("/api/toggle_palette_person_permissions/", routers.api.toggle_palette_person_permissions);
 
+app.post("/api/leave_palette/", routers.api.leave_palette);
 app.post("/api/set_username/", routers.api.set_username);
 app.post("/api/set_color/", routers.api.set_color);
 app.post("/api/set_bio/", routers.api.set_bio);

@@ -34,7 +34,6 @@ const new_palette_router = async (req, res) => {
 	}, {
 		$set: {
 			people_allowed: [{ id: req.user.id, write: true }],
-			people_allowed_ids: [req.user.id],
 			deleted: false,
 			visible: true,
 			id: id,

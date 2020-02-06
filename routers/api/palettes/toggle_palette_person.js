@@ -74,7 +74,6 @@ module.exports = async (req, res) => {
 	}, {
 		$set: {
 			people_allowed: palette.people_allowed,
-			people_allowed_ids: palette.people_allowed.map(i => i.id),
 			updated_at: Date.now()
 		}
 	});

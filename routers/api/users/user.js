@@ -20,8 +20,15 @@ const user_api_router = async (req, res) => {
 			new_palettes = new_palettes.filter(i => i ? true : false);
 		
 		} else if(current_page == "all") {
-		
-			new_palettes = await palettes.find({visible: true, people_allowed_ids: { $all: [user.id] } } ).toArray();
+			
+			new_palettes = await palettes.find({
+				people_allowed: {
+					$elemMatch: {
+						id: user.id
+					}
+				}
+			}).toArray();
+			// new_palettes = await palettes.find({visible: true, people_allowed_ids: { $all: [user.id] } } ).toArray();
 			new_palettes = new_palettes.sort((a, b) => (b.updated_at || b.created_at) - (a.updated_at || a.created_at));
 
 		} else if(current_page == "dashboard") {

@@ -69,8 +69,7 @@ module.exports = async (req, res) => {
 		id: req.body.palette_id
 	}, {
 		$set: {
-			people_allowed: palette.people_allowed,
-			people_allowed_ids: palette.people_allowed.map(i => i.id)
+			people_allowed: palette.people_allowed
 		}
 	});
 
