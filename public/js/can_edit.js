@@ -1,3 +1,6 @@
+
+let palette_to_add;
+
 function create_new_palette(palette_name, add_to_dashboard) {
 	if(!palette_name) return;
 	fetch(`/api/new_palette/`, {
@@ -192,31 +195,73 @@ function is_color(value) {
 }
 
 function add_to_collection(el) {
+	close_details();
 	let palette_wrapper = el.closest(".palette");
 	let id = palette_wrapper.dataset.id;
-	console.log(palette_wrapper, id);
+	palette_to_add = id;
 
 	// Remove collections that the user is an administrator of,
 	// but already hold the current palette
-	let new_addable = addable_collections.filter(col => !col.palettes.find(palette => palette.id === id));
-	console.log(new_addable);
-
+	console.log(addable_collections.find(col => col.palettes.find(pal => pal === id)));
+	let new_addable = addable_collections
+	  .filter(col => !col.palettes.find(palette => palette === id))
+	  .sort((b, a) => a.updated_at - b.updated_at);
+	  
 	// NOW MAKE A UI SHOW UP
 	let overlay_node = document.importNode(document.querySelector(".collection_list_wrapper").content, true);
-	
-	for(let collection of new_addable) {
-		console.log(collection);
-		let node = document.importNode(overlay_node.querySelector(".smallest_collection"), true);
 
+	for(let collection of new_addable) {
+		let node = document.importNode(overlay_node.querySelector(".smallest_collection"), true);
 
 		if(collection.color) node.setAttribute("style", `--theme: ${collection.color}`);
 
+		node.setAttribute("data-id", collection.id);
 		node.querySelector(".title_inner").innerText = collection.title;
+
+		node.querySelector(".collection_add_button").addEventListener("click", evt => {
+			let el = evt.currentTarget.closest(".smallest_collection");
+			let id = el.dataset.id;
+			really_add_to_collection(id, palette_to_add);
+		});
 
 		overlay_node.querySelector(".fields").appendChild(node);
 	}
 
 	overlay_node.querySelector(".smallest_collection").remove();
-	document.querySelector(".all").appendChild(overlay_node);
+	if(overlay_node.querySelector(".fields").children.length === 0) {
+		let not_found_node = document.importNode(document.querySelector("template.not_found").content, true);
+		overlay_node.querySelector(".fields").appendChild(not_found_node);
+	}
 
+	document.querySelector(".all").appendChild(overlay_node);
+	
+
+}
+
+function really_add_to_collection(collection, palette) {
+	console.log(collection, palette);
+	remove_overlays();
+	fetch(`/api/add_to_collection/`, {
+		method: "POST",
+		headers: {
+			"content-type": "application/json"
+		},
+		body: JSON.stringify({
+			collection_id: collection,
+			palette_id: palette
+		})
+	}).then(d => d.json()).then(d => {
+		if(d.status !== 200) {
+			show_error(d.err);
+			return;
+		}
+		update_addables()
+		create_overlay({
+			title: d.msg,
+			btn_value: "OK",
+			on_submit: res => true,
+			can_cancel: false,
+			fields: []
+		});
+	});
 }

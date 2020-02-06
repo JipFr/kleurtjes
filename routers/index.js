@@ -25,7 +25,8 @@ module.exports = {
 		set_username: require("./api/users/set_username"),
 		set_color: require("./api/users/set_color"),
 		set_bio: require("./api/users/set_bio"),
-		leave_palette: require("./api/palettes/leave_palette")
+		leave_palette: require("./api/palettes/leave_palette"),
+		add_to_collection: require("./api/users/add_to_collection")
 	},
 	web: {
 		collection: require("./web/collection"),

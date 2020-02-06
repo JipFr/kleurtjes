@@ -107,7 +107,7 @@ const user_api_router = async (req, res) => {
 			your_id: (req.user || {}).id,
 			data: {
 				slug: user.slug,
-				palettes: new_palettes.filter(i => i.permissions.includes("read")),
+				palettes: new_palettes.filter(i => i && i.permissions.includes("read")),
 				collections: new_collections || []
 			}
 		});

@@ -489,11 +489,12 @@ function get_url(palette) {
 }
 
 // Get all collections the user can add to
-window.addEventListener("load", async evt => {
+window.addEventListener("load", update_addables);
+async function update_addables() {
 	let addable_req = await fetch("/api/c/addable");
 	let addable = await addable_req.json();
 	if(addable.status === 200) addable_collections = addable.addable;
-});
+}
 
 function leave_palette(id) {
 	close_details();

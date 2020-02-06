@@ -180,6 +180,7 @@ app.post("/api/toggle_palette_person/", routers.api.toggle_palette_person);
 app.post("/api/toggle_palette_person_permissions/", routers.api.toggle_palette_person_permissions);
 
 app.post("/api/leave_palette/", routers.api.leave_palette);
+app.post("/api/add_to_collection/", routers.api.add_to_collection);
 app.post("/api/set_username/", routers.api.set_username);
 app.post("/api/set_color/", routers.api.set_color);
 app.post("/api/set_bio/", routers.api.set_bio);
@@ -194,7 +195,7 @@ app.get("*", (req, res, next) => {
 		let sub = req.url.split("/").filter(i => i);
 		// If the URL is `/jip/own/` or `/jip/all/` do nothing
 		// If not, redirect to `/jip/p/pagename` so you can link
-		// to palettes like `domain.com/jip/palette`
+		// to palettes like `domain.com/jip/palettename`
 		if(sub.length == 2) {
 			let sub_page = sub[1];
 			if(!(["own", "all", "collections"].includes(sub_page))) {
