@@ -94,9 +94,3 @@
 .no_collections {
 	grid-template-columns: 100%;
 }
-
-.theme_bit {
-	padding-left: var(--gap_small);
-	margin-right: var(--gap);
-	background: var(--theme);
-}

@@ -464,15 +464,19 @@ function share_palette(palette_wrapper) {
 			text: `Check out the ${palette.name} palette by u/${palette.created_by_slug}!`
 		});
 	} catch(err) {
-		create_overlay({
-			title: `Error: ${err}`,
-			btn_value: "OK",
-			on_submit: res => true,
-			can_cancel: false,
-			fields: []
-		});
+		show_error(`Error: ${err}`)
 	}
 
+}
+
+function show_error(err) {
+	create_overlay({
+		title: `${err}`,
+		btn_value: "OK",
+		on_submit: res => true,
+		can_cancel: false,
+		fields: []
+	});
 }
 
 function get_url(palette) {

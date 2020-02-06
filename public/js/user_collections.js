@@ -67,7 +67,7 @@ window.addEventListener("load", render);
 
 function prompt_new_palette() {
 	create_overlay({
-		title: "WIP New collection",
+		title: "New collection",
 		btn_value: "Create",
 		on_submit: response => {
 			console.log(response);
@@ -141,9 +141,11 @@ function create_collection({ name = null, slug = null, description = "" }) {
 		}
 	}).then(d => d.json()).then(d => {
 		console.log(d);
-		if(d.status === 200) {
-			location.href = d.url;
+		if(d.status !== 200) {
+			show_error(d.err);
+			return;
 		}
+		location.href = d.url;
 	});
 
 }

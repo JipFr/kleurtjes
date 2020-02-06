@@ -202,5 +202,21 @@ function add_to_collection(el) {
 	console.log(new_addable);
 
 	// NOW MAKE A UI SHOW UP
+	let overlay_node = document.importNode(document.querySelector(".collection_list_wrapper").content, true);
+	
+	for(let collection of new_addable) {
+		console.log(collection);
+		let node = document.importNode(overlay_node.querySelector(".smallest_collection"), true);
+
+
+		if(collection.color) node.setAttribute("style", `--theme: ${collection.color}`);
+
+		node.querySelector(".title_inner").innerText = collection.title;
+
+		overlay_node.querySelector(".fields").appendChild(node);
+	}
+
+	overlay_node.querySelector(".smallest_collection").remove();
+	document.querySelector(".all").appendChild(overlay_node);
 
 }

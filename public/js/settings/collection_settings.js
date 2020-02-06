@@ -251,7 +251,7 @@ function delete_collection() {
 	let current_title = document.querySelector("[data-current-title]").dataset.currentTitle;
 	create_overlay({
 		title: `Really delete ${current_title}?`,
-		btn_value: "OK",
+		btn_value: "Delete collection",
 		btn_is_delete: true,
 		on_submit: res => {
 			really_delete_collection();

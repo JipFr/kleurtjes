@@ -567,6 +567,39 @@ details .dropdown .icon_grid .grid_icon svg {
 	margin-right: 0;
 }
 
+.collection_title::before {
+	content: "";
+	padding-left: var(--gap_small);
+	margin-right: var(--gap);
+	background: var(--theme);
+}
+
+.smallest_collection {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-gap: var(--gap);
+	align-items: center;
+}
+.smallest_collection .collection_add_button {
+	opacity: .5;
+	transition: opacity 150ms;
+}
+.smallest_collection .collection_add_button:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.smallest_collection .collection_add_button svg {
+	display: block;
+}
+.collection_title {
+	display: flex;
+}
+.collection_title .title_inner {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 .not_found_wrapper {
 	width: 100%;
 	height: 150px;
@@ -692,6 +725,9 @@ a.login {
 		border-bottom-right-radius: 0;
 		padding-bottom: calc(20px + env(safe-area-inset-bottom));
 	}
+	div.collection_members_inner {
+		grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+	}
 
 }
 @media screen and (min-width: 601px) {
@@ -700,3 +736,4 @@ a.login {
 		top: var(--gap_large);
 	}
 }
+

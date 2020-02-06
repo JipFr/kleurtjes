@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
 	let addable = matches.map(match => {
 
 		return {
+			title: match.title,
 			color: match.color,
 			id: match.id,
 			owner: match.owner,
