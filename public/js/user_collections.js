@@ -7,7 +7,7 @@ function render() {
 	fetch(location.pathname, {
 		method: "POST"
 	}).then(d => d.json()).then(d => {
-		
+
 		let collection_div = document.querySelector(".user_collections");
 
 		collection_div.innerHTML = "";
@@ -25,12 +25,12 @@ function render() {
 
 		for(let collection of collections) {
 			let node = document.importNode(document.querySelector("template.small_collection").content, true);
-			
+
 			node.querySelector(".link").href = `/c/${collection.slug}/`;
 			node.querySelector(".title_inner").innerText = collection.title;
 			node.querySelector(".description").innerText = collection.description;
 			node.querySelector(".palette_count").innerText = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
-				
+
 			if(collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
 
 			// Add users
@@ -52,7 +52,7 @@ function render() {
 
 
 			collection_div.appendChild(node);
-		
+
 		}
 
 		if(collection_div.children.length === 0) {
@@ -127,7 +127,7 @@ function get_slug(slug) {
 
 function create_collection({ name = null, slug = null, description = "" }) {
 	if(!slug || !name) return false;
-	
+
 
 	fetch("/api/new_collection/", {
 		method: "POST",

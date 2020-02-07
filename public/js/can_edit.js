@@ -99,7 +99,6 @@ function delete_palette(id) {
 			return true;
 		},
 		can_cancel: true,
-		fields: []
 	});
 }
 
@@ -202,7 +201,6 @@ function add_to_collection(el) {
 
 	// Remove collections that the user is an administrator of,
 	// but already hold the current palette
-	console.log(addable_collections.find(col => col.palettes.find(pal => pal === id)));
 	let new_addable = addable_collections
 	  .filter(col => !col.palettes.find(palette => palette === id))
 	  .sort((b, a) => a.updated_at - b.updated_at);
@@ -234,12 +232,11 @@ function add_to_collection(el) {
 	}
 
 	document.querySelector(".all").appendChild(overlay_node);
-	
+
 
 }
 
 function really_add_to_collection(collection, palette) {
-	console.log(collection, palette);
 	remove_overlays();
 	fetch(`/api/add_to_collection/`, {
 		method: "POST",
@@ -258,10 +255,7 @@ function really_add_to_collection(collection, palette) {
 		update_addables()
 		create_overlay({
 			title: d.msg,
-			btn_value: "OK",
-			on_submit: res => true,
-			can_cancel: false,
-			fields: []
+			can_cancel: false
 		});
 	});
 }

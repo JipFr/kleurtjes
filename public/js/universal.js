@@ -5,7 +5,7 @@ let my_username = document.body.dataset.youSlug;
 let me = document.body.dataset.you;
 let addable_collections = [];
 
-function create_overlay({title, fields, can_cancel, btn_value, on_submit, btn_is_delete}) {
+function create_overlay({title = "...", fields = [], can_cancel = false, btn_value = "OK", on_submit = _ => true, btn_is_delete = false}) {
 
 	document.querySelectorAll(":focus").forEach(el => el.blur());
 
@@ -21,12 +21,10 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit, btn_is
 
 			input_div = document.importNode(document.querySelector(".templates template.checkbox_input").content, true);
 
-			if(field.checked) {
-				input_div.querySelector("input").checked = true;
-			}
+			if(field.checked) input_div.querySelector("input").checked = true;
 
 		} else {
-			
+
 			input_div = document.importNode(document.querySelector(".templates template.input_div").content, true);
 
 			input_div.querySelector("input").placeholder = field.placeholder || "";
@@ -40,19 +38,19 @@ function create_overlay({title, fields, can_cancel, btn_value, on_submit, btn_is
 				input_div.querySelector(".main_input").setAttribute("maxlength", 20);
 				input_div.querySelector(".color_picker_wrapper").setAttribute("style", `background: ${field.placeholder}`);
 			}
-			
+
 		}
 
 		if(field.oninput) input_div.querySelector("input").addEventListener("input", field.oninput);
 
 		input_div.querySelector("label").innerText = field.label;
 		input_div.querySelector("label").setAttribute("for", field.name);
-		
+
 		input_div.querySelector("input").setAttribute("name", field.name);
 		input_div.querySelector("input").id = field.name;
 
 		input_div.querySelector("input").setAttribute("maxlength", 100);
-		
+
 		for(let item of field.classes) {
 			input_div.querySelector(".input_div").classList.add(item);
 		}
@@ -102,7 +100,7 @@ function remove_overlays() {
 
 const sw = true;
 if (sw && navigator.onLine) {
-	
+
 	if ('serviceWorker' in navigator) {
 
 		window.addEventListener('load', function() {
@@ -148,7 +146,7 @@ function enter(el, evt) {
 	} else if(next_el && next_el.nodeName == "BUTTON") {
 		next_el.click();
 	}
-	
+
 }
 
 function copy(str) {
@@ -176,7 +174,7 @@ function update_radius() {
 	document.querySelectorAll(".round_bottom_right").forEach(el => el.classList.remove("round_bottom_right"));
 
 	document.querySelectorAll(".palette_colors").forEach(div => {
-		
+
 		let should_check = div.scrollHeight > 100;
 		let on_row = 0;
 		let start_y = null;
@@ -271,7 +269,7 @@ function get_palette({
 	} else {
 		image_wrapper.children[0].remove();
 	}
-	
+
 
 	// Remove moving options should that be neccesary
 	if(!can_move_up) {
@@ -336,7 +334,7 @@ function get_palette({
 		node_alt.querySelector(".color_hover").remove();
 		node_alt.querySelector(".color").setAttribute("onclick", `add_color(this.closest('.palette').getAttribute('data-id'))`)
 		node_alt.querySelector(".color").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
-		
+
 		node.querySelector(".palette_colors").appendChild(node_alt);
 	}
 

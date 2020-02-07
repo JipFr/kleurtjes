@@ -44,7 +44,7 @@ app.engine("handlebars", handlebars({
 }));
 app.set("view engine", "handlebars");
 
-MongoClient.connect(db_url, {	
+MongoClient.connect(db_url, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 	}, (err, client) => {
@@ -86,7 +86,7 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.serializeUser(async (user, done) => {
-	
+
 	let mail = (user.emails && user.emails[0] && user.emails[0].verified ? user.emails[0].value : "");
 
 	let collection = db.collection("users");
@@ -113,7 +113,7 @@ passport.serializeUser(async (user, done) => {
 		});
 		done(null, new_obj);
 	}
-	
+
 });
 
 passport.deserializeUser(function(user, done) {
