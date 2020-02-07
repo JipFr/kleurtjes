@@ -14,6 +14,7 @@ module.exports = {
 		},
 		new_collection: require("./api/collections/new_collection"),
 		new_palette: require("./api/palettes/new_palette"),
+		set_palette_title: require("./api/palettes/set_palette_title"),
 		delete_palette: require("./api/palettes/delete_palette"),
 		add_color: require("./api/palettes/add_color"),
 		delete_color: require("./api/palettes/delete_color"),

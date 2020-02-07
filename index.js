@@ -178,6 +178,7 @@ app.post("/api/delete_color/", routers.api.delete_color);
 app.post("/api/toggle_palette_dashboard/", routers.api.toggle_palette_dashboard);
 app.post("/api/toggle_palette_person/", routers.api.toggle_palette_person);
 app.post("/api/toggle_palette_person_permissions/", routers.api.toggle_palette_person_permissions);
+app.post("/api/set_palette_title/", routers.api.set_palette_title);
 
 app.post("/api/leave_palette/", routers.api.leave_palette);
 app.post("/api/add_to_collection/", routers.api.add_to_collection);

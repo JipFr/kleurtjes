@@ -1,6 +1,6 @@
 module.exports = async (user, palette) => {
 
-	if(palette.deleted) return [];
+	if(palette.deleted || !palette.visible) return [];
 
 	let permissions = ["read"];
 	
@@ -8,6 +8,7 @@ module.exports = async (user, palette) => {
 
 	if(palette.created_by == user.id) {
 		permissions.push("delete_palette");
+		permissions.push("change_title");
 		permissions.push("manage_people");
 	}
 
@@ -24,6 +25,6 @@ module.exports = async (user, palette) => {
 
 	return permissions;
 
-	// ["read", "add_color", ""]
+	// ["read", "add_color", ...]
 
 }

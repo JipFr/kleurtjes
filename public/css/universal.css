@@ -714,6 +714,9 @@ a.login {
 	.user_nav a:first-child {
 		margin-left: 3.5vw;
 	}
+	.user_nav a:last-child div {
+		margin-right: 3.5vw;
+	}
 
 	.overlay_wrapper {
 		align-items: flex-end;

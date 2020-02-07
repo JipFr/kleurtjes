@@ -58,7 +58,7 @@ function new_palette() {
 	create_overlay({
 		title: "New palette",
 		btn_value: "Add",
-		on_submit: (response) => {
+		on_submit: response => {
 			if(response.name.trim().length < 1) {
 				return "Please enter a valid palette's name";
 			}
@@ -259,4 +259,50 @@ function really_add_to_collection(collection, palette) {
 			can_cancel: false
 		});
 	});
+}
+
+function change_title(palette_id) {
+	if(!palette_id) return;
+	close_details();
+
+	create_overlay({
+		title: "Change title",
+		btn_value: "Add",
+		on_submit: res => {
+			let new_title = res.title;
+			if(new_title && new_title.length <= 0) {
+				alert("Please insert a title");
+				return;
+			}
+
+			fetch("/api/set_palette_title/", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json"
+				},
+				body: JSON.stringify({
+					palette_id,
+					new_title
+				})
+			}).then(d => d.json()).then(d => {
+				if(d.status !== 200) {
+					show_error(d.err);
+					return;
+				}
+				render();
+			});
+
+			return true;
+		},
+		can_cancel: true,
+		fields: [
+			{
+				label: "New title", 
+				classes: ["title"],
+				name: "title",
+				placeholder: "Project B"
+			}
+		]
+	});
+
 }
