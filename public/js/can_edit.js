@@ -228,6 +228,7 @@ function add_to_collection(el) {
 	overlay_node.querySelector(".smallest_collection").remove();
 	if(overlay_node.querySelector(".fields").children.length === 0) {
 		let not_found_node = document.importNode(document.querySelector("template.not_found").content, true);
+		not_found_node.querySelector("h2").innerHTML = "No available collections!";
 		overlay_node.querySelector(".fields").appendChild(not_found_node);
 	}
 

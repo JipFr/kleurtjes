@@ -32,7 +32,7 @@
 {{/if}}
 
 <meta name="keywords" content="online palette storage">
-<meta name="theme-color" content="#427487">
+<meta name="theme-color" {{#if page.user.color}}content="{{#if page.collection.color}} {{page.collection.color}} {{else}} {{page.user.color}} {{/if}}"{{/if}} {{#if page.collection.color}}content="{{page.collection.color}}"{{/if}} content="#427487">
 
 <meta property="og:title" content="{{head_title}} {{universal.app_divider}} {{universal.app_name}}">
 

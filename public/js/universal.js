@@ -84,7 +84,6 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 	document.querySelector(".all").appendChild(overlay);
 	let to_focus = document.querySelector(".all .overlay_wrapper input");
-	to_focus ? to_focus.focus() : document.querySelector(".all .overlay_wrapper button").focus();
 
 	document.body.classList.add("hide_y");
 
@@ -496,11 +495,19 @@ async function update_addables() {
 
 function leave_palette(id) {
 	close_details();
-	fetch(`/api/leave_palette/?id=${id}`, {
-		method: "POST"
-	}).then(d => d.json()).then(d => {
-		console.log(d);
-		if(!d.status == 200) return;
-		render();
+
+	create_overlay({
+		title: "Really stop being a member of this palette?",
+		on_submit: res => {
+			fetch(`/api/leave_palette/?id=${id}`, {
+				method: "POST"
+			}).then(d => d.json()).then(d => {
+				console.log(d);
+				if(!d.status == 200) return;
+				render();
+			});
+			return true;
+		},
+		can_cancel: true
 	});
 }
