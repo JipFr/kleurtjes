@@ -20,10 +20,8 @@ const user_router = async (req, res, next) => {
 			if(!url.endsWith("/")) url += "/";
 			let url_arr = url.split("/");
 			let palette_name = url_arr[url_arr.length - 2];
-			console.log(palette_name);
 			let all_palettes = await palettes.find({ created_by: page_user.id, visible: true }).toArray();
 
-			console.log(req.params);
 			let palette_ids = req.params.palette.split(",");
 			
 			new_palettes = all_palettes.filter(palette => {

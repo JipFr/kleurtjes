@@ -19,7 +19,5 @@ module.exports = req => {
 	if(path.length === 2) current_page = "dashboard";
 	if(path.length >= 3 && !(["own", "all", "collections"].includes(current_page))) current_page = "palette";
 
-	console.log("FINAL PAGE:", current_page);
-
 	return current_page;
 }
