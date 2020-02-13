@@ -132,11 +132,13 @@ header .pfp {
 .aside_user p {
 	margin: 0;
 	font-family: Arial;
+	color: var(--secondary);
+}
+.aside_user p, .small_collection .description {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 8;
 	overflow: hidden;
-	color: var(--secondary);
 }
 .aside_user p, .aside_user h2 {
 	word-break: break-word;
@@ -631,6 +633,7 @@ details .dropdown .icon_grid .grid_icon svg {
 	grid-gap: var(--gap);
 	align-items: center;
 	font-family: Arial;
+	word-break: break-all;
 }
 .user_small .person_control:not(.no_cursor) {
 	cursor: pointer;
@@ -646,7 +649,6 @@ details .dropdown .icon_grid .grid_icon svg {
 	display: block;
 	background: var(--theme);
 }
-
 .username {
 	color: var(--tertiary);
 	margin-left: var(--gap_small);

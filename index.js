@@ -132,6 +132,9 @@ app.get("/google_auth_callback/", passport.authenticate("google", { failureRedir
 
 
 // Web routers
+app.get("/", (req, res, next) => {
+	req.user ? res.redirect("/me/") : next();
+});
 app.get("/", routers.web.log_in);
 app.get("/me/", routers.web.me);
 app.get("/me/*", routers.web.me);
