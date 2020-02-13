@@ -3,7 +3,7 @@ const { get_current_page } = require("../../util");
 const { universal_handlebar } = require("../../config.json");
 
 // User page router
-const user_router = async (req, res) => {
+const user_router = async (req, res, next) => {
 	let current_page = get_current_page(req);
 	let user_slug = req.params.username;
 
@@ -20,13 +20,15 @@ const user_router = async (req, res) => {
 			if(!url.endsWith("/")) url += "/";
 			let url_arr = url.split("/");
 			let palette_name = url_arr[url_arr.length - 2];
+			console.log(palette_name);
 			let all_palettes = await palettes.find({ created_by: page_user.id, visible: true }).toArray();
 
+			console.log(req.params);
 			let palette_ids = req.params.palette.split(",");
 			
 			new_palettes = all_palettes.filter(palette => {
 				if(palette_ids.find(id => palette.id == id)) return true;
-				if(palette_ids.find(name => palette.name.toLowerCase() == decodeURIComponent(palette_name).replace(/_/g, " ").toLowerCase())) return true;
+				if(palette_ids.find(name => palette.name.toLowerCase() == decodeURIComponent(palette_name).replace(/_|-/g, " ").toLowerCase())) return true;
 				return false;
 			});
 
@@ -49,28 +51,7 @@ const user_router = async (req, res) => {
 
 	} else {
 		// 404
-		res.render("user_wrapper", {
-			layout: "main",
-			user: user,
-			page: {
-				user: {
-					user: {
-						displayName: "User not found!",
-						photos: [
-							{
-								value: "https://media3.giphy.com/media/PekRU0CYIpXS8/giphy.gif?cid=94c10156dc5d9f0b169df50384d84a77791314c91c10b885&rid=giphy.gif"
-							}
-						]
-					}
-				}
-			},
-			is_same_user: false,
-			current_page,
-			universal: universal_handlebar,
-			head_title: "User not found",
-			palettes: [],
-			not_found: true
-		});
+		next();
 	}
 }
 

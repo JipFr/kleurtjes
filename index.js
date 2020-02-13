@@ -142,6 +142,7 @@ app.get("/u/:username/all/", routers.web.user_palette);
 app.get("/u/:username/own/", routers.web.user_palette);
 app.get("/u/:username/collections/", routers.web.user_collections);
 app.get("/u/:username/p/:palette/", routers.web.user_palette);
+app.get("/u/:username/:palette/", routers.web.user_palette); // Fallback for palettes. To get prettier URLs
 
 app.get("/settings/", routers.web.settings);
 
@@ -169,6 +170,7 @@ app.post("/u/:username/own/", routers.api.user_api);
 app.post("/u/:username/all/", routers.api.user_api);
 app.post("/u/:username/collections/", routers.api.user_api);
 app.post("/u/:username/p/:palette/", routers.api.user_api);
+app.post("/u/:username/:palette/", routers.api.user_api); // Fallback for palettes. To get prettier URLs
 
 app.post("/api/new_palette/", routers.api.new_palette);
 app.post("/api/move_palette/", routers.api.move_palette);

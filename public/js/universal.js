@@ -483,7 +483,7 @@ function show_error(err) {
 }
 
 function get_url(palette) {
-	return `/u/${palette.created_by_slug}/p/${palette.name.replace(/ /g, "-").toLowerCase()}/`;
+	return `/u/${palette.created_by_slug}/${encodeURIComponent(palette.name.replace(/ /g, "-").toLowerCase())}/`;
 }
 
 // Get all collections the user can add to
