@@ -1,0 +1,21 @@
+.not_found_page {
+	width: 100%;	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.not_found_page_inner {
+	margin-bottom: var(--gap_large);
+}
+.not_found_page_inner h1 {
+	margin: 0;
+}
+
+
+.not_found_page canvas {
+	width: 100%;
+	height: 100vh;
+	border-radius: 6px;
+	overflow: hidden;
+}

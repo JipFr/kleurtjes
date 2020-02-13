@@ -34,6 +34,12 @@ const user_router = async (req, res, next) => {
 
 		}
 
+		let name = page_user ? `${prefix}${page_user.user.name.givenName}` : null;
+		// if(!name) {
+		// 	next();
+		// 	return;
+		// }
+
 		res.render("user_wrapper", {
 			layout: "main",
 			user,
@@ -43,7 +49,7 @@ const user_router = async (req, res, next) => {
 			is_same_user: page_user.mail == (user || {}).mail,
 			current_page,
 			universal: universal_handlebar,
-			head_title: page_user ? `${prefix}${page_user.user.name.givenName}` : "User not found",
+			head_title: name,
 			palettes: req.params.palette
 		});
 

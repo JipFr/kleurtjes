@@ -2,7 +2,7 @@ console.clear();
 require("dotenv").config();
 
 // Init cfg and other values
-let { port, db_name } = require("./config.json");
+let { port, db_name, universal_handlebar } = require("./config.json");
 const { logger, get_slug, gen_str, get_bio } = require("./util");
 const is_dev = process.env.PROD == "false" ? true : false;
 if(is_dev) port = process.env.DEV_PORT || 80;
@@ -11,7 +11,8 @@ logger.info(`Starting script, is dev: ${is_dev}`);
 
 // Routers
 const routers = require("./routers");
-logger.info(`[STARTUP] Loaded routers`);
+const { get_user } = require("./util/user");
+logger.info(`[STARTUP] Loaded routers, get_user`);
 
 // Init modules
 const express = require("express");
@@ -209,6 +210,20 @@ app.get("*", (req, res, next) => {
 	} else {
 		next();
 	}
+});
+
+app.get("*", async (req, res) => {
+
+	res.status(404);
+
+	let user = await get_user((req.user || {}).id);
+
+	res.render("not_found", {
+		layout: "main",
+		user,
+		universal: universal_handlebar,
+		head_title: "Page not found"
+	});
 });
 
 // Run express
