@@ -85,6 +85,8 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 	document.querySelector(".all").appendChild(overlay);
 	let to_focus = document.querySelector(".all .overlay_wrapper input");
 
+	to_focus ? to_focus.focus() : document.querySelector(".overlay_wrapper button").focus();
+
 	document.body.classList.add("hide_y");
 
 }
