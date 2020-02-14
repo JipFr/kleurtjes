@@ -4,7 +4,7 @@ const { get_current_page, get_user_palette_permissions, get_palette, get_collect
 // User POST router
 const user_api_router = async (req, res) => {
 
-	let current_page = get_current_page(req.headers.referer);
+	let current_page = get_current_page(req.headers.referer || req.url);
 
 	let user = await get_user(req.params.username);
 
@@ -95,7 +95,7 @@ const user_api_router = async (req, res) => {
 
 		}
 
-		new_palettes = new_palettes.filter(i => i ? true : false);
+		new_palettes = (new_palettes || []).filter(i => i ? true : false);
 
 		// Update palettes with permissions and other dynamic stuff
 		let current_user = await get_user((req.user || {}).id)		
