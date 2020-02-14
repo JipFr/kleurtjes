@@ -1,4 +1,8 @@
 module.exports = req => {
+	if(!req) {
+		console.log(req);
+		return null;
+	}
 	let str;
 	if(typeof req == "object") {
 		str = req.url;
