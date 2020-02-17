@@ -1,3 +1,3 @@
 module.exports = str => {
-	return str.replace(/\n/g, "<br>");
+	return str.replace(/</g, "&gt;").replace(/\n/g, "<br>");
 }
