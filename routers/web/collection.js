@@ -29,7 +29,7 @@ const user_router = async (req, res) => {
 			universal: universal_handlebar,
 			head_title: page_collection ? `${prefix}${page_collection.title}` : "Collection not found",
 			palettes: req.params.palette,
-			is_admin: user_is_member.id === page_collection.owner
+			is_admin: user_is_member && user_is_member.id === page_collection.owner
 		});
 	} else {
 		res.status(404);
