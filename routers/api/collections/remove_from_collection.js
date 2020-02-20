@@ -36,22 +36,16 @@ module.exports = async (req, res) => {
 		return;
 	}
 
-	if(collection.palettes.find(p => p.id === palette.id)) {
+	if(!collection.palettes.find(p => p.id === palette.id)) {
 		res.status(400);
 		res.json({
 			status: 400,
-			err: "Palette is already in collection"
+			err: "Palette is not in collection"
 		});
 		return;
 	}
 
-	let new_palettes = [...collection.palettes];
-
-	new_palettes.unshift({
-		id: palette.id,
-		added_at: Date.now(),
-		added_by: req.user.id
-	});
+	let new_palettes = [...collection.palettes].filter(i => i.id !== palette.id);
 
 	// Also update db entry
 	let collections = db.collection("collections");
@@ -66,7 +60,7 @@ module.exports = async (req, res) => {
 			audit_log: {
 				at: Date.now(),
 				by: req.user.id,
-				event: "palette.added",
+				event: "palette.removed",
 				palette: palette.id
 			}
 		}
@@ -74,6 +68,6 @@ module.exports = async (req, res) => {
 
 	res.json({ 
 		status: 200, 
-		msg: "Palette was added to " + collection.title 
+		msg: "Palette was removed from " + collection.title 
 	});
 }

@@ -70,6 +70,12 @@ module.exports = async (req, res) => {
 					id: new_member.id,
 					role: "member",
 					added_at: Date.now()
+				},
+				audit_log: {
+					at: Date.now(),
+					by: req.user.id,
+					event: "setting.member_added",
+					user: new_member.id,
 				}
 			}
 		}, { upsert: false });

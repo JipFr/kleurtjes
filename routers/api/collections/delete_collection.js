@@ -31,6 +31,13 @@ module.exports = async (req, res) => {
 			visible: false,
 			deleted: true,
 			deleted_at: Date.now()
+		},
+		$push: {
+			audit_log: {
+				at: Date.now(),
+				by: req.user.id,
+				event: "setting.created"
+			}
 		}
 	}, { upsert: false });
 

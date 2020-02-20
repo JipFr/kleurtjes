@@ -3,7 +3,7 @@
 	<head>
 		{{> page/head}}
 	</head>
-	<body data-page="{{current_page}}" data-palettes="{{palettes}}" {{#if user}} data-you="{{user.id}}" data-you-slug="{{user.slug}}" {{/if}}>
+	<body data-page="{{current_page}}" data-palettes="{{palettes}}" {{#if user}} data-you="{{user.id}}" data-you-slug="{{user.slug}}" {{/if}} data-collection="{{page.collection.id}}" data-collection-slug="{{page.collection.slug}}" data-is-collection-admin="{{is_admin}}">
 		<div class="templates" style="display: none;">
 			{{> templates}}
 		</div>

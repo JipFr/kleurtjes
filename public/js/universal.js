@@ -12,7 +12,7 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 	let overlay_content = document.querySelector(".templates template.overlay_wrapper").content;
 	let overlay = document.importNode(overlay_content, true);
 
-	overlay.querySelector(".title").innerHTML = title;
+	overlay.querySelector(".title").innerText = title;
 
 	fields.forEach(field => {
 
@@ -29,6 +29,10 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 			input_div.querySelector("input").placeholder = field.placeholder || "";
 			input_div.querySelector("input").classList.add("enterable");
+			if(field.value) {
+				input_div.querySelector("input").value = field.value;
+				input_div.querySelector("input").placeholder = field.value;
+			}
 
 			if(!field.accept_color_picker) {
 				input_div.querySelector(".color_picker_wrapper").remove();
@@ -229,6 +233,7 @@ function get_palette({
 	node.querySelector(".palette_name").innerText = palette.name;
 
 	// Remove control buttons
+	if(!document.body.dataset.collection || document.body.dataset.isCollectionAdmin === "false") node.querySelector(".remove_from_collection").remove();
 	if(!me) node.querySelector(".add_to_collection").remove();
 	if(!palette.permissions.includes("change_title")) node.querySelector(".change_title").remove();
 	if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();

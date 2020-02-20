@@ -10,7 +10,8 @@ module.exports = {
 			set_bio: require("./api/collections/set_bio"),
 			set_slug: require("./api/collections/set_slug"),
 			addable: require("./api/collections/addable"),
-			set_person_permissions: require("./api/collections/set_person_permissions")
+			set_person_permissions: require("./api/collections/set_person_permissions"),
+			remove_from_collection: require("./api/collections/remove_from_collection")	
 		},
 		new_collection: require("./api/collections/new_collection"),
 		new_palette: require("./api/palettes/new_palette"),

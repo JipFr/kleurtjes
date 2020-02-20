@@ -165,6 +165,7 @@ app.post("/api/c/set_bio/", routers.api.collection.set_bio);
 app.post("/api/c/set_slug/", routers.api.collection.set_slug);
 app.post("/api/c/delete_collection/", routers.api.collection.delete_collection);
 app.post("/api/c/set_person_permissions/", routers.api.collection.set_person_permissions);
+app.post("/api/remove_from_collection/", routers.api.collection.remove_from_collection);
 app.post("/api/new_collection/", routers.api.new_collection);
 
 

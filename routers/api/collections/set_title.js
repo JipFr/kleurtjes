@@ -52,6 +52,15 @@ module.exports = async (req, res) => {
 	{
 		$set: {
 			title: new_title
+		},
+		$push: {
+			audit_log: {
+				at: Date.now(),
+				by: req.user.id,
+				event: "setting.title_set",
+				from: collection.title,
+				to: new_title
+			}
 		}
 	}, { upsert: false });
 

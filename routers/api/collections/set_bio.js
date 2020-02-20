@@ -52,6 +52,15 @@ module.exports = async (req, res) => {
 	{
 		$set: {
 			description: new_bio.slice(0, 200)
+		},
+		$push: {
+			audit_log: {
+				at: Date.now(),
+				by: req.user.id,
+				event: "setting.bio_set",
+				from: collection.description,
+				to: new_bio.slice(0, 200) 
+			}
 		}
 	}, { upsert: false });
 
