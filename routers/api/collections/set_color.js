@@ -52,6 +52,15 @@ module.exports = async (req, res) => {
 	{
 		$set: {
 			color: new_color
+		},
+		$push: {
+			audit_log: {
+				at: Date.now(),
+				by: req.user.id,
+				event: "setting.color_set",
+				from: collection.color,
+				to: new_color 
+			}
 		}
 	}, { upsert: false });
 

@@ -265,6 +265,8 @@ function change_title(palette_id) {
 	if(!palette_id) return;
 	close_details();
 
+	let palette = palettes.find(p => p.id === palette_id);
+
 	create_overlay({
 		title: "Change title",
 		btn_value: "Add",
@@ -300,9 +302,46 @@ function change_title(palette_id) {
 				label: "New title", 
 				classes: ["title"],
 				name: "title",
-				placeholder: "Project B"
+				placeholder: "Project B",
+				value: (palette || {}).name || ""
 			}
 		]
 	});
 
+}
+
+function remove_from_collection(palette_id) {
+	let palette = palettes.find(p => p.id === palette_id);
+
+	create_overlay({
+		title: `Really remove "${palette.name}" from "${document.querySelector(".user_context h2").innerText}"?`,
+		btn_value: "Remove",
+		btn_is_delete: true,
+		on_submit: res => {
+			
+			let reqBody = {
+				collection_id: document.body.dataset.collection,
+				palette_id
+			}
+			console.log(reqBody);
+
+			fetch(`/api/remove_from_collection/`, {
+				method: "POST",
+				headers: {
+					"content-type": "application/json"
+				},
+				body: JSON.stringify(reqBody)
+			}).then(d => d.json()).then(d => {
+				if(d.status !== 200) {
+					// Handle error
+					return;
+				} else {
+					render();
+				}
+			});
+
+			return true;
+		},
+		can_cancel: true,
+	});
 }

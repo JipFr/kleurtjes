@@ -62,7 +62,16 @@ module.exports = async (req, res) => {
 	{
 		$set: {
 			slug: new_slug
-		}
+		},
+		$push: {
+            audit_log: {
+                at: Date.now(),
+                by: req.user.id,
+                event: "setting.slug_set",
+				from: collection.slug,
+				to: new_slug
+            }
+        }
 	}, { upsert: false });
 
 	res.json({
