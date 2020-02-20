@@ -229,6 +229,7 @@ function get_palette({
 	node.querySelector(".palette_name").innerText = palette.name;
 
 	// Remove control buttons
+	if(!me) node.querySelector(".add_to_collection").remove();
 	if(!palette.permissions.includes("change_title")) node.querySelector(".change_title").remove();
 	if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
 	if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
@@ -242,7 +243,7 @@ function get_palette({
 
 	// Update user imgs
 	let image_wrapper = node.querySelector(".user_list");
-	if(palette.people.length > 1 || (palette.people.length == 1 && !is_owner && current_page == "dashboard") || show_people) {
+	if(palette.people.length > 1 || (palette.people.length == 1 && palette.people[0].id !== me) || show_people) {
 		palette.people.slice(0, 5).forEach(user => {
 			let node_alt = document.importNode(image_wrapper, true).children[0];
 

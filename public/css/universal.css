@@ -236,7 +236,7 @@ header .pfp {
 .palette_controls > div > svg {
 	display: block;
 }
-.palette_controls > div + div {
+.palette_controls > div + div:not(:last-child) {
 	margin-left: var(--gap);
 }
 .palette .palette_name {
