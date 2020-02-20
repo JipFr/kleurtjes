@@ -55,15 +55,15 @@ module.exports = async (req, res) => {
 	}, {
 		$set: {
 			palettes: new_palettes
-        },
-        $push: {
-            audit_log: {
-                at: Date.now(),
-                by: req.user.id,
-                event: "palette.removed",
-                palette: palette.id
-            }
-        }
+		},
+		$push: {
+			audit_log: {
+				at: Date.now(),
+				by: req.user.id,
+				event: "palette.removed",
+				palette: palette.id
+			}
+		}
 	});
 
 	res.json({ 
