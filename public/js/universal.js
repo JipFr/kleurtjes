@@ -233,7 +233,7 @@ function get_palette({
 	node.querySelector(".palette_name").innerText = palette.name;
 
 	// Remove control buttons
-	if(!document.body.dataset.collection || document.body.dataset.isCollectionAdmin === "false") node.querySelector(".remove_from_collection").remove();
+	if(!document.body.dataset.collection || document.body.dataset.isCollectionAdmin === "false" && node.querySelector(".remove_from_collection")) node.querySelector(".remove_from_collection").remove();
 	if(!me) node.querySelector(".add_to_collection").remove();
 	if(!palette.permissions.includes("change_title")) node.querySelector(".change_title").remove();
 	if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
