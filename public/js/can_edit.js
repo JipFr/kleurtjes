@@ -318,19 +318,17 @@ function remove_from_collection(palette_id) {
 		btn_value: "Remove",
 		btn_is_delete: true,
 		on_submit: res => {
-			
-			let reqBody = {
-				collection_id: document.body.dataset.collection,
-				palette_id
-			}
-			console.log(reqBody);
+
 
 			fetch(`/api/remove_from_collection/`, {
 				method: "POST",
 				headers: {
 					"content-type": "application/json"
 				},
-				body: JSON.stringify(reqBody)
+				body: JSON.stringify({
+					collection_id: document.body.dataset.collection,
+					palette_id
+				})
 			}).then(d => d.json()).then(d => {
 				if(d.status !== 200) {
 					// Handle error
