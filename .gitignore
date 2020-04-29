@@ -64,3 +64,4 @@ typings/
 clear.js
 ._*
 *.code-workspace
+.DS_Store

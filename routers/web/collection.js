@@ -3,14 +3,14 @@ const { get_current_pagek, get_collection } = require("../../util");
 const { universal_handlebar } = require("../../config.json");
 
 // User page router
-const user_router = async (req, res) => {
+const user_router = async (req, res, next) => {
 	
 	let user = await get_user((req.user || {}).id);
 	let prefix = "";
 	// let page_collection = require("../../TMP-collection.json");
 	let page_collection = await get_collection(req.params.slug);
 	if(page_collection) {
-		let current_page = "main";
+		let current_page = "collection-main";
 
 		let user_is_member;
 		let user_role;
@@ -33,8 +33,7 @@ const user_router = async (req, res) => {
 			is_owner: user_is_member && user_is_member.id === page_collection.owner
 		});
 	} else {
-		res.status(404);
-		res.send("404 not found :(");
+		next();
 	}
 }
 
