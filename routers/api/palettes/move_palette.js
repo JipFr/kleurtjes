@@ -25,7 +25,6 @@ module.exports = async (req, res) => {
 		// Get user object in members list
 		// so that we can get the user's role
 		let user_in_collection = collection.members.find(m => m.id === req.user.id);
-		console.log(user_in_collection);  
 
 		if(user_in_collection && user_in_collection.role === "admin") {
 			// Everything seems to be in order. Move the thing!
