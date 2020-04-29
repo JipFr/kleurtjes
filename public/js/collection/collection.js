@@ -13,8 +13,14 @@ function render() {
 		}
 
 		palette_div.innerHTML = "";
-		d.palettes.forEach(palette => {
-			let palette_wrapper = get_palette({ palette, show_people: true });
+		d.palettes.forEach((palette, index) => {
+			// let palette_wrapper = get_palette({ palette, show_people: true });
+			let palette_wrapper = get_palette({
+				palette, 
+				index, 
+				can_move_down: index < d.palettes.length - 1 && palettes.length > 1 && document.body.dataset.isCollectionAdmin == "true",
+				can_move_up: index > 0 && palettes.length > 1 && document.body.dataset.isCollectionAdmin == "true"
+			});
 			palette_div.appendChild(palette_wrapper);
 		});
 		if(palette_div.children.length === 0) {
@@ -30,3 +36,24 @@ function render() {
 }
 
 window.addEventListener("load", render);
+
+function move_palette(direction, id) {
+	let collection_id = document.body.dataset.collection;
+
+	close_details();
+
+	fetch(`/api/move_palette/`, {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify({
+			dir: direction,
+			id,
+			page: current_page,
+			collection_id
+		})
+	}).then(d => d.json()).then(d => {
+		if(!d.status == 200) return;
+		render();
+	});
+
+}

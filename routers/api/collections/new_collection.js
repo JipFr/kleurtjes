@@ -5,8 +5,6 @@ const { get_user } = require("../../../util/user");
 // API new palette
 const new_palette_router = async (req, res) => {
 
-	console.log(123);
-
 	if(!req.user) {
 		res.json({
 			status: 403,
@@ -23,7 +21,6 @@ const new_palette_router = async (req, res) => {
 		return;
 	}
 	
-	console.log(req.body);
 	let collections = db.collection("collections");
 	let existingSlug = await collections.findOne({ slug: req.body.slug });
 	if(existingSlug) {

@@ -79,7 +79,7 @@ passport.use(passport.initialize())
 passport.use(new GoogleStrategy({
 		clientID: process.env.GOOGLE_CLIENT,
 		clientSecret: process.env.GOOGLE_PRIVATE,
-		callbackURL: is_dev ? `http://${process.env.DEV_HOST || "127.0.0.1"}/google_auth_callback/` : `${process.env.AUTH_REDIRECT || "https://colors2.jipfr.nl"}/google_auth_callback/`
+		callbackURL: is_dev ? `http://${process.env.DEV_HOST || "127.0.0.1"}/google_auth_callback/` : `${process.env.AUTH_REDIRECT || "https://kleurtj.es"}/google_auth_callback/`
 	},
 	function(accessToken, refreshToken, profile, done) {
 		done(null, profile);
@@ -204,13 +204,20 @@ app.get("*", (req, res, next) => {
 		// If the URL is `/jip/own/` or `/jip/all/` do nothing
 		// If not, redirect to `/jip/p/pagename` so you can link
 		// to palettes like `domain.com/jip/palettename`
-		if(sub.length == 2) {
+		if(sub.length == 2 && sub[0] !== "c") {
 			let sub_page = sub[1];
 			if(!(["own", "all", "collections"].includes(sub_page))) {
 				sub = [sub[0], "p", sub[1]];
 			}
 		}
-		res.redirect(`/u/${sub.join("/")}`);
+
+		// Don't redirect if it's a collection URL
+		if(sub[0] === "c") {
+			next();
+		} else {
+			res.redirect(`/u/${sub.join("/")}`);
+		}
+		
 	} else {
 		next();
 	}
