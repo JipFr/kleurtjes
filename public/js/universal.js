@@ -128,7 +128,11 @@ if (sw && navigator.onLine) {
 }
 
 function update_theme_color() {
-	document.querySelector(`[name="theme-color"]`).setAttribute("content", get_style(document.querySelector("header"), "backgroundColor"));
+	// Just trying this out. I hope it works
+	let rgb = window.getComputedStyle(document.querySelector("header"), null).getPropertyValue("background-color");
+	let colors = rgb.match(/(\d+), (\d+), (\d+)/).slice(1, 4).map(n => Number(n));
+	document.querySelector(`meta[name="theme-color"]`).content = `rgb(${colors.join(", ")})`;
+	// document.querySelector(`[name="theme-color"]`).setAttribute("content", get_style(document.querySelector("header"), "backgroundColor"));
 }
 
 update_theme_color();
