@@ -43,16 +43,13 @@ module.exports = async (req, res) => {
 				new_arr = palettes;
 			}
 
-			console.log(new_arr);
-
-			let x = await db.collection("collections").updateOne({
+			await db.collection("collections").updateOne({
 				id: collection.id
 			}, {
 				$set: {
 					palettes: new_arr
 				}
 			});
-			console.log(x);
 
 			res.json({
 				status: 200
