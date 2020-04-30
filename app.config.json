@@ -1,6 +1,6 @@
 {
 	"apps" : [{
-		"name": "colors-new",
+		"name": "kleurtjes",
 		"script": "index.js",
 		"watch": true,
 		"ignore_watch": ["logs/*"]
