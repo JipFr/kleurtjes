@@ -527,4 +527,5 @@ function leave_palette(id) {
 
 function search(search_value) {
 	// ;)
+	location.href = `/search/?q=${encodeURIComponent(search_value)}`;
 }

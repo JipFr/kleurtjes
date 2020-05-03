@@ -92,6 +92,7 @@ header .search input {
 	font-size: 1rem;
 	border: 0;
 	background: transparent;
+	color: var(--text);
 	padding: var(--gap_small) 0;
 }
 
@@ -136,10 +137,15 @@ header .pfp {
 	/*max-width: 1000px;*/
 	max-width: 1300px;
 }
-.layout {
+.search_layout, .layout {
 	display: grid;
-	grid-template-columns: 250px 1fr;
 	grid-gap: var(--gap_large);
+}
+.search_layout {
+	grid-template-columns: 1fr 250px;
+}
+.layout {
+	grid-template-columns: 250px 1fr;
 }
 
 .body_wrapper {
@@ -207,7 +213,9 @@ header .pfp {
 	display: block;
 }
 
-
+.search_layout .user_nav {
+	justify-content: start;
+}
 .user_nav {
 	display: flex;
 	flex-wrap: wrap;
@@ -707,6 +715,28 @@ a.login {
 	color: inherit;
 }
 
+.search_users {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: var(--gap);
+}
+.middle_user {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-gap: var(--gap);
+	align-items: center;
+}
+.user_img {
+	width: 40px;
+	height: 40px;
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	display: block;
+}
+.middle_user .user_name {
+	margin: 0;
+}
+
 @media screen and (max-width: 600px) {
 
 	body {
@@ -720,7 +750,7 @@ a.login {
 	}
 
 	/* Main layout */
-	.layout {
+	.layout, .search_layout {
 		grid-template-columns: 100%;
 	}
 	.aside_user .pfp {

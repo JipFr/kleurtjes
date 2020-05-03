@@ -28,7 +28,8 @@ module.exports = {
 		set_color: require("./api/users/set_color"),
 		set_bio: require("./api/users/set_bio"),
 		leave_palette: require("./api/palettes/leave_palette"),
-		add_to_collection: require("./api/users/add_to_collection")
+		add_to_collection: require("./api/users/add_to_collection"),
+		search: require("./api/search")
 	},
 	web: {
 		collection: require("./web/collection"),
@@ -38,6 +39,7 @@ module.exports = {
 		me: require("./web/me"),
 		home: require("./web/home"),
 		log_in: require("./web/log_in"),
+		search: require("./web/search"),
 		settings: require("./web/settings")
 	},
 	other: {

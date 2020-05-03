@@ -139,6 +139,7 @@ app.get("/", routers.web.log_in);
 app.get("/me/", routers.web.me);
 app.get("/me/*", routers.web.me);
 app.get("/log-in/", routers.web.log_in);
+app.get("/search/", routers.web.search);
 app.get("/logout/", (req, res) => { req.logout(); res.redirect("/"); });
 
 app.get("/u/:username/", routers.web.user_palette);
@@ -170,6 +171,7 @@ app.post("/api/new_collection/", routers.api.new_collection);
 
 
 // API routers
+app.post("/search/", routers.api.search);
 app.post("/u/:username/", routers.api.user_api);
 app.post("/u/:username/own/", routers.api.user_api);
 app.post("/u/:username/all/", routers.api.user_api);
