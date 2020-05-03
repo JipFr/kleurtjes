@@ -524,3 +524,7 @@ function leave_palette(id) {
 		can_cancel: true
 	});
 }
+
+function search(search_value) {
+	// ;)
+}

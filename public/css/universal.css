@@ -70,6 +70,32 @@ header .layout_width {
 	justify-content: flex-end;
 	align-items: center;
 }
+header .search {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-gap: var(--gap);
+	background: var(--body);
+	border: 1px solid var(--border);
+	place-items: center;
+	padding-left: var(--gap);
+	border-radius: 100px;
+	margin-right: var(--gap);
+}
+header .search svg {
+	height: 15px;
+	width: 15px;
+	display: block;
+}
+header .search input {
+	appearance: none;
+	-webkit-appearance: none;
+	font-size: 1rem;
+	border: 0;
+	background: transparent;
+	padding: var(--gap_small) 0;
+}
+
+
 header a[href="/log-in/"] svg {
 	color: white;
 	display: block;
