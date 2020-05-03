@@ -46,11 +46,30 @@ module.exports = async (req, res) => {
 		}
 	});
 
+	/**
+	 * COLLECTIONS
+	 */
+	let collections = db.collection("collections");
+	await collections.createIndex({
+		slug: "text",
+		description: "text",
+		title: "text",
+	});
+	let relevantCollections = await collections.find({
+		$text: {
+			$search: query
+		}
+	}).toArray();
+	let relevantCollectionIds = relevantCollections.map(p => p.id);
+	
+	// Now map it to get_user so that private information and such is removed
+	let newCollections = await Promise.all(relevantCollectionIds.map(id => get_collection(id)));
 
 
 	res.json({
 		palettes: newPalettes.filter(i => i).slice(0, 10),
-		users: newUsers.filter(i => i).slice(0, 10)
+		users: newUsers.filter(i => i).slice(0, 10),
+		collections: newCollections.filter(i => i).slice(0, 10)
 	});
 
 }

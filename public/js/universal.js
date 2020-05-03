@@ -5,7 +5,7 @@ let my_username = document.body.dataset.youSlug;
 let me = document.body.dataset.you;
 let addable_collections = [];
 
-function create_overlay({title = "...", fields = [], can_cancel = false, btn_value = "OK", on_submit = _ => true, btn_is_delete = false}) {
+function create_overlay({ title = "...", fields = [], can_cancel = false, btn_value = "OK", on_submit = _ => true, btn_is_delete = false }) {
 
 	document.querySelectorAll(":focus").forEach(el => el.blur());
 
@@ -17,11 +17,11 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 	fields.forEach(field => {
 
 		let input_div;
-		if(field.type == "checkbox") {
+		if (field.type == "checkbox") {
 
 			input_div = document.importNode(document.querySelector(".templates template.checkbox_input").content, true);
 
-			if(field.checked) input_div.querySelector("input").checked = true;
+			if (field.checked) input_div.querySelector("input").checked = true;
 
 		} else {
 
@@ -29,12 +29,12 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 			input_div.querySelector("input").placeholder = field.placeholder || "";
 			input_div.querySelector("input").classList.add("enterable");
-			if(field.value) {
+			if (field.value) {
 				input_div.querySelector("input").value = field.value;
 				input_div.querySelector("input").placeholder = field.value;
 			}
 
-			if(!field.accept_color_picker) {
+			if (!field.accept_color_picker) {
 				input_div.querySelector(".color_picker_wrapper").remove();
 				input_div.querySelector(".input input").removeAttribute("oninput");
 			} else {
@@ -45,7 +45,7 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 		}
 
-		if(field.oninput) input_div.querySelector("input").addEventListener("input", field.oninput);
+		if (field.oninput) input_div.querySelector("input").addEventListener("input", field.oninput);
 
 		input_div.querySelector("label").innerText = field.label;
 		input_div.querySelector("label").setAttribute("for", field.name);
@@ -55,7 +55,7 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 		input_div.querySelector("input").setAttribute("maxlength", 100);
 
-		for(let item of field.classes) {
+		for (let item of field.classes) {
 			input_div.querySelector(".input_div").classList.add(item);
 		}
 
@@ -63,25 +63,25 @@ function create_overlay({title = "...", fields = [], can_cancel = false, btn_val
 
 	});
 
-	if(!can_cancel) overlay.querySelector("button.cancel").remove();
+	if (!can_cancel) overlay.querySelector("button.cancel").remove();
 
-	if(btn_is_delete) overlay.querySelector("button.submit").classList.add("delete");
+	if (btn_is_delete) overlay.querySelector("button.submit").classList.add("delete");
 	overlay.querySelector("button.submit").innerText = btn_value;
 	overlay.querySelector("button.submit").addEventListener("click", () => {
 		let responses = {}
 
 		document.querySelectorAll(".all .overlay_wrapper input").forEach(input => {
-			if(input.type == "text") {
+			if (input.type == "text") {
 				responses[input.getAttribute("name")] = input.value;
-			} else if(input.type == "checkbox") {
+			} else if (input.type == "checkbox") {
 				responses[input.getAttribute("name")] = input.checked;
 			}
 		});
 
 		let should_remove = on_submit(responses);
-		if(should_remove && typeof should_remove == "boolean") {
+		if (should_remove && typeof should_remove == "boolean") {
 			remove_overlays();
-		} else if(should_remove) {
+		} else if (should_remove) {
 			alert(should_remove);
 		}
 	});
@@ -108,7 +108,7 @@ if (sw && navigator.onLine) {
 
 	if ('serviceWorker' in navigator) {
 
-		window.addEventListener('load', function() {
+		window.addEventListener('load', function () {
 			navigator.serviceWorker.register("/sw.js").then(reg => {
 
 			}, err => {
@@ -119,7 +119,7 @@ if (sw && navigator.onLine) {
 	}
 } else if (!sw && navigator.onLine) {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.getRegistrations().then(function(registrations) {
+		navigator.serviceWorker.getRegistrations().then(function (registrations) {
 			for (var registration of registrations) {
 				registration.unregister();
 			}
@@ -143,16 +143,16 @@ function get_style(el, prop) {
 }
 
 function enter(el, evt) {
-	if(evt.key !== "Enter") return;
-	if(!el.classList.contains("enterable")) return;
+	if (evt.key !== "Enter") return;
+	if (!el.classList.contains("enterable")) return;
 	// To next input
 	let enterables = [...el.closest(".overlay_inner").querySelectorAll(".enterable")];
 	let current_index = enterables.indexOf(el);
 	let next_el = enterables[current_index + 1];
 
-	if(next_el && next_el.nodeName == "INPUT") {
+	if (next_el && next_el.nodeName == "INPUT") {
 		next_el.focus();
-	} else if(next_el && next_el.nodeName == "BUTTON") {
+	} else if (next_el && next_el.nodeName == "BUTTON") {
 		next_el.click();
 	}
 
@@ -188,13 +188,13 @@ function update_radius() {
 		let on_row = 0;
 		let start_y = null;
 
-		if(should_check) {
+		if (should_check) {
 			let all_colors = div.querySelectorAll(".color");
 
 			all_colors.forEach(color => {
 				let color_pos = color.getBoundingClientRect();
-				if(start_y === null) start_y = color_pos.top;
-				if(start_y === color_pos.top) {
+				if (start_y === null) start_y = color_pos.top;
+				if (start_y === color_pos.top) {
 					on_row++
 				}
 			});
@@ -202,7 +202,7 @@ function update_radius() {
 			let row_index = all_colors.length % on_row;
 			// No final element should be rounded if
 			// the below if statement is true
-			if(row_index !== 0) {
+			if (row_index !== 0) {
 				let final = Math.floor(all_colors.length / on_row);
 				let element_index = (final * on_row) - 1;
 				all_colors[element_index].classList.add("round_bottom_right");
@@ -214,7 +214,7 @@ function update_radius() {
 
 	// For top right rounding
 	document.querySelectorAll(".palette_colors").forEach(div => {
-		if(div.scrollHeight == 100) {
+		if (div.scrollHeight == 100) {
 			div.classList.add("round_last");
 		} else {
 			div.classList.remove("round_last");
@@ -224,10 +224,10 @@ function update_radius() {
 
 window.addEventListener("resize", update_radius);
 
-function get_palette({ 
-	palette, 
-	can_move_up = false, 
-	can_move_down = false, 
+function get_palette({
+	palette,
+	can_move_up = false,
+	can_move_down = false,
 	is_owner = false,
 	show_people = false }) {
 	// Add divs
@@ -237,22 +237,22 @@ function get_palette({
 	node.querySelector(".palette_name").innerText = palette.name;
 
 	// Remove control buttons
-	if((document.body.dataset.collection === "" || document.body.dataset.isCollectionAdmin !== "true") && node.querySelector(".remove_from_collection")) node.querySelector(".remove_from_collection").remove();
-	if(!me) node.querySelector(".add_to_collection").remove();
-	if(!palette.permissions.includes("change_title")) node.querySelector(".change_title").remove();
-	if(!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
-	if(!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
-	if(!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
+	if ((document.body.dataset.collection === "" || document.body.dataset.isCollectionAdmin !== "true") && node.querySelector(".remove_from_collection")) node.querySelector(".remove_from_collection").remove();
+	if (!me) node.querySelector(".add_to_collection").remove();
+	if (!palette.permissions.includes("change_title")) node.querySelector(".change_title").remove();
+	if (!palette.permissions.includes("delete_palette")) node.querySelector(".delete_palette").remove();
+	if (!palette.permissions.includes("manage_people")) node.querySelector(".manage_people .grid_info").innerHTML = "People";
+	if (!palette.permissions.includes("toggle_dashboard")) node.querySelector(".toggle_dashboard").remove();
 
-	if(!navigator.share) node.querySelector(".share_palette").remove();
+	if (!navigator.share) node.querySelector(".share_palette").remove();
 
-	if(palette.created_by == me || !palette.people_allowed.find(i => i.id === me)) {
+	if (palette.created_by == me || !palette.people_allowed.find(i => i.id === me)) {
 		node.querySelector(".leave_palette").remove();
 	}
 
 	// Update user imgs
 	let image_wrapper = node.querySelector(".user_list");
-	if(palette.people.length > 1 || (palette.people.length == 1 && palette.people[0].id !== me) || show_people) {
+	if (palette.people.length > 1 || (palette.people.length == 1 && palette.people[0].id !== me) || show_people) {
 		palette.people.slice(0, 5).forEach(user => {
 			let node_alt = document.importNode(image_wrapper, true).children[0];
 
@@ -267,7 +267,7 @@ function get_palette({
 
 	// Remove initial image (placeholder) OR show "..." 
 	// if there's 5 or more people in the palette
-	if(palette.people.length >= 5) {
+	if (palette.people.length >= 5) {
 		let n = image_wrapper.children[0];
 
 		n.querySelector("img").src = "/more.png";
@@ -284,13 +284,13 @@ function get_palette({
 
 
 	// Remove moving options should that be neccesary
-	if(!can_move_up) {
+	if (!can_move_up) {
 		node.querySelector(".palette_placement .grid_icon:first-child").innerHTML = "";
 	}
-	if(!can_move_down) {
+	if (!can_move_down) {
 		node.querySelector(".palette_placement .grid_icon:last-child").innerHTML = "";
 	}
-	if(!can_move_up && !can_move_down) {
+	if (!can_move_up && !can_move_down) {
 		node.querySelector(".placement_wrapper").remove();
 	}
 
@@ -312,7 +312,7 @@ function get_palette({
 		node_alt.querySelector(".color").parentNode.setAttribute("data-id", color.id);
 		node_alt.querySelector(".color").parentNode.setAttribute("data-color", color.value);
 
-		if(palette.permissions.includes("delete_color")) {
+		if (palette.permissions.includes("delete_color")) {
 			node_alt.querySelector(".color").parentNode.addEventListener("contextmenu", evt => {
 				evt.preventDefault();
 
@@ -338,7 +338,7 @@ function get_palette({
 		node.querySelector(".palette_colors").appendChild(node_alt);
 	});
 
-	if(palette.permissions.includes("add_color")) {
+	if (palette.permissions.includes("add_color")) {
 		// Add "plus" button
 		let node_alt = document.importNode(content_alt, true).children[0];
 		node_alt.querySelector("div").classList.add("is_add_button");
@@ -357,17 +357,17 @@ function get_palette({
 
 	node.querySelector(".palette_url").href = get_url(palette);
 
-	if(palette.is_on_dashboard && node.querySelector(".is_on_dashboard")) {
+	if (palette.is_on_dashboard && node.querySelector(".is_on_dashboard")) {
 		node.querySelector(".is_on_dashboard").remove();
-	} else if(node.querySelector(".not_on_dashboard")) {
+	} else if (node.querySelector(".not_on_dashboard")) {
 		node.querySelector(".not_on_dashboard").remove();
 	}
 
 	let dropdown = node.querySelector(".dropdown");
 	let removed_hr = false;
-	while(!removed_hr) {
+	while (!removed_hr) {
 		let last_child = dropdown.children[dropdown.children.length - 1];
-		if(last_child.nodeName == "HR") {
+		if (last_child.nodeName == "HR") {
 			last_child.remove();
 		} else {
 			removed_hr = true;
@@ -380,7 +380,7 @@ document.addEventListener("click", evt => {
 	// Close detail elements if clicking elsewhere
 	let path = evt.path || [];
 	document.querySelectorAll("details.close_on_click[open]").forEach(el => {
-		if(!path.includes(el)) {
+		if (!path.includes(el)) {
 			el.removeAttribute("open");
 		}
 	});
@@ -395,7 +395,7 @@ function manage_palette_people(id) {
 
 	let palette = palettes.find(p => p.id == id);
 
-	if(!palette) return false;
+	if (!palette) return false;
 
 	let node = document.importNode(document.querySelector(".control_overlay_wrapper").content, true);
 
@@ -410,14 +410,14 @@ function manage_palette_people(id) {
 	palette.people.forEach(person => {
 		let n_node = document.importNode(node.querySelector(".fields .user_small"), true);
 
-		if(person.write) n_node.querySelector(".person_control.person_control_toggle_write").classList.add("write");
+		if (person.write) n_node.querySelector(".person_control.person_control_toggle_write").classList.add("write");
 
 		n_node.querySelector(".name_main").innerText = person.name;
 		n_node.querySelector(".username").href = `/u/${person.username}`;
 		n_node.querySelector(".username").innerText = `u/${person.username}`;
 		n_node.querySelector(".user_small_pfp").src = `/image/${person.username}`;
 
-		if(person.id == palette.created_by) {
+		if (person.id == palette.created_by) {
 			n_node.classList.add("is_self");
 			n_node.querySelector(".person_control_remove").remove();
 		} else {
@@ -435,7 +435,7 @@ function manage_palette_people(id) {
 		evt.key == "Enter" ? evt.target.closest(".input").querySelector("button").click() : "";
 	});
 
-	if(!palette.permissions.includes("manage_people")) {
+	if (!palette.permissions.includes("manage_people")) {
 		node.querySelector(".title").innerHTML = "People in this palette";
 		node.querySelector(".input_div").remove();
 		node.querySelectorAll(".person_control_toggle_write").forEach(el => {
@@ -447,7 +447,7 @@ function manage_palette_people(id) {
 
 	document.querySelector(".all").appendChild(node);
 
-	if(document.querySelector("#add_person")) document.querySelector("#add_person").focus();
+	if (document.querySelector("#add_person")) document.querySelector("#add_person").focus();
 
 }
 
@@ -462,7 +462,7 @@ function toggle_palette_dashboard(id) {
 	fetch(`/api/toggle_palette_dashboard/?id=${id}`, {
 		method: "POST"
 	}).then(d => d.json()).then(d => {
-		if(!d.status == 200) return;
+		if (!d.status == 200) return;
 		render();
 	});
 }
@@ -470,7 +470,7 @@ function toggle_palette_dashboard(id) {
 function share_palette(palette_wrapper) {
 	let id = palette_wrapper.dataset.id;
 	let palette = palettes.find(palette => palette.id === id);
-	if(!palette) return;
+	if (!palette) return;
 
 	try {
 		navigator.share({
@@ -478,7 +478,7 @@ function share_palette(palette_wrapper) {
 			url: get_url(palette),
 			text: `Check out the ${palette.name} palette by u/${palette.created_by_slug}!`
 		});
-	} catch(err) {
+	} catch (err) {
 		show_error(`Error: ${err}`)
 	}
 
@@ -503,7 +503,7 @@ window.addEventListener("load", update_addables);
 async function update_addables() {
 	let addable_req = await fetch("/api/c/addable");
 	let addable = await addable_req.json();
-	if(addable.status === 200) addable_collections = addable.addable;
+	if (addable.status === 200) addable_collections = addable.addable;
 }
 
 function leave_palette(id) {
@@ -516,7 +516,7 @@ function leave_palette(id) {
 				method: "POST"
 			}).then(d => d.json()).then(d => {
 				console.log(d);
-				if(!d.status == 200) return;
+				if (!d.status == 200) return;
 				render();
 			});
 			return true;
@@ -528,4 +528,35 @@ function leave_palette(id) {
 function search(search_value) {
 	// ;)
 	location.href = `/search/?q=${encodeURIComponent(search_value)}`;
+}
+
+function get_collection(collection) {
+	let node = document.importNode(document.querySelector("template.small_collection").content, true);
+
+	node.querySelector(".link").href = `/c/${collection.slug}/`;
+	node.querySelector(".title_inner").innerText = collection.title;
+	node.querySelector(".description").innerText = collection.description;
+	node.querySelector(".palette_count").innerText = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
+
+	if (collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
+
+	// Add users
+	let user_list = node.querySelector(".user_list");
+	for (let member of collection.members.slice(0, 5)) {
+		let pfp_node = document.importNode(user_list.children[0], true);
+		pfp_node.href = `/u/${member.slug}/`;
+		pfp_node.querySelector("img").src = `/image/${member.id}/`;
+		user_list.appendChild(pfp_node);
+	}
+
+	// If members list has more than 5 members, show the "more" icon
+	if (collection.members.length > 5) {
+		let more_node = document.importNode(user_list.children[0], true);
+		more_node.removeAttribute("href");
+		more_node.querySelector("img").src = "/more.png";
+		user_list.appendChild(more_node);
+	}
+
+	user_list.children[0].remove();
+	return node;
 }
