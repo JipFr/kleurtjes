@@ -14,7 +14,6 @@ function render() {
 
 		palette_div.innerHTML = "";
 		d.palettes.forEach((palette, index) => {
-			// let palette_wrapper = get_palette({ palette, show_people: true });
 			let palette_wrapper = get_palette({
 				palette, 
 				index, 
