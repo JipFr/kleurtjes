@@ -562,7 +562,9 @@ function get_collection(collection) {
 }
 
 function get_not_found(txt) {
+	let kaomoji = ["(ノ_<。)","(-_-)","(´-ω-`)",".･ﾟﾟ･(／ω＼)･ﾟﾟ･.","(μ_μ)","(ﾉД`)","(-ω-、)","。゜゜(´Ｏ`) ゜゜。","o(TヘTo)","( ; ω ; )","(｡╯︵╰｡)","｡･ﾟﾟ*(>д<)*ﾟﾟ･｡","( ﾟ，_ゝ｀)","(个_个)","(╯︵╰,)","｡･ﾟ(ﾟ><ﾟ)ﾟ･｡","( ╥ω╥ )","(╯_╰)","(╥_╥)",".｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.","(／ˍ・、)","(ノ_<、)","(╥﹏╥)","｡ﾟ(｡ﾉωヽ｡)ﾟ｡","(つω`｡)","(｡T ω T｡)","(ﾉω･､)","･ﾟ･(｡>ω<｡)･ﾟ･","(T_T)","(>_<)","(っ˘̩╭╮˘̩)っ","｡ﾟ･ (>﹏<) ･ﾟ｡","o(〒﹏〒)o","(｡•́︿•̀｡)","(ಥ﹏ಥ)"];
 	let not_found_node = document.importNode(document.querySelector("template.not_found").content, true);
+	not_found_node.querySelector("h1").innerHTML = kaomoji[Math.floor(Math.random() * kaomoji.length)];
 	not_found_node.querySelector("h2").innerHTML = txt;
 	return not_found_node;
 }

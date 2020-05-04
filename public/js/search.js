@@ -1,5 +1,5 @@
 let url_match = location.href.match(/\?q=(.+)/);
-let search_query = urlMatch ? urlMatch[1] : "";
+let search_query = url_match ? url_match[1] : "";
 let palettes;
 
 if(search_query) {
