@@ -1,22 +1,23 @@
-let urlMatch = location.href.match(/\?q=(.+)/);
-let searchQuery = urlMatch ? urlMatch[1] : "";
+let url_match = location.href.match(/\?q=(.+)/);
+let search_query = urlMatch ? urlMatch[1] : "";
 let palettes;
 
-if(searchQuery) {
+if(search_query) {
 	fetch("/search/", {
 		method: "POST",
 		headers: {
 			"content-type": "application/json"
 		},
 		body: JSON.stringify({
-			query: searchQuery
+			query: search_query
 		})
 	}).then(d => d.json()).then(d => {
-		console.log(d);
+		
 		palettes = d.palettes;
 		let palettes_div = document.querySelector(".search_palettes");
 		let users_div = document.querySelector(".search_users");
 		let collections_div = document.querySelector(".search_collections");
+		
 		for(let [index, palette] of Object.entries(d.palettes)) {
 			let node = get_palette({
 				palette, 
@@ -42,6 +43,13 @@ if(searchQuery) {
 			let node = get_collection(collection);
 			console.log(node);
 			collections_div.appendChild(node);
+		}
+
+		for(let wrapper of [palettes_div, users_div, collections_div]) {
+			if(wrapper.innerHTML.trim().length === 0) { 
+				wrapper.appendChild(get_not_found("No search results for this section!"));
+				if(wrapper === collections_div) wrapper.classList.add("no_collections");
+			}
 		}
 
 	});

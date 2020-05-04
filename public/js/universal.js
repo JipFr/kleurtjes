@@ -560,3 +560,9 @@ function get_collection(collection) {
 	user_list.children[0].remove();
 	return node;
 }
+
+function get_not_found(txt) {
+	let not_found_node = document.importNode(document.querySelector("template.not_found").content, true);
+	not_found_node.querySelector("h2").innerHTML = txt;
+	return not_found_node;
+}

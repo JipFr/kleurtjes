@@ -17,10 +17,10 @@ module.exports = async (req, res) => {
 			$search: query
 		}
 	}).toArray();
-	let relevantPaletteIds = relevantPalettes.map(p => p.id);
+	let relevantPaletteIds = relevantPalettes.filter(i => i).map(p => p.id);
 	
 	// Now map it to get_user so that private information and such is removed
-	let newPalettes = await Promise.all(relevantPaletteIds.map(id => get_palette(id, req.user.id)));
+	let newPalettes = await Promise.all(relevantPaletteIds.filter(i => i).map(id => get_palette(id, (req.user || {}).id)));
 
 	/** 
 	 * USERS
