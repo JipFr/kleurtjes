@@ -24,31 +24,7 @@ function render() {
 		collections = d.data.collections.sort((a, b) => (b.created_at || b.updated_at) - (a.created_at || b.created_at));
 
 		for(let collection of collections) {
-			let node = document.importNode(document.querySelector("template.small_collection").content, true);
-
-			node.querySelector(".link").href = `/c/${collection.slug}/`;
-			node.querySelector(".title_inner").innerText = collection.title;
-			node.querySelector(".description").innerText = collection.description;
-			node.querySelector(".palette_count").innerText = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
-
-			if(collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
-
-			// Add users
-			let user_list = node.querySelector(".user_list");
-			for(let member of collection.members.slice(0, 5)) {
-				let pfp_node = document.importNode(user_list.children[0], true);
-				pfp_node.href = `/u/${member.slug}/`;
-				pfp_node.querySelector("img").src = `/image/${member.id}/`;
-				user_list.appendChild(pfp_node);
-			}
-			// If members list has more than 5 members, show the "more" icon
-			if(collection.members.length > 5) {
-				let more_node = document.importNode(user_list.children[0], true);
-				more_node.removeAttribute("href");
-				more_node.querySelector("img").src = "/more.png";
-				user_list.appendChild(more_node);
-			}
-			user_list.children[0].remove();
+			let node = get_collection(collection);
 
 
 			collection_div.appendChild(node);
