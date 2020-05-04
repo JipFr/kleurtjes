@@ -538,7 +538,7 @@ function get_collection(collection) {
 	node.querySelector(".description").innerText = collection.description;
 	node.querySelector(".palette_count").innerText = `${collection.palettes.length > 0 ? collection.palettes.length : "No"} palette${collection.palettes.length !== 1 ? "s" : ""}`;
 
-	if (collection.color) node.querySelector("*").setAttribute("style", `--theme: ${collection.color};`);
+	node.querySelector("*").setAttribute("style", `--theme: ${collection.color || "#3d6a7b"};`);
 
 	// Add users
 	let user_list = node.querySelector(".user_list");
