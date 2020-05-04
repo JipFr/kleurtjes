@@ -54,5 +54,5 @@ if(search_query) {
 
 	});
 } else {
-	location.href = "/me";
+	location.href = "/me/";
 }
