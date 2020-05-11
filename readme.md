@@ -1,4 +1,4 @@
-# [Colors (new)](https://kleurtj.es/jip)
+# [kleurtj.es](https://kleurtj.es/jip)
 
 
 This project lets you easily store and share your color palettes. 
