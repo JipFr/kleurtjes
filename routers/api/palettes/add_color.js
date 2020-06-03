@@ -21,7 +21,7 @@ const add_color_router = async (req, res) => {
 		return;
 	}
 
-	if(req.body.value.trim().length > 15) {
+	if(req.body.value.trim().length > 25) {
 		res.status(400);
 		res.json({
 			status: 400,
