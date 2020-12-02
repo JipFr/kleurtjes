@@ -12,7 +12,10 @@ const image_router = async (req, res, next) => {
 		return;
 	}
 
-	res.redirect(user.user.photos[0].value);
+	let photo_url = user.user.photos[0].value;
+	photo_url = photo_url.replace(/=s96/g, "=s24")
+
+	res.redirect(photo_url);
 }
 
 module.exports = image_router;
