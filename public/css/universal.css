@@ -372,6 +372,7 @@ header .pfp {
 	word-break: break-word;
 }
 .color_hover .hover_color {
+	font-size: 13.2px;
 	margin: 0;
 	font-weight: 300;
 	margin-top: var(--gap_small);
